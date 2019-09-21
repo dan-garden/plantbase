@@ -14,9 +14,29 @@ const menuLinks = [
 
 const loader = `<img class="loader" src="assets/images/loader.gif" />`;
 
-const showModal = (title, content) => {
-    dom.modal.style.display = "block";
+const showModal = (title=null, body=null) => {
+    const titleDom = dom.modal.querySelector(".modal-title");
+    const bodyDom = dom.modal.querySelector(".modal-body");
 
+    if(title) {
+        titleDom.innerHTML = title;
+    } else {
+        titleDom.innerHTML = "";
+    }
+    bodyDom.innerHTML = "";
+    if(!Array.isArray(body)) {
+        body = [body];
+    }
+    body.forEach(el => {
+        if(el) {
+            if(el instanceof HTMLElement) {
+                bodyDom.appendChild(el);
+            } else {
+                bodyDom.innerHTML += el;
+            }
+        }
+    });
+    dom.modal.style.display = "block";
 };
 
 const hideModal = () => {
@@ -158,7 +178,13 @@ const displayGardenPlant = async (id) => {
         return false;
     } else {
         const plant = filtered[0];
-        showModal(plant.name);
+        showModal(plant.details.name, `
+            ${plant.photo ? 
+                `<img src="${plant.photo}" />`    
+            : ''}
+            ${plant.details.botanical_name}
+
+        `);
     }
 }
 
