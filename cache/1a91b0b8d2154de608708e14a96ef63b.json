@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Basil",
+    "link": "https://www.almanac.com/plant/basil",
+    "slug": "basil",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/basil-leaves-herb.jpg?itok=KjAJiP13"
+  },
+  {
+    "title": "Mint",
+    "link": "https://www.almanac.com/plant/mint",
+    "slug": "mint",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/mint-planting-growing-harvesting.jpg?itok=tXr_zMKg"
+  },
+  {
+    "title": "Dill",
+    "link": "https://www.almanac.com/plant/dill",
+    "slug": "dill",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/dill-planting-growing.jpg?itok=hVPusimk"
+  },
+  {
+    "title": "Okra",
+    "link": "https://www.almanac.com/plant/okra",
+    "slug": "okra",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/okra.jpg?itok=80eskFHz"
+  },
+  {
+    "title": "Carrots",
+    "link": "https://www.almanac.com/plant/carrots",
+    "slug": "carrots",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/carrots-table_popidar-ss.jpg?itok=1rT0jF5h"
+  },
+  {
+    "title": "Chives",
+    "link": "https://www.almanac.com/plant/chives",
+    "slug": "chives",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/chives-display-crop.jpg?itok=QXT_2D7G"
+  },
+  {
+    "title": "Sage",
+    "link": "https://www.almanac.com/plant/sage",
+    "slug": "sage",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/sage-planting-growing-harvesting.jpg?itok=Jnu1-Mxs"
+  },
+  {
+    "title": "Oregano",
+    "link": "https://www.almanac.com/plant/oregano",
+    "slug": "oregano",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/oregano.jpg?itok=zrVdXwAx"
+  },
+  {
+    "title": "Kale",
+    "link": "https://www.almanac.com/plant/kale",
+    "slug": "kale",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/kale.jpg?itok=ewf_0LLM"
+  },
+  {
+    "title": "Squash (Zucchini)",
+    "link": "https://www.almanac.com/plant/squash-and-zucchini",
+    "slug": "squash-and-zucchini",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/zucchini_sanny11_gettyimages_0.jpg?itok=MzxMLzJ4"
+  },
+  {
+    "title": "Garlic",
+    "link": "https://www.almanac.com/plant/garlic",
+    "slug": "garlic",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/garlic-growing-guide.jpg?itok=yRxsbZfF"
+  }
+]

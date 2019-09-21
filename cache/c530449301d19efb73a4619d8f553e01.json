@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Oregano",
+    "link": "https://www.almanac.com/plant/oregano",
+    "slug": "oregano",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/oregano.jpg?itok=zrVdXwAx"
+  },
+  {
+    "title": "Marjoram",
+    "link": "https://www.almanac.com/plant/marjoram",
+    "slug": "marjoram",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/marjoram-2370814_1920.jpg?itok=qNkRBlkd"
+  },
+  {
+    "title": "Coriander and Cilantro",
+    "link": "https://www.almanac.com/plant/coriander-and-cilantro",
+    "slug": "coriander-and-cilantro",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/cilantro.jpg?itok=nvFS-iAh"
+  },
+  {
+    "title": "Okra",
+    "link": "https://www.almanac.com/plant/okra",
+    "slug": "okra",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/okra.jpg?itok=80eskFHz"
+  },
+  {
+    "title": "Dill",
+    "link": "https://www.almanac.com/plant/dill",
+    "slug": "dill",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/dill-planting-growing.jpg?itok=hVPusimk"
+  },
+  {
+    "title": "Marigolds",
+    "link": "https://www.almanac.com/plant/marigolds",
+    "slug": "marigolds",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/french-marigolds-2.jpg?itok=95ptgsoV"
+  }
+]

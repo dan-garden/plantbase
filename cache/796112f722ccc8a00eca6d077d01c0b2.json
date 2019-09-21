@@ -1,0 +1,44 @@
+{
+  "name": "Sage",
+  "image": "https://almanac.com/sites/default/files/styles/primary_image_in_article/public/image_nodes/sage-planting-growing-harvesting.jpg?itok=XnnBqCbk",
+  "slug": "sage",
+  "botanical_name": "Salvia officinalis",
+  "plant_type": "Herb",
+  "sun_exposure": "Full Sun",
+  "soil_type": "Loamy, Sandy",
+  "soil_ph": "",
+  "bloom_time": "",
+  "flower_color": "",
+  "hardiness_zones": "5, 6, 7, 8, 9",
+  "special_features": "",
+  "planting": [
+    "Sage needs full sun! Soil must drain well.",
+    "The easiest and best way to start sage is from a small plant. Set the plants 2 feet apart.",
+    "You can also sow seeds up to two weeks before the last frost date. (See local frost dates.) Plant the seeds/cuttings in well-drained soil 1 to 2 weeks before the last spring frost.",
+    "For best growth, the soil should be between 60º and 70ºF.",
+    "Plants should grow to be between 12 and 30 inches in height.",
+    "In the garden, plant near rosemary, cabbage, and carrots, but keep sage away from cucumbers."
+  ],
+  "care": [
+    "Be sure to water the young plants regularly until they are fully grown so that they don’t dry out. They’ll need a consistent moisture supply until they start growing quickly.",
+    "Prune the heavier, woody stems every spring."
+  ],
+  "pests": [
+    "Rust",
+    "Powdery mildew",
+    "Stem rot",
+    "Fungal leaf spots",
+    "Whiteflies",
+    "Aphids",
+    "Spider mites"
+  ],
+  "pest_control": [],
+  "harvest": [
+    "During the first year, harvest lightly to ensure that the plant grows fully.",
+    "After the first year, be sure to leave a few stalks so that the plant can rejuvenate.",
+    "If fully established, one plant can be harvested up to three times in one season.",
+    "Stop harvesting in the fall so the plant can prepare for winter.",
+    "It’s best to replace the plants every few years so they remain productive."
+  ],
+  "stats": []
+}

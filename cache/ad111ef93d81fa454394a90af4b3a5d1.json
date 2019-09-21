@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Carrots",
+    "link": "https://www.almanac.com/plant/carrots",
+    "slug": "carrots",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/carrots-table_popidar-ss.jpg?itok=1rT0jF5h"
+  },
+  {
+    "title": "Cabbage",
+    "link": "https://www.almanac.com/plant/cabbage",
+    "slug": "cabbage",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/Cabbage.jpg?itok=gM1gJfql"
+  },
+  {
+    "title": "Parsley",
+    "link": "https://www.almanac.com/plant/parsley",
+    "slug": "parsley",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/parsley-planting-growing-harvesting.jpg?itok=FKJgwJXg"
+  },
+  {
+    "title": "Parsnips",
+    "link": "https://www.almanac.com/plant/parsnips",
+    "slug": "parsnips",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/parsnip.jpg?itok=FvpKt6Zz"
+  },
+  {
+    "title": "Beets",
+    "link": "https://www.almanac.com/plant/beets",
+    "slug": "beets",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/beets_by_darasp_kran_ss_crop.jpg?itok=0ol3Xj4J"
+  },
+  {
+    "title": "Okra",
+    "link": "https://www.almanac.com/plant/okra",
+    "slug": "okra",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/okra.jpg?itok=80eskFHz"
+  },
+  {
+    "title": "Turnips",
+    "link": "https://www.almanac.com/plant/turnips",
+    "slug": "turnips",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/planting-growing-turnips.jpg?itok=qVJKHIUX"
+  },
+  {
+    "title": "Lettuce",
+    "link": "https://www.almanac.com/plant/lettuce",
+    "slug": "lettuce",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/lettuce-varieties.jpg?itok=ilr3xo-X"
+  }
+]

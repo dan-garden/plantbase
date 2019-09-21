@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Lettuce",
+    "link": "https://www.almanac.com/plant/lettuce",
+    "slug": "lettuce",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/lettuce-varieties.jpg?itok=ilr3xo-X"
+  },
+  {
+    "title": "Spinach",
+    "link": "https://www.almanac.com/plant/spinach",
+    "slug": "spinach",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/spinach-leaves.jpg?itok=d48TOZ14"
+  },
+  {
+    "title": "Arugula",
+    "link": "https://www.almanac.com/plant/arugula",
+    "slug": "arugula",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/arugula.jpg?itok=eAkw_oPb"
+  },
+  {
+    "title": "Okra",
+    "link": "https://www.almanac.com/plant/okra",
+    "slug": "okra",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/okra.jpg?itok=80eskFHz"
+  },
+  {
+    "title": "Peas",
+    "link": "https://www.almanac.com/plant/peas",
+    "slug": "peas",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/peas-and-pea-pods.jpg?itok=tb0vWtpc"
+  },
+  {
+    "title": "Celery",
+    "link": "https://www.almanac.com/plant/celery",
+    "slug": "celery",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/celery_stalks.jpg?itok=Dr0jakxY"
+  },
+  {
+    "title": "Broccoli",
+    "link": "https://www.almanac.com/plant/broccoli",
+    "slug": "broccoli",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/broccoli.jpg?itok=bf8PQNmG"
+  },
+  {
+    "title": "Parsnips",
+    "link": "https://www.almanac.com/plant/parsnips",
+    "slug": "parsnips",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/parsnip.jpg?itok=FvpKt6Zz"
+  },
+  {
+    "title": "Brussels Sprouts",
+    "link": "https://www.almanac.com/plant/brussels-sprouts",
+    "slug": "brussels-sprouts",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/brussels-sprouts.jpg?itok=ka8JZyo7"
+  },
+  {
+    "title": "Dill",
+    "link": "https://www.almanac.com/plant/dill",
+    "slug": "dill",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/dill-planting-growing.jpg?itok=hVPusimk"
+  }
+]

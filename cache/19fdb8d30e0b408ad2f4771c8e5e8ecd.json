@@ -1,0 +1,38 @@
+{
+  "name": "Bee Balm",
+  "image": "https://almanac.com/sites/default/files/styles/primary_image_in_article/public/image_nodes/bee-balm-garden_by_moon_px.jpg?itok=9AKOKzWj",
+  "slug": "bee-balm",
+  "botanical_name": "Monarda",
+  "plant_type": "Flower",
+  "sun_exposure": "Full Sun",
+  "soil_type": "Loamy",
+  "soil_ph": "Neutral, Slightly Acidic to Neutral",
+  "bloom_time": "Summer",
+  "flower_color": "Pink, Purple, Red, White",
+  "hardiness_zones": "3, 4, 5, 6, 7, 8, 9",
+  "special_features": "Attracts Birds, Attracts Butterflies",
+  "planting": [
+    "Bee balm can be planted in the spring or in the fall.",
+    "Bee balm thrives in full sunshine.",
+    "Space plants 18-24 inches apart in rich, well-draining soil.",
+    "Bee balm needs good air circulation, otherwise it can develop mildew on its leaves.",
+    "Water thoroughly at the time of planting."
+  ],
+  "care": [
+    "Keep soil evenly moist.",
+    "Add mulch around the plants to preserve the moisture in the soil and control weeds.",
+    "Deadhead faded blooms to encourage the plant to re-bloom in late summer.",
+    "After the first frost in the fall, cut stems back to about 2 inches above the soil. See local frost dates.",
+    "Divide bee balm every 2 to 3 years to ensure its vigor. In the spring make small divisions of the newer roots of established plants and replant."
+  ],
+  "pests": [
+    "Powdery mildew: Powdery mildew commonly occurs on the foliage of bee balm if humidity is too high. Reduce watering if this is the case."
+  ],
+  "pest_control": [],
+  "harvest": false,
+  "stats": [
+    "Native Americans and early colonists used bee balm leaves and flowers to make a variety of medicinal salves and drinks.",
+    "Bee balm is a member of the mint family. Its foliage has a strong aroma and is sometimes used in herbal teas, salads, and as garnishes. The flowers are also edible.",
+    "Despite being called “wild bergamot,” bee balm is not used in bergamot (a.k.a. Earl Grey) tea. The tea is made with oils extracted from the rind of the bergamot orange, a citrus fruit."
+  ]
+}

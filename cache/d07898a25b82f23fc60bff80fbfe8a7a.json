@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Rosemary",
+    "link": "https://www.almanac.com/plant/rosemary",
+    "slug": "rosemary",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/rosemary-foliage.jpg?itok=F3IHh3Z4"
+  },
+  {
+    "title": "Coriander and Cilantro",
+    "link": "https://www.almanac.com/plant/coriander-and-cilantro",
+    "slug": "coriander-and-cilantro",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/cilantro.jpg?itok=nvFS-iAh"
+  },
+  {
+    "title": "Cabbage",
+    "link": "https://www.almanac.com/plant/cabbage",
+    "slug": "cabbage",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/Cabbage.jpg?itok=gM1gJfql"
+  },
+  {
+    "title": "Asparagus",
+    "link": "https://www.almanac.com/plant/asparagus",
+    "slug": "asparagus",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/asparagus-plant-grow-harvest.jpg?itok=fSffOjac"
+  },
+  {
+    "title": "Coneflowers",
+    "link": "https://www.almanac.com/plant/coneflowers",
+    "slug": "coneflowers",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/coneflowers_0.jpg?itok=Zvl_9D8z"
+  },
+  {
+    "title": "Turnips",
+    "link": "https://www.almanac.com/plant/turnips",
+    "slug": "turnips",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/planting-growing-turnips.jpg?itok=qVJKHIUX"
+  },
+  {
+    "title": "Sage",
+    "link": "https://www.almanac.com/plant/sage",
+    "slug": "sage",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/sage-planting-growing-harvesting.jpg?itok=Jnu1-Mxs"
+  },
+  {
+    "title": "Oregano",
+    "link": "https://www.almanac.com/plant/oregano",
+    "slug": "oregano",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/oregano.jpg?itok=zrVdXwAx"
+  },
+  {
+    "title": "Ponytail Palms",
+    "link": "https://www.almanac.com/plant/ponytail-palms",
+    "slug": "ponytail-palms",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/ponytail-palm-houseplant.jpg?itok=wrcv4eBQ"
+  },
+  {
+    "title": "Garlic",
+    "link": "https://www.almanac.com/plant/garlic",
+    "slug": "garlic",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/garlic-growing-guide.jpg?itok=yRxsbZfF"
+  }
+]

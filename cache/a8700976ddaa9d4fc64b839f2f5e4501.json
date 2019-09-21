@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Celery",
+    "link": "https://www.almanac.com/plant/celery",
+    "slug": "celery",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/celery_stalks.jpg?itok=Dr0jakxY"
+  },
+  {
+    "title": "Brussels Sprouts",
+    "link": "https://www.almanac.com/plant/brussels-sprouts",
+    "slug": "brussels-sprouts",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/brussels-sprouts.jpg?itok=ka8JZyo7"
+  },
+  {
+    "title": "Lemons & Oranges",
+    "link": "https://www.almanac.com/plant/lemons-oranges",
+    "slug": "lemons-oranges",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/lemons-oranges-citrus.jpg?itok=9TKDZVnG"
+  }
+]

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dans' Plantbase</title>
+        <link rel="stylesheet" href="assets/css/main.css"></link>
+    </head>
+    <body>
+        <nav></nav>
+        <canvas id="gardenDisplay"></canvas>
+        <script type="text/javascript" src="assets/js/canv.js"></script>
+        <script type="text/javascript" src="assets/js/main.js"></script>
+        <script>
+            // displayGarden();
+            const garden = new Canv("#gardenDisplay", {
+                fullscreen: false,
+                async setup() {
+                    this.garden = await getGarden();
+                    // console.log(this.garden);
+                    this.width = dom.gardenDisplay.width;
+                    this.height = dom.gardenDisplay.height;
+
+
+                    this.greenhouse = new ShapeGroup([
+                        new Line(new Vector(500, 200), new Vector(500, 600)), //Left wall
+                        new Line(new Vector(900, 200), new Vector(900, 600)), //Right wall
+
+                        new Line(new Vector(500, 200), new Vector(700, 100)), //Left arch
+                        new Line(new Vector(900, 200), new Vector(700, 100)), //Right arch
+
+
+                        new Line(new Vector(500, 300), new Vector(900, 300)), //Shelf 1
+                        new Line(new Vector(500, 400), new Vector(900, 400)), //Shelf 2
+                        new Line(new Vector(500, 500), new Vector(900, 500)), //Shelf 3
+                        new Line(new Vector(500, 600), new Vector(900, 600)), //Shelf 4
+
+
+                    ]).setColor("green");
+                },
+
+                update() {
+                    if(this.greenhouse) {
+                        // this.greenhouse.moveX(-0.5);
+                    }
+                },
+
+                draw() {
+                    this.clear();
+                    if(this.greenhouse) {
+                        this.add(this.greenhouse);
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

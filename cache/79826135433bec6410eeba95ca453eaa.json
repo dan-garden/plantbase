@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Parsley",
+    "link": "https://www.almanac.com/plant/parsley",
+    "slug": "parsley",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/parsley-planting-growing-harvesting.jpg?itok=FKJgwJXg"
+  },
+  {
+    "title": "Coriander and Cilantro",
+    "link": "https://www.almanac.com/plant/coriander-and-cilantro",
+    "slug": "coriander-and-cilantro",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/cilantro.jpg?itok=nvFS-iAh"
+  },
+  {
+    "title": "Celery",
+    "link": "https://www.almanac.com/plant/celery",
+    "slug": "celery",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/celery_stalks.jpg?itok=Dr0jakxY"
+  }
+]

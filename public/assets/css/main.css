@@ -1,0 +1,263 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: rgb(7, 181, 53);
+    text-align: center;
+}
+
+.loader {
+    
+}
+
+nav {
+    width: 100%;
+    padding: 15px 0;
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    min-height: 50px;
+}
+
+nav ul {
+    text-align: left;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+nav ul li a {
+    color: rgb(7, 181, 53);
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding: 30px 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 0 10px;
+    width: 80%;
+    position: relative;
+    color: white;
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.modal-close {
+    color: grey;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.modal-title {
+    color: black;
+    font-family: verdana;
+    text-align: center;
+    font-size: 20px;
+    padding: 5px 15px;
+}
+
+.modal-body {
+    text-align: justify;
+    font-size: 14px;
+    font-family: verdana;
+    padding: 25px;
+    background-color: white;
+    color: black;
+    margin-bottom: 15px;
+}
+
+#plantSearchForm {
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+}
+
+#plantSearchForm input {
+    font-size: 16px;
+    padding: 5px 10px;
+    border: solid 1px rgba(177, 177, 177);
+}
+
+#plantSearchForm button {
+    font-size: 16px;
+    padding: 5px 10px;
+    border: solid 1px rgba(177, 177, 177);
+}
+
+#plantList {
+    width: calc(50% - 15px);
+    display: inline-block;
+    vertical-align: top;
+    border: solid 1px rgb(177, 177, 177);
+    min-height: 500px;
+    background-color: #FFF;
+    padding: 10px;
+    margin-right: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    text-align: center;
+}
+
+#plantList li {
+    list-style: none;
+}
+
+#plantList li a {
+    display: inline-block;
+    width: 100%;
+    border: solid 1px rgba(200, 200, 200);
+    padding: 10px;
+    color: rgba(100, 100, 100);
+    text-decoration: none;
+    text-align: left;
+}
+
+#plantList li a:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border: none;
+    margin: 1px;
+}
+
+#plantList li a.active {
+    cursor: default;
+    background-color: rgb(7, 181, 53);
+    color: #FFF;
+}
+
+#plantList li a img {
+    height: 80px;
+    vertical-align: middle;
+}
+
+#plantDisplay {
+    width: calc(50% - 15px);
+    display: inline-block;
+    vertical-align: top;
+    background-color: #FFF;
+    border: solid 1px rgb(177, 177, 177);
+    min-height: 500px;
+    padding: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    text-align: justify;
+}
+
+#plantDisplay h3 {
+    padding-bottom: 10px;
+    text-align: center;
+    color: rgba(100, 100, 100);
+    position: relative;
+}
+
+#plantDisplay h3 button {
+    position: absolute;
+    right: 0;
+    width: 50px;
+    text-align: center;
+    font-size: 20px;
+    color: rgba(255, 255, 255);    
+    background: rgba(0, 160, 253);
+    cursor: pointer;
+    border: none;
+}
+
+#plantDisplay h3 button:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#plantDisplay h3 button.active {
+    background: rgb(7, 181, 53);
+}
+
+#plantDisplay h3 button.active:focus {
+    outline: none;
+}
+
+#plantDisplay img {
+    width: 100%;
+}
+
+#plantDisplay ul {
+    padding: 15px;
+}
+
+h2 {
+    margin: 10px 0;
+    color: #FFF;
+}
+
+#gardenDisplay {
+    width: calc(100% - 60px);
+    display: inline-block;
+    vertical-align: top;
+    background-color: #FFF;
+    border: solid 1px rgb(177, 177, 177);
+    min-height: 500px;
+    padding: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    margin: auto;
+    list-style-type: none;
+}
+
+#gardenDisplay li {
+    display: inline-block;
+}
+
+#gardenDisplay li a {
+    display: inline-block;
+    text-decoration: none;
+    margin: 5px;
+    vertical-align: top;
+    width: 150px;
+}
+
+#gardenDisplay li a:hover {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+#gardenDisplay li a .plant-thumbnail {
+    display: block;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    height: 150px;
+}
+
+#gardenDisplay li a .plant-name {
+    display: block;
+    font-size: 12px;
+    color: grey;
+    padding: 10px;
+}

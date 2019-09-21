@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Petunias",
+    "link": "https://www.almanac.com/plant/petunias",
+    "slug": "petunias",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/petunias.jpg?itok=WIW8_0SO"
+  },
+  {
+    "title": "Dill",
+    "link": "https://www.almanac.com/plant/dill",
+    "slug": "dill",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/dill-planting-growing.jpg?itok=hVPusimk"
+  },
+  {
+    "title": "Geraniums",
+    "link": "https://www.almanac.com/plant/geraniums",
+    "slug": "geraniums",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/geranium-2422730_1920.jpg?itok=dxWDBTnk"
+  },
+  {
+    "title": "Apples",
+    "link": "https://www.almanac.com/plant/apples",
+    "slug": "apples",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/apple-tree.jpg?itok=Rvy5SG2S"
+  },
+  {
+    "title": "Pears",
+    "link": "https://www.almanac.com/plant/pears",
+    "slug": "pears",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/pears.jpg?itok=J0-U6CzT"
+  }
+]

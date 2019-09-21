@@ -1,0 +1,41 @@
+{
+  "name": "Hibiscus",
+  "image": "https://almanac.com/sites/default/files/styles/primary_image_in_article/public/image_nodes/hibiscus-moscheutos_rogatnykh-ss_resize2.jpg?itok=38rjdc_3",
+  "slug": "hibiscus",
+  "botanical_name": "Hibiscus spp.",
+  "plant_type": "Shrub",
+  "sun_exposure": "Full Sun, Part Sun",
+  "soil_type": "Loamy",
+  "soil_ph": "Slightly Acidic to Neutral",
+  "bloom_time": "Summer, Fall",
+  "flower_color": "Multicolor, Pink, Red, White",
+  "hardiness_zones": "4, 5, 6, 7, 8, 9",
+  "special_features": "",
+  "planting": [
+    "Plants can be purchased from nurseries or started from seed.",
+    "Seeds can be sown indoors 12 weeks before the last spring frost. See local frost dates.",
+    "Soak seeds in warm water for one hour before sowing.",
+    "Seeds can also be sown outdoors after the last expected frost date.",
+    "Plant the hibiscus where it is not exposed to strong winds to avoid breakage of the long stems.",
+    "Space plants 2 to 3 feet apart.",
+    "Mature plants can be divided in the spring."
+  ],
+  "care": [
+    "Mulch around the plant to retain moisture and to provide protection for the roots.",
+    "Water plants deeply and thoroughly.",
+    "To encourage re-bloom, remove old flowers before they form seed heads or prune plants back by one third after a flush of bloom is finished.",
+    "In early spring, remove dead stems from established plants and apply a balanced fertilizer."
+  ],
+  "pests": [
+    "Japanese beetles",
+    "Aphids",
+    "Whiteflies"
+  ],
+  "pest_control": [],
+  "harvest": false,
+  "stats": [
+    "The plant has been used to soothe headaches, aching limbs, coughs, and inflammations.",
+    "Hibiscus tea is made from parts of a different type of hibiscus, Hibiscus sabdariffa—also known as Roselle or Florida Cranberry. It’s native to West Africa, but is now grown across Central America, the Caribbean, and even Florida.",
+    "In Victorian times, giving a hibiscus blossom to a person meant that the giver was acknowledging the receiver’s delicate beauty. Learn about more about the language of flowers."
+  ]
+}

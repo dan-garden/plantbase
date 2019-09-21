@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Garden</title>
+        <link rel="stylesheet" href="assets/css/main.css"></link>
+    </head>
+    <body>
+        <nav></nav>
+        <h2>My Garden</h2>
+        <ul id="gardenDisplay"></ul>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                    <span class="modal-close" onclick="hideModal();">&times;</span>
+                    <div class="modal-inner">
+                        <h1 class="modal-title"></h1>
+                        <div class="modal-body"></div>
+                    </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="assets/js/main.js"></script>
+        <script>
+            displayGarden();
+        </script>
+    </body>
+</html>
