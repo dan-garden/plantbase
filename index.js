@@ -1,6 +1,7 @@
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 const express = require("express");
 const trefle = require("./trefle");
+const multer  = require('multer');
 const almanac = require("./almanac");
 const garden = require("./garden");
 const app = express();
@@ -76,6 +77,27 @@ app.get("/api/add-plant/:slug", async (req, res) => {
         console.error(e);
         res.json({ error: e.message })
     }
+});
+
+const fileUploads = multer.diskStorage({
+    destination: './public/assets/images/plants',
+    filename: (req, file, callback) => {
+        callback( null, file.originalname);
+    }
+});
+
+const upload = multer({ storage: fileUploads }).single('photo');
+
+app.post('/api/plant-photo-upload', async (req, res, next) => {
+    await upload(req, res, async (err) => {
+        await garden.update(req.body.id, {
+            photo: req.file.filename
+        });
+        return res.json({
+            success: "Photo was uploaded.",
+            src: garden.photos_dir + "/" + req.file.filename
+        });
+    });
 })
 
 

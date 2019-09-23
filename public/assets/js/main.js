@@ -12,9 +12,10 @@ const menuLinks = [
     {name: "My Garden", link: "garden.html"}
 ];
 
-const loader = `<img class="loader" src="assets/images/loader.gif" />`;
-
-const showModal = (title=null, body=null) => {
+const loaderSrc = `assets/images/loader.gif`;
+const loader = `<img class="loader" src="${loaderSrc}" />`;
+let modalCallback = null;
+const showModal = (title=null, body=null, callback=null) => {
     const titleDom = dom.modal.querySelector(".modal-title");
     const bodyDom = dom.modal.querySelector(".modal-body");
 
@@ -37,17 +38,24 @@ const showModal = (title=null, body=null) => {
         }
     });
     dom.modal.style.display = "block";
+    if(callback) {
+        modalCallback = callback;
+    }
 };
 
 const hideModal = () => {
     dom.modal.style.display = "none";
+    if(typeof modalCallback === "function") {
+        modalCallback();
+        modalCallback = null;
+    }
 };
 
 const get = async url => {
     const result = await fetch("api/"+url);
     const json = await result.json();
     return json;
-}
+};
 
 const getSeason = (date) => {
     const month = date.getMonth()+1;
@@ -98,7 +106,7 @@ const getSeason = (date) => {
         break;
     }
     return season;
-}
+};
 
 const displayNav = () => {
     if(dom.nav) {
@@ -154,7 +162,7 @@ const getSearchPlants = async query => {
     const results = await get("search/"+query);
     const list = results.map(result => {
         return `<li>
-                    <a href="#" onclick="displayPlant('${result.slug}', this)">
+                    <a href="javascript: void(0)" onclick="displayPlant('${result.slug}', this)">
                     <img src="${result.thumbnail}"/>
                     ${result.title}
                     </a>
@@ -178,25 +186,60 @@ const displayGardenPlant = async (id) => {
         return false;
     } else {
         const plant = filtered[0];
-        showModal(plant.details.name, `
-            ${plant.photo ? 
-                `<img src="${plant.photo}" />`    
-            : ''}
-            ${plant.details.botanical_name}
+        const title = `
+            ${plant.details.name}
+            <span class="botanical-name">(${plant.details.botanical_name})</span>
+        `;
+        const body = `
+            <form id="upload-plant-form" onclick="changePlantPhoto(this);" style="background-image:url('${plant.photo}');" class="plant-photo" method="post" enctype="multipart/form-data">
+                <input id="photo-upload" onchange="uploadPlantPhoto();" type="file" name="photo" />
+                <input type="hidden" value="${plant.id}" name="id" />
+            </form>
+        `;
 
-        `);
+        console.log(plant);
+        showModal(title, body);
+        dom.upload_photo_form = document.querySelector("#upload-plant-form");
     }
 }
 
+const changePlantPhoto = () => {
+    dom.upload_photo_form.querySelector("#photo-upload").click();
+};
+
+const uploadPlantPhoto = () => {
+    const form = dom.upload_photo_form;
+    const origSrc = form.style.backgroundImage;
+    form.style.backgroundImage = `url('${loaderSrc}')`;
+    let formData = new FormData(form);
+    fetch('/api/plant-photo-upload', { method: 'POST', body: formData })
+    .then(result => result.json())
+    .then(result => {
+        if(result.success) {
+            setTimeout(() => {
+                form.style.backgroundImage = `url('${result.src}')`;
+                modalCallback = () => {
+                    document.querySelector(`*[id="${formData.get("id")}"`)
+                    .querySelector(".plant-thumbnail")
+                    .style.backgroundImage = `url('${result.src}')`;
+                };
+            }, 2000);
+        } else {
+            form.style.backgroundImage = `url(${origSrc})`;
+        }
+    })
+}
+
 const displayGarden = async () => {
+    dom.gardenDisplay.innerHTML = loader;
     garden = await getGarden();
     dom.gardenDisplay.innerHTML = `
         ${garden.plants.map(plant => {
             const details = plant.details;
-            const thumbnail = details.image || './assets/images/placeholder-plant.png';
+            const thumbnail = plant.photo;
             return `
                 <li id="${plant.id}">
-                    <a href="#" onclick="displayGardenPlant('${plant.id}');">
+                    <a href="javascript: void(0)" onclick="displayGardenPlant('${plant.id}');">
                         <span class="plant-thumbnail" style="background-image:url('${thumbnail}')"></span>
                         <span class="plant-name">${details.name}</span>
                     </a>
