@@ -82,7 +82,24 @@ app.get("/api/add-plant/:slug", async (req, res) => {
 const fileUploads = multer.diskStorage({
     destination: './public/assets/images/plants',
     filename: (req, file, callback) => {
-        callback( null, file.originalname);
+        let ext = false;
+        switch (file.mimetype) {
+            case 'image/jpeg':
+                ext = "jpg";
+                break;
+            case 'image/png':
+                ext = "png";
+                break;
+            case 'image/gif':
+                ext = "gif";
+        }
+
+        if(ext) {
+            let filename = Date.now() + "." + ext;
+            callback(null, filename);
+        } else {
+            callback("Invalid Filetype");
+        }
     }
 });
 

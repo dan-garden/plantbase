@@ -255,6 +255,28 @@ nav ul li a:hover {
     padding: 15px;
 }
 
+#plantDisplay h6 {
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 15px
+}
+
+#plantDisplay .flower-colors {
+    list-style-type: none;
+}
+
+#plantDisplay .flower-colors {
+    list-style-type: none;
+}
+
+#plantDisplay .flower-colors li {
+    width: 40px;
+    height: 40px;
+    border: solid 1px black;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    display: inline-block;
+}
+
 h2 {
     margin: 10px 0;
     color: #FFF;

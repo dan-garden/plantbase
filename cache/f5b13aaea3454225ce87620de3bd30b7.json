@@ -1,0 +1,40 @@
+{
+  "name": "Phlox",
+  "image": "https://almanac.com/sites/default/files/styles/primary_image_in_article/public/image_nodes/phlox-white.jpg?itok=u1Vmnnj5",
+  "slug": "phlox",
+  "botanical_name": "Phlox",
+  "plant_type": "Flower",
+  "sun_exposure": "Full Sun, Part Sun, Shade",
+  "soil_type": "Loamy, Sandy",
+  "soil_ph": "",
+  "bloom_time": "Spring, Summer",
+  "flower_color": "Blue, Pink, Purple, Red, White",
+  "hardiness_zones": "2, 3, 4, 5, 6, 7, 8, 9",
+  "special_features": "Attracts Birds, Attracts Butterflies",
+  "planting": [
+    "Use a garden fork or tiller to prepare your garden bed. Loosen the soil to about 12 to 15 inches deep, then mix in a 2- to 4-inch layer of compost.",
+    "It is easier to grow phlox from cuttings/transplants than from seeds.",
+    "Plant phlox in the spring—after the threat of frost has passed—and space the plants 1 to 2 feet apart. If you are moving a plant from a pot, dig a hole about twice the size of the pot’s diameter and place the plant so that the top of the root ball is even with the soil’s surface. Fill in around the root ball and remember to water it thoroughly."
+  ],
+  "care": [
+    "If you receive less than 1 inch of rain a week, remember to regularly water your plants throughout the summer.",
+    "Each spring, put a thin layer of compost and a 2-inch layer of mulch around the plants to help keep the soil moist and control weeds.",
+    "Remember to remove the dead/faded flowers so that your plants can rebloom.",
+    "If you have tall phlox, cut the stems back to about 1 to 2 inches above the soil after the first killing frost in the fall. (See local frost dates.) Divide tall garden phlox every 2 to 3 years to ensure healthy and disease-free plants."
+  ],
+  "pests": [
+    "Powdery mildew is common; keep proper air circulation in mind when spacing out plants and avoid getting excess water on the foliage. Cutting back stems after flowering can also help to reduce the spread of powdery mildew, as can choosing mildew-resistant varieties.",
+    "Stem canker",
+    "Rust",
+    "Southern blight",
+    "Stem nematodes",
+    "Leaf spots",
+    "Leaf miners",
+    "Caterpillars"
+  ],
+  "pest_control": [],
+  "harvest": false,
+  "stats": [
+    "April’s full Moon has traditionally been called the “Full Pink Moon” because it heralded the appearance of the “moss pink,” or wild ground phlox—one of the first spring flowers."
+  ]
+}

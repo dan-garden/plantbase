@@ -140,11 +140,37 @@ const displayPlant = async (slug, el) => {
                 `<button id="index-button" onclick="addToGarden('${plant.slug}');">+</button>`
             }
         </h3>
+        <h6>(${plant.botanical_name})</h6>
         <img src=${plant.image}" />
+        <hr />
+        ${plant.bloom_time.trim() !== "" ? `
+            <h4>Bloom Season</h4>
+            ${plant.bloom_time}
+            <hr />
+        ` : ""}
+
+        ${plant.flower_color.trim() !== "" ? `
+            <h4>Flower Colors</h4>
+            <ul class="flower-colors">
+                ${
+                    plant.flower_color.split(",").map(color => {
+                        color = color.trim();
+                        if(color === 'Multicolor') {
+                            return '';
+                        }
+                        return `<li style="background-color: ${color}"></li>`;
+                    }).join("")
+                }
+            </ul>
+            <hr />
+        ` : ""}
+
         <h4>Planting</h4>
         <ul>${plant.planting.map(li => `<li>${li}</li>`).join("")}</ul>
-    
+        <hr />
     `;
+    
+    console.log(plant.flower_color);
 };
 
 const addToGarden = async (slug) => {
