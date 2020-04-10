@@ -135,6 +135,62 @@
       "photo": false,
       "location": "greenhouse",
       "sun_exposure": "Full Sun"
+    },
+    {
+      "id": "60949fc7-ac64-401a-9178-4f1f14e78246",
+      "slug": "tomatoes",
+      "moisture": 3,
+      "photo": false,
+      "location": "greenhouse",
+      "sun_exposure": "Full Sun"
+    },
+    {
+      "id": "6ee2ddb3-4e5e-4ba5-a39c-f42b73a0f1ed",
+      "slug": "eggplants",
+      "moisture": 3,
+      "photo": false,
+      "location": "greenhouse",
+      "sun_exposure": "Full Sun"
+    },
+    {
+      "id": "3df1c92e-2a2e-433c-99cc-fa7c49894dde",
+      "slug": "coriander-and-cilantro",
+      "moisture": 3,
+      "photo": false,
+      "location": "greenhouse",
+      "sun_exposure": "Full Sun"
+    },
+    {
+      "id": "a4e22d6c-2023-4dcd-bae9-7e90db9aa1f5",
+      "slug": "coriander-and-cilantro",
+      "moisture": 3,
+      "photo": false,
+      "location": "greenhouse",
+      "sun_exposure": "Full Sun"
+    },
+    {
+      "id": "cffc6411-4af8-456a-b35c-c9f7d5766f96",
+      "slug": "coriander-and-cilantro",
+      "moisture": 3,
+      "photo": false,
+      "location": "greenhouse",
+      "sun_exposure": "Full Sun"
+    },
+    {
+      "id": "70f43234-53bd-4c3e-a689-91f060f94d0c",
+      "slug": "coriander-and-cilantro",
+      "moisture": 3,
+      "photo": false,
+      "location": "greenhouse",
+      "sun_exposure": "Full Sun"
+    },
+    {
+      "id": "04dd3499-cc31-442a-9e79-49466c2dece5",
+      "slug": "coriander-and-cilantro",
+      "moisture": 3,
+      "photo": false,
+      "location": "greenhouse",
+      "sun_exposure": "Full Sun"
     }
   ]
 }

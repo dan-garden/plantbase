@@ -3,12 +3,13 @@
     <head>
         <title>Dans' Plantbase</title>
         <link rel="stylesheet" href="assets/css/main.css"></link>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
         <nav></nav>
         <form id="plantSearchForm" type="post" action="javascript: searchPlants();">
-            <input type="text" name="plant-name" placeholder="Plant Species..."/>
-            <button>Search</button>
+            <input type="text" name="plant-name" placeholder="Search Plants..."/>
+            <button>Submit</button>
         </form>
         <ul id="plantList"></ul>
         <div id="plantDisplay">
@@ -16,7 +17,7 @@
         </div>
         <script type="text/javascript" src="assets/js/main.js"></script>
         <script>
-            displayPlant("coriander-and-cilantro");
+            
         </script>
     </body>
 </html>

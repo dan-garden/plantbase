@@ -125,6 +125,8 @@ const displayNav = () => {
 }
 
 const displayPlant = async (slug, el) => {
+    dom.plantList.classList.remove("active");
+    dom.plantDisplay.classList.add("active");
     dom.plantDisplay.innerHTML = loader;
     const plant = await get("plant/"+slug);
     if(el) {
@@ -169,8 +171,10 @@ const displayPlant = async (slug, el) => {
         <ul>${plant.planting.map(li => `<li>${li}</li>`).join("")}</ul>
         <hr />
     `;
+
+
+    console.log(plant);
     
-    console.log(plant.flower_color);
 };
 
 const addToGarden = async (slug) => {
@@ -184,6 +188,8 @@ const addToGarden = async (slug) => {
 }
 
 const getSearchPlants = async query => {
+    dom.plantList.classList.add("active");
+    dom.plantDisplay.classList.remove("active");
     dom.plantList.innerHTML = loader;
     const results = await get("search/"+query);
     const list = results.map(result => {
@@ -275,11 +281,11 @@ const displayGarden = async () => {
     `;
 }
 
-const searchPlants = async () => {
+const searchPlants = async (query) => {
     const input = plantSearchForm.querySelector("input");
-    const value = input.value;
-    if( value.trim() !== ""  && value.match(/^[0-9a-zA-Z]+$/)) {
-        await getSearchPlants(value);
+    query = query || input.value;
+    if( query.trim() !== ""  && query.match(/^[0-9a-zA-Z]+$/)) {
+        await getSearchPlants(query);
     }
 }
 
