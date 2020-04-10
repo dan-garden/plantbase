@@ -1,8 +1,8 @@
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 const express = require("express");
-const trefle = require("./trefle");
+const trefle = require("./providers/Trefle");
 const multer  = require('multer');
-const almanac = require("./almanac");
+const almanac = require("./providers/Almanac");
 const garden = require("./garden");
 const app = express();
 const port = 3000;
