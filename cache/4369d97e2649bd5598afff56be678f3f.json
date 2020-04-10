@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Dill",
+    "link": "https://www.almanac.com/plant/dill",
+    "slug": "dill",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/dill-planting-growing.jpg?itok=hVPusimk"
+  },
+  {
+    "title": "Parsley",
+    "link": "https://www.almanac.com/plant/parsley",
+    "slug": "parsley",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/parsley-planting-growing-harvesting.jpg?itok=FKJgwJXg"
+  },
+  {
+    "title": "Butterfly Bush",
+    "link": "https://www.almanac.com/plant/butterfly-bush",
+    "slug": "butterfly-bush",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/butterfly-bush.jpg?itok=ZeQGdCzG"
+  },
+  {
+    "title": "Cabbage",
+    "link": "https://www.almanac.com/plant/cabbage",
+    "slug": "cabbage",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/images/Cabbage.jpg?itok=gM1gJfql"
+  },
+  {
+    "title": "Basil",
+    "link": "https://www.almanac.com/plant/basil",
+    "slug": "basil",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/basil-leaves-herb.jpg?itok=KjAJiP13"
+  },
+  {
+    "title": "Spinach",
+    "link": "https://www.almanac.com/plant/spinach",
+    "slug": "spinach",
+    "thumbnail": "https://www.almanac.com/sites/default/files/styles/square_thumbnail_100x100/public/image_nodes/spinach-leaves.jpg?itok=d48TOZ14"
+  }
+]
