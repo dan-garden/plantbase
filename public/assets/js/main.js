@@ -246,15 +246,11 @@ const uploadPlantPhoto = () => {
     let formData = new FormData(form);
     fetch('/api/plant-photo-upload', { method: 'POST', body: formData })
     .then(result => result.json())
-    .then(result => {
+    .then(async result => {
         if(result.success) {
-            setTimeout(() => {
+            setTimeout(async () => {
                 form.style.backgroundImage = `url('${result.src}')`;
-                modalCallback = () => {
-                    document.querySelector(`*[id="${formData.get("id")}"`)
-                    .querySelector(".plant-thumbnail")
-                    .style.backgroundImage = `url('${result.src}')`;
-                };
+                await displayGarden();
             }, 2000);
         } else {
             form.style.backgroundImage = `url(${origSrc})`;
