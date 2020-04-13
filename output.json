@@ -1,0 +1,414 @@
+{
+    "class": {
+        "id": 1,
+        "link": "http://trefle.io/api/division_classes/1",
+        "name": "Magnoliopsida",
+        "slug": "magnoliopsida"
+    },
+    "common_name": "kiwi",
+    "cultivars": [],
+    "division": {
+        "id": 1,
+        "link": "http://trefle.io/api/divisions/1",
+        "name": "Magnoliophyta",
+        "slug": "magnoliophyta"
+    },
+    "duration": "Perennial",
+    "family": {
+        "common_name": "Chinese Gooseberry family",
+        "id": 40,
+        "link": "http://trefle.io/api/families/40",
+        "name": "Actinidiaceae",
+        "slug": "actinidiaceae"
+    },
+    "family_common_name": "Chinese Gooseberry family",
+    "forms": [
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "kiwi",
+            "complete_data": false,
+            "family_common_name": "Chinese Gooseberry family",
+            "id": 198557,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/198557",
+            "main_species_id": 102317,
+            "scientific_name": "Actinidia chinensis fo. chinensis",
+            "slug": "actinidia-chinensis-fo-chinensis",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T16:06:04",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 198557
+                }
+            ],
+            "status": "Accepted",
+            "synonym": false,
+            "type": "form",
+            "year": null
+        },
+        {
+            "author": "C.F. Liang",
+            "bibliography": null,
+            "common_name": "kiwi",
+            "complete_data": false,
+            "family_common_name": "Chinese Gooseberry family",
+            "id": 198242,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/198242",
+            "main_species_id": 102317,
+            "scientific_name": "Actinidia chinensis fo. jinggangshanensis",
+            "slug": "actinidia-chinensis-fo-jinggangshanensis",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T17:50:37",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 198242
+                }
+            ],
+            "status": "Synonym",
+            "synonym": true,
+            "type": "form",
+            "year": null
+        },
+        {
+            "author": "C.F. Liang & R.H. Huang",
+            "bibliography": null,
+            "common_name": "kiwi",
+            "complete_data": false,
+            "family_common_name": "Chinese Gooseberry family",
+            "id": 198243,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/198243",
+            "main_species_id": 102317,
+            "scientific_name": "Actinidia chinensis fo. rufopulpa",
+            "slug": "actinidia-chinensis-fo-rufopulpa",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T17:50:37",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 198243
+                }
+            ],
+            "status": "Synonym",
+            "synonym": true,
+            "type": "form",
+            "year": null
+        }
+    ],
+    "genus": {
+        "id": 97,
+        "link": "http://trefle.io/api/genuses/97",
+        "name": "Actinidia",
+        "slug": "actinidia"
+    },
+    "hybrids": [],
+    "id": 102317,
+    "images": [
+        {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Kiwi-andrea-valori.jpg"
+        },
+        {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Actinidia_chinensis1.jpg"
+        }
+    ],
+    "main_species": {
+        "author": null,
+        "bibliography": null,
+        "common_name": "kiwi",
+        "complete_data": false,
+        "duration": "Perennial",
+        "family_common_name": "Chinese Gooseberry family",
+        "flower": {
+            "color": null,
+            "conspicuous": null
+        },
+        "foliage": {
+            "color": null,
+            "porosity_summer": null,
+            "porosity_winter": null,
+            "texture": null
+        },
+        "fruit_or_seed": {
+            "color": null,
+            "conspicuous": null,
+            "seed_abundance": null,
+            "seed_period_begin": null,
+            "seed_period_end": null,
+            "seed_persistence": null
+        },
+        "growth": {
+            "anaerobic_tolerance": null,
+            "caco_3_tolerance": null,
+            "cold_stratification_required": null,
+            "drought_tolerance": null,
+            "fertility_requirement": null,
+            "fire_tolerance": null,
+            "frost_free_days_minimum": null,
+            "hedge_tolerance": null,
+            "moisture_use": null,
+            "ph_maximum": null,
+            "ph_minimum": null,
+            "planting_density_maximum": {
+                "acre": null,
+                "sqm": null
+            },
+            "planting_density_minimum": {
+                "acre": null,
+                "sqm": null
+            },
+            "precipitation_maximum": {
+                "cm": null,
+                "inches": null
+            },
+            "precipitation_minimum": {
+                "cm": null,
+                "inches": null
+            },
+            "resprout_ability": null,
+            "root_depth_minimum": {
+                "cm": null,
+                "inches": null
+            },
+            "salinity_tolerance": null,
+            "shade_tolerance": null,
+            "temperature_minimum": {
+                "deg_c": null,
+                "deg_f": null
+            }
+        },
+        "id": 102317,
+        "images": [
+            {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Kiwi-andrea-valori.jpg"
+            },
+            {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Actinidia_chinensis1.jpg"
+            }
+        ],
+        "is_main_species": true,
+        "main_species_id": null,
+        "native_status": "L48(I)",
+        "products": {
+            "berry_nut_seed": null,
+            "christmas_tree": null,
+            "fodder": null,
+            "fuelwood": null,
+            "lumber": null,
+            "naval_store": null,
+            "nursery_stock": null,
+            "palatable_browse_animal": null,
+            "palatable_graze_animal": null,
+            "palatable_human": null,
+            "post": null,
+            "protein_potential": null,
+            "pulpwood": null,
+            "veneer": null
+        },
+        "propagation": {
+            "bare_root": null,
+            "bulbs": null,
+            "container": null,
+            "corms": null,
+            "cuttings": null,
+            "seed": null,
+            "sod": null,
+            "sprigs": null,
+            "tubers": null
+        },
+        "scientific_name": "Actinidia chinensis",
+        "seed": {
+            "bloom_period": null,
+            "commercial_availability": null,
+            "seed_spread_rate": null,
+            "seedling_vigor": null,
+            "seeds_per_pound": null,
+            "small_grain": null,
+            "vegetative_spread_rate": null
+        },
+        "slug": "actinidia-chinensis",
+        "soils_adaptation": {
+            "coarse": null,
+            "fine": null,
+            "medium": null
+        },
+        "sources": [
+            {
+                "last_update": "2019-01-11T09:40:39",
+                "name": "USDA",
+                "source_url": "https://plants.usda.gov",
+                "species_id": 102317
+            }
+        ],
+        "specifications": {
+            "bloat": null,
+            "c_n_ratio": null,
+            "coppice_potential": null,
+            "fall_conspicuous": null,
+            "fire_resistance": null,
+            "growth_form": null,
+            "growth_habit": null,
+            "growth_period": null,
+            "growth_rate": null,
+            "known_allelopath": null,
+            "leaf_retention": null,
+            "lifespan": null,
+            "low_growing_grass": null,
+            "mature_height": {
+                "cm": null,
+                "ft": null
+            },
+            "max_height_at_base_age": {
+                "cm": null,
+                "ft": null
+            },
+            "nitrogen_fixation": null,
+            "regrowth_rate": null,
+            "shape_and_orientation": null,
+            "toxicity": null
+        },
+        "status": "Unknown",
+        "synonym": false,
+        "type": "species",
+        "year": null
+    },
+    "native_status": "L48(I)",
+    "order": {
+        "id": 31,
+        "link": "http://trefle.io/api/division_orders/31",
+        "name": "Theales",
+        "slug": "theales"
+    },
+    "scientific_name": "Actinidia chinensis",
+    "sub_species": [],
+    "varieties": [
+        {
+            "author": "H.L. Li",
+            "bibliography": "Journal of the Arnold Arboretum 33(1): 56. 1952. (J. Arnold Arbor.) ",
+            "common_name": "kiwi",
+            "complete_data": false,
+            "family_common_name": "Chinese Gooseberry family",
+            "id": 198558,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/198558",
+            "main_species_id": 102317,
+            "scientific_name": "Actinidia chinensis var. setosa",
+            "slug": "actinidia-chinensis-var-setosa",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T16:06:04",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 198558
+                }
+            ],
+            "status": "Accepted",
+            "synonym": false,
+            "type": "var",
+            "year": null
+        },
+        {
+            "author": "(C.F. Liang & R.H. Huang) C.F. Liang & A.R. Ferguson",
+            "bibliography": null,
+            "common_name": "kiwi",
+            "complete_data": false,
+            "family_common_name": "Chinese Gooseberry family",
+            "id": 198245,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/198245",
+            "main_species_id": 102317,
+            "scientific_name": "Actinidia chinensis var. rufopulpa",
+            "slug": "actinidia-chinensis-var-rufopulpa",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T17:50:37",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 198245
+                }
+            ],
+            "status": "Synonym",
+            "synonym": true,
+            "type": "var",
+            "year": null
+        },
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "kiwi",
+            "complete_data": false,
+            "family_common_name": "Chinese Gooseberry family",
+            "id": 102318,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/102318",
+            "main_species_id": 102317,
+            "scientific_name": "Actinidia chinensis var. deliciosa",
+            "slug": "actinidia-chinensis-var-deliciosa",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T09:40:39",
+                    "name": "USDA",
+                    "source_url": "https://plants.usda.gov",
+                    "species_id": 102318
+                }
+            ],
+            "status": "Unknown",
+            "synonym": false,
+            "type": "var",
+            "year": null
+        },
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "kiwi",
+            "complete_data": false,
+            "family_common_name": "Chinese Gooseberry family",
+            "id": 198241,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/198241",
+            "main_species_id": 102317,
+            "scientific_name": "Actinidia chinensis var. chinensis",
+            "slug": "actinidia-chinensis-var-chinensis",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T16:03:58",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 198241
+                }
+            ],
+            "status": "Accepted",
+            "synonym": false,
+            "type": "var",
+            "year": null
+        },
+        {
+            "author": "(C.F. Liang) C.F. Liang & A.R. Ferguson",
+            "bibliography": null,
+            "common_name": "kiwi",
+            "complete_data": false,
+            "family_common_name": "Chinese Gooseberry family",
+            "id": 198244,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/198244",
+            "main_species_id": 102317,
+            "scientific_name": "Actinidia chinensis var. jinggangshanensis",
+            "slug": "actinidia-chinensis-var-jinggangshanensis",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T17:50:37",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 198244
+                }
+            ],
+            "status": "Synonym",
+            "synonym": true,
+            "type": "var",
+            "year": null
+        }
+    ]
+}

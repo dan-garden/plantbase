@@ -4,17 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "heroku local web"
   },
   "author": "Daniel Garden",
   "license": "ISC",
   "dependencies": {
+    "apicache": "^1.5.3",
     "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsdom": "^15.1.1",
+    "mongoose": "^5.9.7",
     "multer": "^1.4.2",
     "node-fetch": "^2.6.0",
     "uuid": "^3.3.3"
+  },
+  "engines": {
+    "node": "10.16.0"
   },
   "nodemonConfig": {
     "ignore": [

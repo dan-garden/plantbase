@@ -1,5 +1,5 @@
 const storage = require("./cache");
-const almanac = require("./almanac");
+const almanac = require("./providers/Almanac");
 const uuidv4 = require('uuid/v4');
 
 class GardenDB {

@@ -1,32 +1,32 @@
-const PlantProvider = require("./PlantProvider");
+const { PlantProvider } = require("./PlantProvider");
 
-const providers = {
-    trefle: require("./Trefle"),
-    almanac: require("./Almanac")
-};
+const almanac = require("./Almanac");
+const trefle = require("./Trefle");
 
 
 class Plantbase extends PlantProvider {
-    static async searchPlant(query) {
-
-        const result = [];
-        
-        result.push(...await providers.trefle.searchPlant(query));
-        result.push(...await providers.almanac.searchPlant(query));
-
+    static async searchTypes(query) {
+        const result = await almanac.searchTypes(query);
         return result;
     }
-    
-    static async getSearchedPlant(query) {
 
-        const result = {
-            ...await providers.trefle.getSearchedPlant(query),
-            ...await providers.almanac.getSearchedPlant(query)
-        };
+    static async addToGarden(user, garden, slug) {
+        
+    }
 
+    static async searchPlants(query) {
+        const result = await trefle.searchPlants(query);
         return result;
     }
 }
+
+
+
+
+
+//search plant type
+//select plant type and add to garden
+//go to garden and select precise species
 
 
 module.exports = Plantbase;

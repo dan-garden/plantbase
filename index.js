@@ -25,7 +25,7 @@ app.get("/api/search/:query", async (req, res) => {
     await sleep(delay);
     try {
         if(req.params.query) {
-            const search_results = await almanac.searchPlant(req.params.query);
+            const search_results = await almanac.searchTypes(req.params.query);
             res.json(search_results);
         } else {
             res.json({ error: "Searh query not defined." })
@@ -40,7 +40,7 @@ app.get("/api/plant/:slug", async (req, res) => {
     await sleep(delay);
     try {
         if(req.params.slug) {
-            const plant_data = await almanac.getPlant(req.params.slug);
+            const plant_data = await almanac.getType(req.params.slug);
             const count = await garden.getCount(plant_data.slug);
             plant_data.count = count;
             res.json(plant_data);
