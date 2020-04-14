@@ -3,5 +3,8 @@ const almanac = require("../providers/Almanac");
 
 
 if(args.length) {
-    almanac.searchTypes(args[0]).then(console.log);
+    almanac.searchTypes(args[0]).then(result => {
+        console.log(result);
+        process.exit();
+    });
 }

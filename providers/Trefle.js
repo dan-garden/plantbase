@@ -1,15 +1,14 @@
 //https://trefle.io/reference
 
-const {
-    PlantProvider,
-    Model
-} = require("./PlantProvider");
+const PlantProvider = require("./PlantProvider");
+const Model = require("../Database");
+
 
 class Trefle extends PlantProvider {
 
     static url = "https://trefle.io";
     static token = "Qk5uKzM5K29Cdm9rZWl3eFNGU1M1QT09";
-    static forceScrape = true;
+    static forceScrape = false;
 
     static async getStoredSearch(query) {
         const find = await this.findLike(Model.TrefleSearch, {
@@ -25,8 +24,8 @@ class Trefle extends PlantProvider {
         return find;
     }
 
-    static async getStoredPlant(id) {
-        const find = await this.find(Model.TrefleSearch, {
+    static async getStoredPlantById(id) {
+        const find = await this.findOne(Model.TreflePlant, {
             id: id
         });
 
@@ -62,27 +61,34 @@ class Trefle extends PlantProvider {
     }
 
     static async searchPlants(query) {
-        const results = await this.callAPI("plants", {
-            q: query,
-            page_size: 50
-        });
-
-        if (results === "Internal server error") {
-            console.log("didn't work");
-            return {
-                error: "An error occured."
-            }
+        const stored = await this.getStoredSearch(query);
+        if(stored.length && !this.forceScrape) {
+            return stored;
         } else {
-            const store = await this.storeSearches(results);
-            return store;
+            const results = await this.callAPI("plants", {
+                q: query,
+                page_size: 50
+            });
+    
+            if (results === "Internal server error") {
+                return [];
+            } else {
+                const store = await this.storeSearches(results);
+                return store;
+            }
         }
     }
 
     static async getPlant(id) {
-        const result = await this.callAPI(`plants/${id}`);
-        const store = await this.storePlant(result);
-
-        return store;
+        const stored = await this.getStoredPlantById(id);
+        if(stored) {
+            return stored;
+        } else {
+            const result = await this.callAPI(`plants/${id}`);
+            const store = await this.storePlant(result);
+    
+            return store;
+        }
     }
 
     static async getSearchedPlant(query) {

@@ -1,11 +1,13 @@
 //https://www.almanac.com/gardening
 
+const fetch = require("node-fetch");
+const jsdom = require("jsdom");
 const {
-    PlantProvider,
-    fetch,
-    JSDOM,
-    Model
-} = require("./PlantProvider");
+    JSDOM
+} = jsdom;
+
+const PlantProvider = require("./PlantProvider");
+const Model = require("../Database");
 
 class Almanac extends PlantProvider {
 
@@ -24,7 +26,7 @@ class Almanac extends PlantProvider {
     }
 
     static async getStoredType(slug) {
-        const find = await this.find(Model.AlmanacType, {
+        const find = await this.findOne(Model.AlmanacType, {
             slug: slug
         });
 
@@ -107,7 +109,7 @@ class Almanac extends PlantProvider {
 
     static async getType(slug) {
         const stored = await this.getStoredType(slug);
-        if (stored.length && !this.forceScrape) {
+        if (stored && !this.forceScrape) {
             return stored;
         } else {
             const url = `${this.url}/plant/${slug}`;

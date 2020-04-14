@@ -1,12 +1,5 @@
-const fetch = require("node-fetch");
-const jsdom = require("jsdom");
-const {
-    JSDOM
-} = jsdom;
-
-
 const Model = require("../Database");
-
+const fetch = require("node-fetch");
 
 class PlantProvider {
 
@@ -84,17 +77,26 @@ class PlantProvider {
         return storedSearch;
     }
 
+    static async findOne(model, filter) {
+        const storedSearch = await model.findOne(filter).exec();
+        return storedSearch;
+    }
+
     static async store(model, filterKey, update) {
         const filter = {};
-        filter[filterKey] = update[filterKey];
-
-        const count = await model.countDocuments(filter);
-        const doc = await model.findOneAndUpdate(filter, update, {
-            new: true,
-            upsert: true
-        });
-
-        return doc;
+        if(filterKey) {
+            filter[filterKey] = update[filterKey];
+            const count = await model.countDocuments(filter);
+            const doc = await model.findOneAndUpdate(filter, update, {
+                new: true,
+                upsert: true
+            });
+    
+            return doc;
+        } else {
+            const result = await model.create(update);
+            return result;
+        }
     }
 
     static async storeMany(model, filterKey, updateArray) {
@@ -131,11 +133,4 @@ class PlantProvider {
 
 
 
-module.exports = {
-    PlantProvider,
-    fetch,
-    JSDOM,
-
-
-    Model
-};
+module.exports = PlantProvider;

@@ -3,7 +3,7 @@ const almanac = require("../providers/Almanac");
 
 
 if(args.length) {
-    almanac.getStoredSearch(args[0]).then(result => {
+    almanac.getType(args[0]).then(result => {
         console.log(result);
         process.exit();
     });
