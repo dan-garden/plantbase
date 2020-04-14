@@ -1,197 +1,111 @@
 {
-    "class": {
-        "id": 1,
-        "link": "http://trefle.io/api/division_classes/1",
-        "name": "Magnoliopsida",
-        "slug": "magnoliopsida"
-    },
-    "common_name": "kiwi",
+    "class": null,
+    "common_name": "cucumberleaf sunflower",
     "cultivars": [],
-    "division": {
-        "id": 1,
-        "link": "http://trefle.io/api/divisions/1",
-        "name": "Magnoliophyta",
-        "slug": "magnoliophyta"
-    },
-    "duration": "Perennial",
-    "family": {
-        "common_name": "Chinese Gooseberry family",
-        "id": 40,
-        "link": "http://trefle.io/api/families/40",
-        "name": "Actinidiaceae",
-        "slug": "actinidiaceae"
-    },
-    "family_common_name": "Chinese Gooseberry family",
-    "forms": [
-        {
-            "author": null,
-            "bibliography": null,
-            "common_name": "kiwi",
-            "complete_data": false,
-            "family_common_name": "Chinese Gooseberry family",
-            "id": 198557,
-            "is_main_species": false,
-            "link": "http://trefle.io/api/plants/198557",
-            "main_species_id": 102317,
-            "scientific_name": "Actinidia chinensis fo. chinensis",
-            "slug": "actinidia-chinensis-fo-chinensis",
-            "sources": [
-                {
-                    "last_update": "2019-01-11T16:06:04",
-                    "name": "Tropicos",
-                    "source_url": "http://www.tropicos.org",
-                    "species_id": 198557
-                }
-            ],
-            "status": "Accepted",
-            "synonym": false,
-            "type": "form",
-            "year": null
-        },
-        {
-            "author": "C.F. Liang",
-            "bibliography": null,
-            "common_name": "kiwi",
-            "complete_data": false,
-            "family_common_name": "Chinese Gooseberry family",
-            "id": 198242,
-            "is_main_species": false,
-            "link": "http://trefle.io/api/plants/198242",
-            "main_species_id": 102317,
-            "scientific_name": "Actinidia chinensis fo. jinggangshanensis",
-            "slug": "actinidia-chinensis-fo-jinggangshanensis",
-            "sources": [
-                {
-                    "last_update": "2019-01-11T17:50:37",
-                    "name": "Tropicos",
-                    "source_url": "http://www.tropicos.org",
-                    "species_id": 198242
-                }
-            ],
-            "status": "Synonym",
-            "synonym": true,
-            "type": "form",
-            "year": null
-        },
-        {
-            "author": "C.F. Liang & R.H. Huang",
-            "bibliography": null,
-            "common_name": "kiwi",
-            "complete_data": false,
-            "family_common_name": "Chinese Gooseberry family",
-            "id": 198243,
-            "is_main_species": false,
-            "link": "http://trefle.io/api/plants/198243",
-            "main_species_id": 102317,
-            "scientific_name": "Actinidia chinensis fo. rufopulpa",
-            "slug": "actinidia-chinensis-fo-rufopulpa",
-            "sources": [
-                {
-                    "last_update": "2019-01-11T17:50:37",
-                    "name": "Tropicos",
-                    "source_url": "http://www.tropicos.org",
-                    "species_id": 198243
-                }
-            ],
-            "status": "Synonym",
-            "synonym": true,
-            "type": "form",
-            "year": null
-        }
-    ],
+    "division": null,
+    "duration": "Annual, Perennial",
+    "family": null,
+    "family_common_name": "Aster family",
+    "forms": [],
     "genus": {
-        "id": 97,
-        "link": "http://trefle.io/api/genuses/97",
-        "name": "Actinidia",
-        "slug": "actinidia"
+        "id": 978,
+        "link": "http://trefle.io/api/genuses/978",
+        "name": "Helianthus",
+        "slug": "helianthus"
     },
     "hybrids": [],
-    "id": 102317,
+    "id": 141525,
     "images": [
         {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Kiwi-andrea-valori.jpg"
+            "url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Miami_Beach_-_Sand_Dunes_Flora_-_Dune_Sunflower.jpg"
         },
         {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Actinidia_chinensis1.jpg"
+            "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Tournesol_de_la_Plage_%285954050557%29.jpg"
+        },
+        {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Miami_Beach_-_Sand_Dunes_Flora_-_Sea_Grapes_and_Dune_Sunflowers_01.jpg"
         }
     ],
     "main_species": {
         "author": null,
         "bibliography": null,
-        "common_name": "kiwi",
-        "complete_data": false,
-        "duration": "Perennial",
-        "family_common_name": "Chinese Gooseberry family",
+        "common_name": "cucumberleaf sunflower",
+        "complete_data": true,
+        "duration": "Annual, Perennial",
+        "family_common_name": "Aster family",
         "flower": {
-            "color": null,
-            "conspicuous": null
+            "color": "Yellow",
+            "conspicuous": true
         },
         "foliage": {
-            "color": null,
-            "porosity_summer": null,
-            "porosity_winter": null,
-            "texture": null
+            "color": "Green",
+            "porosity_summer": "Porous",
+            "porosity_winter": "Porous",
+            "texture": "Coarse"
         },
         "fruit_or_seed": {
-            "color": null,
+            "color": "Brown",
             "conspicuous": null,
-            "seed_abundance": null,
-            "seed_period_begin": null,
-            "seed_period_end": null,
+            "seed_abundance": "Low",
+            "seed_period_begin": "Summer",
+            "seed_period_end": "Fall",
             "seed_persistence": null
         },
         "growth": {
-            "anaerobic_tolerance": null,
-            "caco_3_tolerance": null,
+            "anaerobic_tolerance": "Low",
+            "caco_3_tolerance": "High",
             "cold_stratification_required": null,
-            "drought_tolerance": null,
-            "fertility_requirement": null,
-            "fire_tolerance": null,
-            "frost_free_days_minimum": null,
-            "hedge_tolerance": null,
-            "moisture_use": null,
-            "ph_maximum": null,
-            "ph_minimum": null,
+            "drought_tolerance": "Medium",
+            "fertility_requirement": "Medium",
+            "fire_tolerance": "Medium",
+            "frost_free_days_minimum": 300,
+            "hedge_tolerance": "None",
+            "moisture_use": "Medium",
+            "ph_maximum": 7.2,
+            "ph_minimum": 5.2,
             "planting_density_maximum": {
-                "acre": null,
-                "sqm": null
+                "acre": 18000,
+                "sqm": 72843480
             },
             "planting_density_minimum": {
-                "acre": null,
-                "sqm": null
+                "acre": 11000,
+                "sqm": 44515460
             },
             "precipitation_maximum": {
-                "cm": null,
-                "inches": null
+                "cm": 152.40030480060963,
+                "inches": 60
             },
             "precipitation_minimum": {
-                "cm": null,
-                "inches": null
+                "cm": 88.90017780035562,
+                "inches": 35
             },
             "resprout_ability": null,
             "root_depth_minimum": {
-                "cm": null,
-                "inches": null
+                "cm": 35.56007112014225,
+                "inches": 14
             },
-            "salinity_tolerance": null,
-            "shade_tolerance": null,
+            "salinity_tolerance": "Medium",
+            "shade_tolerance": "Intolerant",
             "temperature_minimum": {
-                "deg_c": null,
-                "deg_f": null
+                "deg_c": -5.555555555555555,
+                "deg_f": 22
             }
         },
-        "id": 102317,
+        "id": 141525,
         "images": [
             {
-                "url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Kiwi-andrea-valori.jpg"
+                "url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Miami_Beach_-_Sand_Dunes_Flora_-_Dune_Sunflower.jpg"
             },
             {
-                "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Actinidia_chinensis1.jpg"
+                "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Tournesol_de_la_Plage_%285954050557%29.jpg"
+            },
+            {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Miami_Beach_-_Sand_Dunes_Flora_-_Sea_Grapes_and_Dune_Sunflowers_01.jpg"
             }
         ],
         "is_main_species": true,
         "main_species_id": null,
-        "native_status": "L48(I)",
+        "native_status": "L48(N)",
         "products": {
             "berry_nut_seed": null,
             "christmas_tree": null,
@@ -200,8 +114,8 @@
             "lumber": null,
             "naval_store": null,
             "nursery_stock": null,
-            "palatable_browse_animal": null,
-            "palatable_graze_animal": null,
+            "palatable_browse_animal": "Low",
+            "palatable_graze_animal": "Low",
             "palatable_human": null,
             "post": null,
             "protein_potential": null,
@@ -214,145 +128,472 @@
             "container": null,
             "corms": null,
             "cuttings": null,
-            "seed": null,
+            "seed": true,
             "sod": null,
-            "sprigs": null,
+            "sprigs": true,
             "tubers": null
         },
-        "scientific_name": "Actinidia chinensis",
+        "scientific_name": "Helianthus debilis",
         "seed": {
-            "bloom_period": null,
-            "commercial_availability": null,
-            "seed_spread_rate": null,
-            "seedling_vigor": null,
-            "seeds_per_pound": null,
+            "bloom_period": "Summer",
+            "commercial_availability": "No Known Source",
+            "seed_spread_rate": "Slow",
+            "seedling_vigor": "Low",
+            "seeds_per_pound": 324000,
             "small_grain": null,
-            "vegetative_spread_rate": null
+            "vegetative_spread_rate": "Rapid"
         },
-        "slug": "actinidia-chinensis",
+        "slug": "helianthus-debilis",
         "soils_adaptation": {
-            "coarse": null,
+            "coarse": true,
             "fine": null,
-            "medium": null
+            "medium": true
         },
         "sources": [
             {
-                "last_update": "2019-01-11T09:40:39",
+                "last_update": "2019-01-11T10:21:21",
                 "name": "USDA",
                 "source_url": "https://plants.usda.gov",
-                "species_id": 102317
+                "species_id": 141525
             }
         ],
         "specifications": {
-            "bloat": null,
-            "c_n_ratio": null,
+            "bloat": "None",
+            "c_n_ratio": "Medium",
             "coppice_potential": null,
-            "fall_conspicuous": null,
-            "fire_resistance": null,
-            "growth_form": null,
-            "growth_habit": null,
-            "growth_period": null,
-            "growth_rate": null,
+            "fall_conspicuous": true,
+            "fire_resistance": true,
+            "growth_form": "Stoloniferous",
+            "growth_habit": "Forb/herb",
+            "growth_period": "Spring and Summer",
+            "growth_rate": "Slow",
             "known_allelopath": null,
             "leaf_retention": null,
-            "lifespan": null,
+            "lifespan": "Moderate",
             "low_growing_grass": null,
             "mature_height": {
-                "cm": null,
-                "ft": null
+                "cm": 15.239256324291372,
+                "ft": 0.5
             },
             "max_height_at_base_age": {
                 "cm": null,
                 "ft": null
             },
-            "nitrogen_fixation": null,
-            "regrowth_rate": null,
-            "shape_and_orientation": null,
-            "toxicity": null
+            "nitrogen_fixation": "None",
+            "regrowth_rate": "Slow",
+            "shape_and_orientation": "Prostrate",
+            "toxicity": "None"
         },
         "status": "Unknown",
         "synonym": false,
         "type": "species",
         "year": null
     },
-    "native_status": "L48(I)",
-    "order": {
-        "id": 31,
-        "link": "http://trefle.io/api/division_orders/31",
-        "name": "Theales",
-        "slug": "theales"
-    },
-    "scientific_name": "Actinidia chinensis",
-    "sub_species": [],
-    "varieties": [
+    "native_status": "L48(N)",
+    "order": null,
+    "scientific_name": "Helianthus debilis",
+    "sub_species": [
         {
-            "author": "H.L. Li",
-            "bibliography": "Journal of the Arnold Arboretum 33(1): 56. 1952. (J. Arnold Arbor.) ",
-            "common_name": "kiwi",
-            "complete_data": false,
-            "family_common_name": "Chinese Gooseberry family",
-            "id": 198558,
-            "is_main_species": false,
-            "link": "http://trefle.io/api/plants/198558",
-            "main_species_id": 102317,
-            "scientific_name": "Actinidia chinensis var. setosa",
-            "slug": "actinidia-chinensis-var-setosa",
-            "sources": [
-                {
-                    "last_update": "2019-01-11T16:06:04",
-                    "name": "Tropicos",
-                    "source_url": "http://www.tropicos.org",
-                    "species_id": 198558
-                }
-            ],
-            "status": "Accepted",
-            "synonym": false,
-            "type": "var",
-            "year": null
-        },
-        {
-            "author": "(C.F. Liang & R.H. Huang) C.F. Liang & A.R. Ferguson",
+            "author": null,
             "bibliography": null,
-            "common_name": "kiwi",
-            "complete_data": false,
-            "family_common_name": "Chinese Gooseberry family",
-            "id": 198245,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 141534,
             "is_main_species": false,
-            "link": "http://trefle.io/api/plants/198245",
-            "main_species_id": 102317,
-            "scientific_name": "Actinidia chinensis var. rufopulpa",
-            "slug": "actinidia-chinensis-var-rufopulpa",
+            "link": "http://trefle.io/api/plants/141534",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis ssp. vestitus",
+            "slug": "helianthus-debilis-ssp-vestitus",
             "sources": [
                 {
-                    "last_update": "2019-01-11T17:50:37",
-                    "name": "Tropicos",
-                    "source_url": "http://www.tropicos.org",
-                    "species_id": 198245
+                    "last_update": "2019-01-11T10:21:23",
+                    "name": "USDA",
+                    "source_url": "https://plants.usda.gov",
+                    "species_id": 141534
                 }
             ],
-            "status": "Synonym",
-            "synonym": true,
-            "type": "var",
+            "status": "Unknown",
+            "synonym": false,
+            "type": "ssp",
             "year": null
         },
         {
             "author": null,
             "bibliography": null,
-            "common_name": "kiwi",
-            "complete_data": false,
-            "family_common_name": "Chinese Gooseberry family",
-            "id": 102318,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 141526,
             "is_main_species": false,
-            "link": "http://trefle.io/api/plants/102318",
-            "main_species_id": 102317,
-            "scientific_name": "Actinidia chinensis var. deliciosa",
-            "slug": "actinidia-chinensis-var-deliciosa",
+            "link": "http://trefle.io/api/plants/141526",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis ssp. cucumerifolius",
+            "slug": "helianthus-debilis-ssp-cucumerifolius",
             "sources": [
                 {
-                    "last_update": "2019-01-11T09:40:39",
+                    "last_update": "2019-01-11T10:21:22",
                     "name": "USDA",
                     "source_url": "https://plants.usda.gov",
-                    "species_id": 102318
+                    "species_id": 141526
+                }
+            ],
+            "status": "Unknown",
+            "synonym": false,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 263148,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/263148",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis subsp. debilis",
+            "slug": "helianthus-debilis-subsp-debilis",
+            "sources": [
+                {
+                    "last_update": "2019-01-12T07:55:18",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 263148
+                }
+            ],
+            "status": "Accepted",
+            "synonym": false,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 141530,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/141530",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis ssp. silvestris",
+            "slug": "helianthus-debilis-ssp-silvestris",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T10:21:22",
+                    "name": "USDA",
+                    "source_url": "https://plants.usda.gov",
+                    "species_id": 141530
+                }
+            ],
+            "status": "Unknown",
+            "synonym": false,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 141619,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/141619",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis ssp. hirtus",
+            "slug": "helianthus-debilis-ssp-hirtus",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T10:21:32",
+                    "name": "USDA",
+                    "source_url": "https://plants.usda.gov",
+                    "species_id": 141619
+                }
+            ],
+            "status": "Unknown",
+            "synonym": false,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 141621,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/141621",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis ssp. praecox",
+            "slug": "helianthus-debilis-ssp-praecox",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T10:21:32",
+                    "name": "USDA",
+                    "source_url": "https://plants.usda.gov",
+                    "species_id": 141621
+                }
+            ],
+            "status": "Unknown",
+            "synonym": false,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 141623,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/141623",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis ssp. runyonii",
+            "slug": "helianthus-debilis-ssp-runyonii",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T10:21:32",
+                    "name": "USDA",
+                    "source_url": "https://plants.usda.gov",
+                    "species_id": 141623
+                }
+            ],
+            "status": "Unknown",
+            "synonym": false,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 141529,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/141529",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis ssp. debilis",
+            "slug": "helianthus-debilis-ssp-debilis",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T10:21:22",
+                    "name": "USDA",
+                    "source_url": "https://plants.usda.gov",
+                    "species_id": 141529
+                }
+            ],
+            "status": "Unknown",
+            "synonym": false,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 141532,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/141532",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis ssp. tardiflorus",
+            "slug": "helianthus-debilis-ssp-tardiflorus",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T10:21:22",
+                    "name": "USDA",
+                    "source_url": "https://plants.usda.gov",
+                    "species_id": 141532
+                }
+            ],
+            "status": "Unknown",
+            "synonym": false,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": "Heiser",
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 248325,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/248325",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis subsp. hirtus",
+            "slug": "helianthus-debilis-subsp-hirtus",
+            "sources": [
+                {
+                    "last_update": "2019-01-12T05:36:09",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 248325
+                }
+            ],
+            "status": "Synonym",
+            "synonym": true,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": "Heiser",
+            "bibliography": "Madroño 13(5): 158–160, f. 6. 1956. (Madroño) ",
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 248313,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/248313",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis subsp. silvestris",
+            "slug": "helianthus-debilis-subsp-silvestris",
+            "sources": [
+                {
+                    "last_update": "2019-01-12T05:36:01",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 248313
+                }
+            ],
+            "status": "Accepted",
+            "synonym": false,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": "Heiser",
+            "bibliography": "Madroño 13(5): 160. 1956. (Madroño) ",
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 248312,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/248312",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis subsp. cucumerifolius",
+            "slug": "helianthus-debilis-subsp-cucumerifolius",
+            "sources": [
+                {
+                    "last_update": "2019-01-12T05:36:01",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 248312
+                }
+            ],
+            "status": "Accepted",
+            "synonym": false,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": "Heiser",
+            "bibliography": "Madroño 13(5): 156–158, f. 5–6. 1956. (Madroño) ",
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 248314,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/248314",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis subsp. tardiflorus",
+            "slug": "helianthus-debilis-subsp-tardiflorus",
+            "sources": [
+                {
+                    "last_update": "2019-01-12T05:36:02",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 248314
+                }
+            ],
+            "status": "Accepted",
+            "synonym": false,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": "Heiser",
+            "bibliography": "Madroño 13(5): 154. 1956. (Madroño) ",
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 248315,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/248315",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis subsp. vestitus",
+            "slug": "helianthus-debilis-subsp-vestitus",
+            "sources": [
+                {
+                    "last_update": "2019-01-12T05:36:03",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 248315
+                }
+            ],
+            "status": "Accepted",
+            "synonym": false,
+            "type": "ssp",
+            "year": null
+        },
+        {
+            "author": "Heiser",
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 248327,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/248327",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis subsp. runyonii",
+            "slug": "helianthus-debilis-subsp-runyonii",
+            "sources": [
+                {
+                    "last_update": "2019-01-12T05:36:10",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 248327
+                }
+            ],
+            "status": "Synonym",
+            "synonym": true,
+            "type": "ssp",
+            "year": null
+        }
+    ],
+    "varieties": [
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 141533,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/141533",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis var. tardiflorus",
+            "slug": "helianthus-debilis-var-tardiflorus",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T10:21:22",
+                    "name": "USDA",
+                    "source_url": "https://plants.usda.gov",
+                    "species_id": 141533
+                },
+                {
+                    "last_update": "2019-01-12T05:36:02",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 141533
                 }
             ],
             "status": "Unknown",
@@ -363,21 +604,133 @@
         {
             "author": null,
             "bibliography": null,
-            "common_name": "kiwi",
-            "complete_data": false,
-            "family_common_name": "Chinese Gooseberry family",
-            "id": 198241,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 141531,
             "is_main_species": false,
-            "link": "http://trefle.io/api/plants/198241",
-            "main_species_id": 102317,
-            "scientific_name": "Actinidia chinensis var. chinensis",
-            "slug": "actinidia-chinensis-var-chinensis",
+            "link": "http://trefle.io/api/plants/141531",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis var. silvestris",
+            "slug": "helianthus-debilis-var-silvestris",
             "sources": [
                 {
-                    "last_update": "2019-01-11T16:03:58",
+                    "last_update": "2019-01-11T10:21:22",
+                    "name": "USDA",
+                    "source_url": "https://plants.usda.gov",
+                    "species_id": 141531
+                }
+            ],
+            "status": "Unknown",
+            "synonym": false,
+            "type": "var",
+            "year": null
+        },
+        {
+            "author": "Engl.",
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 223129,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/223129",
+            "main_species_id": 141525,
+            "scientific_name": "Schismatoglottis hellwigiana var. subcordata",
+            "slug": "schismatoglottis-hellwigiana-var-subcordata",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T23:57:07",
                     "name": "Tropicos",
                     "source_url": "http://www.tropicos.org",
-                    "species_id": 198241
+                    "species_id": 223129
+                }
+            ],
+            "status": "Synonym",
+            "synonym": true,
+            "type": "var",
+            "year": null
+        },
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 141528,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/141528",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis var. cucumerifolius",
+            "slug": "helianthus-debilis-var-cucumerifolius",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T10:21:22",
+                    "name": "USDA",
+                    "source_url": "https://plants.usda.gov",
+                    "species_id": 141528
+                },
+                {
+                    "last_update": "2019-01-12T05:36:01",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 141528
+                }
+            ],
+            "status": "Unknown",
+            "synonym": false,
+            "type": "var",
+            "year": null
+        },
+        {
+            "author": null,
+            "bibliography": null,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 141535,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/141535",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis var. vestitus",
+            "slug": "helianthus-debilis-var-vestitus",
+            "sources": [
+                {
+                    "last_update": "2019-01-11T10:21:23",
+                    "name": "USDA",
+                    "source_url": "https://plants.usda.gov",
+                    "species_id": 141535
+                },
+                {
+                    "last_update": "2019-01-12T05:36:03",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 141535
+                }
+            ],
+            "status": "Unknown",
+            "synonym": false,
+            "type": "var",
+            "year": null
+        },
+        {
+            "author": null,
+            "bibliography": "*. ",
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 242676,
+            "is_main_species": false,
+            "link": "http://trefle.io/api/plants/242676",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis var. purpureus",
+            "slug": "helianthus-debilis-var-purpureus",
+            "sources": [
+                {
+                    "last_update": "2019-01-12T04:34:45",
+                    "name": "Tropicos",
+                    "source_url": "http://www.tropicos.org",
+                    "species_id": 242676
                 }
             ],
             "status": "Accepted",
@@ -386,27 +739,27 @@
             "year": null
         },
         {
-            "author": "(C.F. Liang) C.F. Liang & A.R. Ferguson",
+            "author": null,
             "bibliography": null,
-            "common_name": "kiwi",
-            "complete_data": false,
-            "family_common_name": "Chinese Gooseberry family",
-            "id": 198244,
+            "common_name": "cucumberleaf sunflower",
+            "complete_data": true,
+            "family_common_name": "Aster family",
+            "id": 261178,
             "is_main_species": false,
-            "link": "http://trefle.io/api/plants/198244",
-            "main_species_id": 102317,
-            "scientific_name": "Actinidia chinensis var. jinggangshanensis",
-            "slug": "actinidia-chinensis-var-jinggangshanensis",
+            "link": "http://trefle.io/api/plants/261178",
+            "main_species_id": 141525,
+            "scientific_name": "Helianthus debilis var. debilis",
+            "slug": "helianthus-debilis-var-debilis",
             "sources": [
                 {
-                    "last_update": "2019-01-11T17:50:37",
+                    "last_update": "2019-01-12T07:34:30",
                     "name": "Tropicos",
                     "source_url": "http://www.tropicos.org",
-                    "species_id": 198244
+                    "species_id": 261178
                 }
             ],
-            "status": "Synonym",
-            "synonym": true,
+            "status": "Accepted",
+            "synonym": false,
             "type": "var",
             "year": null
         }

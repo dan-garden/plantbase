@@ -21,12 +21,4 @@ class Plantbase extends PlantProvider {
 }
 
 
-
-
-
-//search plant type
-//select plant type and add to garden
-//go to garden and select precise species
-
-
 module.exports = Plantbase;

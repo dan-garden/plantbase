@@ -408,7 +408,7 @@ Model.AlmanacSearch = mongoose.model("AlmanacSearch", almanacSearchSchema);
 Model.AlmanacType = mongoose.model("AlmanacType", almanacTypeSchema);
 
 Model.TrefleSearch = mongoose.model("TrefleSearch", trefleSearchSchema);
-Model.TreflePlant = mongoose.model("TreflePlant". treflePlantSchema);
+Model.TreflePlant = mongoose.model("TreflePlant", treflePlantSchema);
 
 
 module.exports = Model;

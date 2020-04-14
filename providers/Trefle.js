@@ -80,7 +80,9 @@ class Trefle extends PlantProvider {
 
     static async getPlant(id) {
         const result = await this.callAPI(`plants/${id}`);
-        return result;
+        const store = await this.storePlant(result);
+
+        return store;
     }
 
     static async getSearchedPlant(query) {
