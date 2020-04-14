@@ -18,9 +18,9 @@ class Plantbase extends PlantProvider {
         return store;
     }
 
-    static async getGardenById(id) {
+    static async getGardenById(garden_id) {
         const stored = await this.findOne(Model.Garden, {
-            _id: id
+            _id: garden_id
         })
 
         return stored;
@@ -48,6 +48,14 @@ class Plantbase extends PlantProvider {
         return storePlant;
     }
 
+    static async getPlantById(plant_id) {
+        const stored = await this.findOne(Model.Plant, {
+            _id: plant_id
+        })
+
+        return stored;
+    }
+
     static async addTypeToGarden(user_id, garden_id, slug) {
         const garden = await this.getGardenById(garden_id);
         const plant = await this.createPlant(user_id, slug);
@@ -56,8 +64,12 @@ class Plantbase extends PlantProvider {
         return storeGarden;
     }
 
-    static async selectPlantType() {
-
+    static async selectPlantSpecies(plant_id, species_id) {
+        const plant = await this.getPlantById(plant_id);
+        const species = await trefle.getPlant(species_id);
+        plant.plant_id = species._id;
+        const storePlant = await this.store(Model.Plant, null, plant);
+        return storePlant;
     }
 
 

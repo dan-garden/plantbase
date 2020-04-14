@@ -32,7 +32,7 @@ const plantSchema = new Schema({
     location: String,
     type_slug: String,
     plant_id: {
-        type: Number,
+        type: mongoose.ObjectId,
         default: null
     }
 });
