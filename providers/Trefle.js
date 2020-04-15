@@ -80,8 +80,9 @@ class Trefle extends PlantProvider {
     }
 
     static async getPlant(id) {
+        id = parseInt(id);
         const stored = await this.getStoredPlantById(id);
-        if(stored) {
+        if(stored && !this.forceScrape) {
             return stored;
         } else {
             const result = await this.callAPI(`plants/${id}`);

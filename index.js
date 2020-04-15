@@ -1,12 +1,14 @@
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 const express = require("express");
+
 const trefle = require("./providers/Trefle");
-const multer  = require('multer');
 const almanac = require("./providers/Almanac");
+const plantbase = require("./providers/Plantbase");
+
+const multer  = require('multer');
 const garden = require("./garden");
 const app = express();
 const port = 3000;
-const delay = 0;
 
 app.use('/', express.static('public'));
 
@@ -21,63 +23,115 @@ app.use('/', express.static('public'));
 // });
 
 
-app.get("/api/search/:query", async (req, res) => {
-    await sleep(delay);
+
+app.get("/api/search-type/:query", async (req, res) => {
     try {
         if(req.params.query) {
             const search_results = await almanac.searchTypes(req.params.query);
             res.json(search_results);
-        } else {
-            res.json({ error: "Searh query not defined." })
-        }
-    } catch(e) {
-        console.error(e);
-        res.json({ error: e.message });
-    }
-});
-
-app.get("/api/plant/:slug", async (req, res) => {
-    await sleep(delay);
-    try {
-        if(req.params.slug) {
-            const plant_data = await almanac.getType(req.params.slug);
-            const count = await garden.getCount(plant_data.slug);
-            plant_data.count = count;
-            res.json(plant_data);
-        } else {
-            res.json({ error: "Plant slug not defined." })
-        }
-    } catch(e) {
-        console.error(e);
-        res.json({ error: e.message });
-    }
-});
-
-app.get("/api/garden", async (req, res) => {
-    await sleep(delay);
-    try {
-        const plants = await garden.getAll();
-        res.json(plants);
-    } catch(e) {
-        console.error(e);
-        res.json({ error: e.message });
-    }
-});
-
-app.get("/api/add-plant/:slug", async (req, res) => {
-    await sleep(delay);
-    try {
-        if(req.params.slug) {
-            const db = await garden.add(req.params.slug);
-            res.json({ success: "Plant was added to garden." });
-        } else {
-            res.json({ error: "Plant slug not defined." })
         }
     } catch(e) {
         console.error(e);
         res.json({ error: e.message })
     }
 });
+
+app.get("/api/get-type/:slug", async (req, res) => {
+    try {
+        if(req.params.slug) {
+            const result = await almanac.getType(req.params.slug);
+            res.json(result);
+        }
+    } catch(e) {
+        console.error(e);
+        res.json({ error: e.message })
+    }
+});
+
+app.get("/api/search-plant/:query", async (req, res) => {
+    try {
+        if(req.params.query) {
+            const result = await trefle.searchPlants(req.params.query);
+            res.json(result);
+        }
+    } catch(e) {
+        console.error(e);
+        res.json({ error: e.message })
+    }
+});
+
+app.get("/api/get-plant/:id", async (req, res) => {
+    try {
+        if(req.params.id) {
+            const result = await trefle.getPlant(req.params.id);
+            res.json(result);
+        }
+    } catch(e) {
+        console.error(e);
+        res.json({ error: e.message })
+    }
+});
+
+
+
+
+// app.get("/api/search/:query", async (req, res) => {
+//     await sleep(delay);
+//     try {
+//         if(req.params.query) {
+//             const search_results = await almanac.searchTypes(req.params.query);
+//             res.json(search_results);
+//         } else {
+//             res.json({ error: "Search query not defined." })
+//         }
+//     } catch(e) {
+//         console.error(e);
+//         res.json({ error: e.message });
+//     }
+// });
+
+// app.get("/api/plant/:slug", async (req, res) => {
+//     await sleep(delay);
+//     try {
+//         if(req.params.slug) {
+//             const plant_data = await almanac.getType(req.params.slug);
+//             const count = await garden.getCount(plant_data.slug);
+//             plant_data.count = count;
+//             res.json(plant_data);
+//         } else {
+//             res.json({ error: "Plant slug not defined." })
+//         }
+//     } catch(e) {
+//         console.error(e);
+//         res.json({ error: e.message });
+//     }
+// });
+
+// app.get("/api/garden", async (req, res) => {
+//     await sleep(delay);
+//     try {
+//         const plants = await garden.getAll();
+//         res.json(plants);
+//     } catch(e) {
+//         console.error(e);
+//         res.json({ error: e.message });
+//     }
+// });
+
+// app.get("/api/add-plant/:slug", async (req, res) => {
+//     await sleep(delay);
+//     try {
+//         if(req.params.slug) {
+//             const db = await garden.add(req.params.slug);
+//             res.json({ success: "Plant was added to garden." });
+//         } else {
+//             res.json({ error: "Plant slug not defined." })
+//         }
+//     } catch(e) {
+//         console.error(e);
+//         res.json({ error: e.message })
+//     }
+// });
 
 const fileUploads = multer.diskStorage({
     destination: './public/assets/images/plants',
