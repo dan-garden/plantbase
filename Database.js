@@ -24,13 +24,17 @@ const userSchema = new Schema({
 
 const plantSchema = new Schema({
     user_id: mongoose.ObjectId,
+    garden_id: mongoose.ObjectId,
     image: {
         type: String,
         default: null
     },
     sun_exposure: String,
     location: String,
-    type_slug: String,
+    type_id: {
+        type: mongoose.ObjectId,
+        default: null
+    },
     plant_id: {
         type: mongoose.ObjectId,
         default: null
@@ -43,10 +47,6 @@ const gardenSchema = new Schema({
     date_created: {
         type: Date,
         default: Date.now
-    },
-    plants: {
-        type: [mongoose.ObjectId],
-        default: []
     }
 }, {
     strict: true
