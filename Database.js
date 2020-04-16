@@ -6,21 +6,18 @@ mongoose.connect("mongodb+srv://dan:Fredwarrior123@cluster0-gluxm.mongodb.net/pl
     useCreateIndex: true
 });
 
+
 const Schema = mongoose.Schema;
 const Model = {};
 
 
-const userSchema = new Schema({
-    email: {
-        type: String,
-        unique: true
-    },
-    username: {
-        type: String,
-        unique: true
-    },
-    password: String,
-});
+var passport = require("passport")
+  , LocalStrategy = require("passport-local").Strategy;
+const passportLocalMongoose = require("passport-local-mongoose");
+
+const userSchema = new Schema({});
+userSchema.plugin(passportLocalMongoose);
+
 
 const plantSchema = new Schema({
     user_id: mongoose.ObjectId,
@@ -39,6 +36,8 @@ const plantSchema = new Schema({
         type: mongoose.ObjectId,
         default: null
     }
+}, {
+    strictQuery: false
 });
 
 const gardenSchema = new Schema({
@@ -49,7 +48,7 @@ const gardenSchema = new Schema({
         default: Date.now
     }
 }, {
-    strict: true
+    strictQuery: false
 });
 
 
@@ -61,6 +60,8 @@ const almanacSearchSchema = new Schema({
     title: String,
     link: String,
     thumbnail: String
+}, {
+    strictQuery: false
 });
 
 
@@ -86,6 +87,8 @@ const almanacTypeSchema = new Schema({
     pest_control: [String],
     harvest: [String],
     stats: [String]
+}, {
+    strictQuery: false
 });
 
 
@@ -102,7 +105,10 @@ const trefleSearchSchema = new Schema({
         unique: true
     },
     complete_data: Boolean
+}, {
+    strictQuery: false
 });
+
 
 
 const treflePlantSchema = new Schema({}, {
@@ -122,4 +128,9 @@ Model.TrefleSearch = mongoose.model("TrefleSearch", trefleSearchSchema);
 Model.TreflePlant = mongoose.model("TreflePlant", treflePlantSchema);
 
 
-module.exports = Model;
+
+passport.use(new LocalStrategy(Model.User.authenticate()));
+passport.serializeUser(Model.User.serializeUser());
+passport.deserializeUser(Model.User.deserializeUser());
+
+module.exports = { Model, passport };

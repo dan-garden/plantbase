@@ -1,7 +1,7 @@
 //https://trefle.io/reference
 
 const PlantProvider = require("./PlantProvider");
-const Model = require("../Database");
+const { Model } = require("../Database");
 
 
 class Trefle extends PlantProvider {

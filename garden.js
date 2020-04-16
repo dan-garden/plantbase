@@ -78,7 +78,7 @@ class GardenDB {
     static async getAll() {
         const db = await this.getDB();
         db.plants = await Promise.all(db.plants.map(async plant => {
-            plant.details = await almanac.getPlant(plant.slug);
+            plant.details = await almanac.getType(plant.slug);
             plant.photo = (plant.photo ? this.photos_dir + "/" + plant.photo : plant.details.image);
             return plant;
         }));

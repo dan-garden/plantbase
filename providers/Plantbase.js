@@ -1,5 +1,5 @@
 const PlantProvider = require("./PlantProvider");
-const Model = require("../Database");
+const { Model } = require("../Database");
 
 const almanac = require("./Almanac");
 const trefle = require("./Trefle");
@@ -54,6 +54,14 @@ class Plantbase extends PlantProvider {
         const stored = await this.findOne(Model.Plant, {
             _id: plant_id
         })
+
+        return stored;
+    }
+
+    static async getPlantsByGardenId(garden_id) {
+        const stored = await this.find(Model.Plant, {
+            garden_id
+        });
 
         return stored;
     }

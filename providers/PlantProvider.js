@@ -1,4 +1,4 @@
-const Model = require("../Database");
+const { Model } = require("../Database");
 const fetch = require("node-fetch");
 
 class PlantProvider {

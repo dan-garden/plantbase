@@ -7,7 +7,7 @@ const {
 } = jsdom;
 
 const PlantProvider = require("./PlantProvider");
-const Model = require("../Database");
+const { Model } = require("../Database");
 
 class Almanac extends PlantProvider {
 
