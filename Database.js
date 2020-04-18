@@ -133,4 +133,5 @@ passport.use(new LocalStrategy(Model.User.authenticate()));
 passport.serializeUser(Model.User.serializeUser());
 passport.deserializeUser(Model.User.deserializeUser());
 
+
 module.exports = { Model, passport };

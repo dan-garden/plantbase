@@ -1,5 +1,5 @@
 const PlantProvider = require("./PlantProvider");
-const { Model } = require("../Database");
+const { Model, passport } = require("../Database");
 
 const almanac = require("./Almanac");
 const trefle = require("./Trefle");
@@ -16,6 +16,42 @@ class Plantbase extends PlantProvider {
         };
         const store = await this.store(Model.Garden, null, garden);
         return store;
+    }
+
+    static async registerUser(username, password) {
+        if(!username) {
+            throw new Error("Please enter a username");
+        } else if(!password) {
+            throw new Error("Please enter a password");
+        }
+        
+        const newUser = await Model.User.register({username}, password);
+        const auth = await this.authenticateUser(username, password);
+        return auth.user ? true : false;
+    }
+
+    static async authenticateUser(username, password) {
+        if(!username) {
+            throw new Error("Please enter a username");
+        } else if(!password) {
+            throw new Error("Please enter a password");
+        }
+        const result = await Model.User.authenticate()(username, password);
+        return result;
+    }
+
+    static async loginUser(req) {
+        return new Promise(async (resolve) => {
+            const result = await Model.User.authenticate()(req.query.username, req.query.password);
+            req.login(result, (err) => {
+                if(err) {
+                    console.log(err);
+                    throw new Error("User could not be logged in");
+                } else {
+                    resolve(req.user);
+                }
+            });
+        })
     }
 
     static async getGardenById(garden_id) {

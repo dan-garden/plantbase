@@ -1,11 +1,10 @@
-const Model = require("../Database");
-const PlantProvider = require("../providers/PlantProvider");
+const args = require("./args");
+const plantbase = require("../providers/Plantbase");
 
-PlantProvider.store(Model.User, "email", {
-    email: "dangarden@gmail.com",
-    username: "Daniel",
-    password: "daniel123"
-}).then(result => {
-    console.log(result);
-    process.exit();
-});
+
+if(args[0] && args[1]) {
+    plantbase.registerUser(args[0], args[1]).then(user => {
+        console.log(user);
+        process.exit();
+    })
+}
