@@ -1,5 +1,3 @@
-const trefle = require("../providers/Trefle");
-
 module.exports = function(app) {
     app.get("/api/session", async (req, res) => {
         try {

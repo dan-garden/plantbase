@@ -18,16 +18,33 @@ class Plantbase extends PlantProvider {
         return store;
     }
 
-    static async registerUser(username, password) {
+    static async registerUser(username, password, passwordRepeat) {
         if(!username) {
             throw new Error("Please enter a username");
         } else if(!password) {
             throw new Error("Please enter a password");
+        } else if(password !== passwordRepeat) {
+            console.log(password, passwordRepeat)
+            throw new Error("Passwords don't match")
         }
-        
+
         const newUser = await Model.User.register({username}, password);
         const auth = await this.authenticateUser(username, password);
         return auth.user ? true : false;
+    }
+
+    static async isLoggedIn(req, res, next) {
+        if(req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect("/login");
+    }
+
+    static async isNotLoggedIn(req, res, next) {
+        if(!req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect("/me");
     }
 
     static async authenticateUser(username, password) {
@@ -41,9 +58,20 @@ class Plantbase extends PlantProvider {
     }
 
     static async loginUser(req) {
+        if(!req.body.username) {
+            throw new Error("Please enter a username");
+        } else if(!req.body.password) {
+            throw new Error("Please enter a password");
+        }
+
         return new Promise(async (resolve) => {
-            const result = await Model.User.authenticate()(req.query.username, req.query.password);
-            req.login(result, (err) => {
+            const result = await Model.User.authenticate()(req.body.username, req.body.password);
+
+            if(!result.user) {
+                throw new Error("Username or password is incorrect");
+            }
+
+            req.login(result.user, (err) => {
                 if(err) {
                     console.log(err);
                     throw new Error("User could not be logged in");

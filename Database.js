@@ -15,7 +15,9 @@ var passport = require("passport")
   , LocalStrategy = require("passport-local").Strategy;
 const passportLocalMongoose = require("passport-local-mongoose");
 
-const userSchema = new Schema({});
+const userSchema = new Schema({
+    
+});
 userSchema.plugin(passportLocalMongoose);
 
 
