@@ -38,16 +38,29 @@
             onSubmit: async function(e) {
                 this.loading = true;
                 
-                const formData = new FormData(e.target);
-                const req = await fetch("/api/register", {
-                    method: "POST",
-                    body: formData,
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                    }
-                });
-                const res = await req.text();
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+                myHeaders.append("Cookie", "connect.sid=s%3AWFLZRmQ1vLK-ta72y7f92IrY1TLoAIn8.p89n8E3Lv1H0RYotGaUssqIN0SdyKXaqKhbF8OAE0oU");
+
+                var urlencoded = new URLSearchParams();
+                urlencoded.append("username", "daniel");
+                urlencoded.append("password", "daniel123");
+                urlencoded.append("passwordRepeat", "daniel123");
+
+                var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: urlencoded,
+                redirect: 'follow'
+                };
+
+                const req = await fetch("http://192.168.1.119:3001/api/register", requestOptions)
+                const res = await req.json();
+                
                 console.log(res);
+
+
+                this.loading = false;
 
             }
         },
