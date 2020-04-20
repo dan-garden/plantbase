@@ -7,6 +7,7 @@ function sendFile(res, filename) {
 
 module.exports = function(app) {
 
+    app.get("/me", plantbase.isLoggedIn, (req, res) => sendFile(res, "me.html"));
     app.get("/my-gardens", plantbase.isLoggedIn, (req, res) => sendFile(res, "my-gardens.html"));
 
 }

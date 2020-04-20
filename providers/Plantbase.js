@@ -18,19 +18,18 @@ class Plantbase extends PlantProvider {
         return store;
     }
 
-    static async registerUser(username, password, passwordRepeat) {
-        if(!username) {
+    static async registerUser(req) {
+        console.log(req.body);
+        if(!req.body.username) {
             throw new Error("Please enter a username");
-        } else if(!password) {
+        } else if(!req.body.password) {
             throw new Error("Please enter a password");
-        } else if(password !== passwordRepeat) {
-            console.log(password, passwordRepeat)
+        } else if(req.body.password !== req.body.passwordRepeat) {
             throw new Error("Passwords don't match")
         }
 
-        const newUser = await Model.User.register({username}, password);
-        const auth = await this.authenticateUser(username, password);
-        return auth.user ? true : false;
+        const newUser = await Model.User.register({username: req.body.username}, req.body.password);
+        return await this.loginUser(req);
     }
 
     static async isLoggedIn(req, res, next) {
