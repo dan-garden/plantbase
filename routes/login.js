@@ -11,7 +11,7 @@ module.exports = function (app) {
             if (login) {
                 res.json({
                     success: req.user,
-                    redirect: "/me.html"
+                    redirect: "/"
                 })
             }
         } catch (e) {
