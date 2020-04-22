@@ -16,7 +16,7 @@
     }
 
     Vue.component('top-nav', {
-        props: ['session'],
+        props: ['session', 'loaded'],
         template: `
         <nav>
             <ul>
@@ -26,16 +26,26 @@
                 <li>
                     <a href="/my-gardens">My Gardens</a>
                 </li>
-                <li v-if="!session" data-float="right">
-                    <a href="/">Sign In / Register</a>
-                </li>
-                <li v-if="session" data-float="right">
-                    <a href="/">{{ session.username }}</a>
-                </li>
+                <template v-if="loaded">
+                    <li v-if="!session" data-float="right">
+                        <a href="/">Sign In / Register</a>
+                    </li>
+                    <li v-if="session" data-float="right">
+                        <a href="javascript: void(0)">
+                        {{ session.username }}
+                        <i class="fas fa-caret-down"></i>
+                        </a>
+                    </li>
+                </template>
+                <template v-if="!loaded">
+                    <li data-float="right"><div class="small-loader"></div></li>
+                </template>
             </ul>
         </nav>
         `
     });
+
+    // Vue.component('main-container')
 
 
     Vue.component('register-form', {
@@ -58,13 +68,17 @@
                 const res = await formEncodedPOST("/api/register", {
                     username: this.username,
                     password: this.password,
-                    passwordRepeat: this.passwordRepeat
+                    passwordRepeat: this.passwordRepeat,
+                    referrer: document.referrer
                 });
                 this.loading = false;
                 if(res.error) {
                     this.error = res.error;
-                } else {
-                    console.log(res);
+                } else if(res.success) {
+                    app.session = res.success;
+                }
+                if(res.redirect) {
+                    document.location = res.redirect;
                 }
             }
         },
@@ -109,6 +123,7 @@
                         </label>
 
                         <button type="submit" class="pure-button pure-button-primary">{{ buttonText }}</button>
+                        Already have an account? <a href="/login">Login</a>
                     </div>
                 </fieldset>
             </form>
@@ -136,13 +151,17 @@
                 this.loading = true;
                 const res = await formEncodedPOST("/api/login", {
                     username: this.username,
-                    password: this.password
+                    password: this.password,
+                    referrer: document.referrer
                 });
                 this.loading = false;
                 if(res.error) {
                     this.error = res.error;
-                } else {
-                    console.log(res);
+                } else if(res.success) {
+                    app.session = res.success;
+                }
+                if(res.redirect) {
+                    document.location = res.redirect;
                 }
             }
         },
@@ -174,6 +193,8 @@
 
                     <div class="pure-controls">
                         <button type="submit" class="pure-button pure-button-primary">{{ buttonText }}</button>
+                        <br /><br />
+                        Don't have an account? <a href="/register">Register</a>
                     </div>
                 </fieldset>
             </form>
@@ -185,7 +206,8 @@
     window.app = new Vue({
         el: '#app',
         data: {
-            session: false
+            session: false,
+            loaded: false
         },
         methods: {
             popup(type) {
@@ -200,8 +222,11 @@
         },
 
         created: async function () {
-            //get user session
-            this.getUserSession().then(res => this.session = res.session || false)
+
+            this.getUserSession().then(res => {
+                this.session = res.session || false;
+                this.loaded = true;
+            });
         },
 
     })

@@ -13,12 +13,15 @@
 
 <body>
     <div id="app">
+        <top-nav v-bind:session="session" v-bind:loaded="loaded"></top-nav>
 
-        <top-nav v-bind:session="session"></top-nav>
-        
-        My Home Page
+        <transition name="fade">
+            <div v-if="loaded">
+                
+                My Home Page
 
-
+            </div>
+        </transition>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="assets/js/main.js"></script>
