@@ -14,7 +14,6 @@ body {
     max-width: 1000px;
     width: 100%;
     margin: auto;
-    background-color: #FFF;
 }
 
 .small-loader {
@@ -42,8 +41,9 @@ nav {
     width: 100%;
     padding: 15px 0;
     background-color: #FFF;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    border-bottom: solid 1px lightgrey;
     min-height: 50px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
 
 nav ul {
@@ -69,16 +69,17 @@ nav ul li a:hover {
 }
 
 .main-container {
+    background-color: #FFF;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    
+    min-height: calc(100vh - 50px);
+    padding: 15px;
 }
 
 .register-form,
 .login-form {
     width: 100%;
     max-width: 600px;
-    background-color: #FFF;
-    margin: 10px auto;
+    margin: auto;
     padding: 10px;
 }
 
@@ -88,6 +89,31 @@ nav ul li a:hover {
     padding: 10px;
     color: red;
 }
+
+
+
+.gardens-list {
+    list-style-type: none;
+    padding: 10px;
+}
+
+.garden-item {
+    width: 130px;
+    height: 130px;
+    background-color: #FFF;
+    border: solid 1px lightgrey;
+    font-size: 14px;
+    padding: 5px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.garden-item:hover {
+    border: solid 1px transparent;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+
 
 @-webkit-keyframes spin {
     0% {

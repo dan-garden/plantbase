@@ -45,8 +45,6 @@
         `
     });
 
-    // Vue.component('main-container')
-
 
     Vue.component('register-form', {
         data: () => ({
@@ -131,8 +129,6 @@
     });
 
 
-
-
     Vue.component('login-form', {
         data: () => ({
             loading: false,
@@ -201,6 +197,49 @@
         `
     })
 
+
+    Vue.component('garden-item', {
+        props: ['garden'],
+        template: `
+            <li class="garden-item">{{garden.name}}</li>
+        `
+    })
+
+
+    Vue.component('user-gardens', {
+        props: ['user_id'],
+        data: () => ({
+            loading: false,
+            gardens: false
+        }),
+        methods: {
+            getUserGardens: async function(user_id) {
+                this.loading = true;
+                const req = await fetch("api/get-user-gardens/"+user_id);
+                const res = await req.json();
+                this.gardens = res;
+                this.loading = false;
+            }
+        },
+        mounted: async function() {
+            if(this.user_id) {
+                await this.getUserGardens(this.user_id);
+            }
+        },
+        template: `
+            <template v-if="loading">
+                Loading...
+            </template>
+            <template v-else-if="!loading">
+                <ul v-if="gardens" class="gardens-list">
+                    <template v-for="garden in gardens">
+                        <garden-item v-bind:garden="garden"></garden-item>
+                    </template>
+                </ul>
+            </template>
+
+        `
+    });
 
 
     window.app = new Vue({
