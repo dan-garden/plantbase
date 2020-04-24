@@ -2,6 +2,7 @@ const fs = require("fs");
 const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
+const requestIp = require("request-ip");
 const {
     passport
 } = require("../Database");
@@ -16,6 +17,7 @@ module.exports = function (app) {
     app.use(bodyParser.urlencoded({
         extended: false
     }));
+    app.use(requestIp.mw());
     app.use(passport.initialize());
     app.use(passport.session());
 
