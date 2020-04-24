@@ -231,11 +231,14 @@
                 Loading...
             </template>
             <template v-else-if="!loading">
-                <ul v-if="gardens" class="gardens-list">
+                <ul v-if="gardens && gardens.length" class="gardens-list">
                     <template v-for="garden in gardens">
                         <garden-item v-bind:garden="garden"></garden-item>
                     </template>
                 </ul>
+                <div v-else-if="gardens && !gardens.length">
+                You have no gardens
+                </div>
             </template>
 
         `
