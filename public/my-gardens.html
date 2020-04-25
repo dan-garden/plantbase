@@ -8,20 +8,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/97e3af929d.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
 </head>
 
 <body>
     <div id="app">
         <top-nav v-bind:session="session" v-bind:loaded="loaded"></top-nav>
         <section class="main-container">
-            <transition name="fade">
-                <div v-if="loaded">
-    
-                    <user-gardens v-bind:user_id="session._id"></user-gardens>
-    
-                </div>
-            </transition>
+            <div v-if="loaded">
+
+                <user-gardens v-bind:user_id="session._id"></user-gardens>
+
+            </div>
         </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>

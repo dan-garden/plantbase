@@ -90,11 +90,17 @@ nav ul li a:hover {
     color: red;
 }
 
-
+.loading-text {
+    text-align: center;
+}
 
 .gardens-list {
     list-style-type: none;
     padding: 10px;
+}
+
+.gardens-empty {
+    text-align: center;
 }
 
 .garden-item {

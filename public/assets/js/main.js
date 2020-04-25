@@ -50,6 +50,7 @@
         data: () => ({
             loading: false,
             error: false,
+            email: "",
             username: "",
             password: "",
             passwordRepeat: ""
@@ -64,6 +65,7 @@
                 this.error = false;
                 this.loading = true;
                 const res = await formEncodedPOST("/api/register", {
+                    email: this.email,
                     username: this.username,
                     password: this.password,
                     passwordRepeat: this.passwordRepeat,
@@ -86,6 +88,16 @@
                     <transition name="fade">
                         <div class="form-error" v-if="error">{{ error }}</div>
                     </transition>
+                    <div class="pure-control-group">
+                        <label for="name">Email</label>
+                        <input
+                        id="email"
+                        name="email"
+                        v-model="email"
+                        type="text"
+                        placeholder="Email">
+                    </div>
+
                     <div class="pure-control-group">
                         <label for="name">Username</label>
                         <input
@@ -227,16 +239,16 @@
             }
         },
         template: `
-            <template v-if="loading">
+            <div v-if="loading" class="loading-text">
                 Loading...
-            </template>
+            </div>
             <template v-else-if="!loading">
                 <ul v-if="gardens && gardens.length" class="gardens-list">
                     <template v-for="garden in gardens">
                         <garden-item v-bind:garden="garden"></garden-item>
                     </template>
                 </ul>
-                <div v-else-if="gardens && !gardens.length">
+                <div class="gardens-empty" v-else-if="gardens && !gardens.length">
                 You have no gardens
                 </div>
             </template>

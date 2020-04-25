@@ -4,6 +4,7 @@ const { Model, passport } = require("../Database");
 const almanac = require("./Almanac");
 const trefle = require("./Trefle");
 
+const validator = require('validator');
 
 class Plantbase extends PlantProvider {
     static photos_dir = "../assets/images/plants";
@@ -19,8 +20,9 @@ class Plantbase extends PlantProvider {
     }
 
     static async registerUser(req) {
-        console.log(req.body);
-        if(!req.body.username) {
+        if(!req.body.email || !validator.isEmail(req.body.email)) {
+            throw new Error("Email address is not valid");
+        } else if(!req.body.username) {
             throw new Error("Please enter a username");
         } else if(!req.body.password) {
             throw new Error("Please enter a password");
@@ -28,7 +30,11 @@ class Plantbase extends PlantProvider {
             throw new Error("Passwords don't match")
         }
 
-        const newUser = await Model.User.register({username: req.body.username}, req.body.password);
+        const newUser = await Model.User.register({
+            email: req.body.email,
+            username: req.body.username,
+            ip: req.clientIp,
+        }, req.body.password);
         return await this.loginUser(req);
     }
 

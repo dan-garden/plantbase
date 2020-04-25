@@ -16,9 +16,17 @@ var passport = require("passport")
 const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new Schema({
-    
+    email: String,
+    profile_picture: String,
+    ip: String,
+    last: Date,
+    attempts: Number
 });
-userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose, {
+    usernameUnique: true,
+    usernameLowerCase: true,
+    maxAttempts: 5,
+});
 
 
 const plantSchema = new Schema({
