@@ -87,10 +87,38 @@ class Plantbase extends PlantProvider {
         })
     }
 
+    static async getUserById(user_id) {
+        const stored = await this.findOne(Model.User, {
+            _id: user_id
+        });
+
+        if(stored) {
+            delete stored.salt;
+            delete stored.hash;
+        }
+
+        return stored;
+    }
+
+    static async getUsers() {
+        const stored = await this.find(Model.User);
+
+        return stored;
+    }
+
+    static async appendGardenDetails(garden) {
+        const user = await Model.User.findById(garden.user_id);
+        const plants = await this.getPlantsByGardenId(garden._id);
+        garden = {...garden._doc, username: user.username, plants};
+        return garden;
+    }
+
     static async getGardenById(garden_id) {
-        const stored = await this.findOne(Model.Garden, {
+        let stored = await this.findOne(Model.Garden, {
             _id: garden_id
         })
+
+        stored = await this.appendGardenDetails(stored);
 
         return stored;
     }
@@ -99,6 +127,10 @@ class Plantbase extends PlantProvider {
         const stored = await this.find(Model.Garden, {
             user_id
         });
+
+        for(let i = 0; i < stored.length; i++) {
+            stored[i] = await this.appendGardenDetails(stored[i]);
+        }
 
         return stored;
     }

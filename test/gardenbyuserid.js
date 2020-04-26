@@ -7,4 +7,12 @@ if(args[0]) {
         console.log(result);
         process.exit();
     })
+} else {
+    plantbase.getUsers().then(users => {
+        const user = users[0];
+        plantbase.getGardensByUserId(user._id).then(result => {
+            console.log(result);
+            process.exit();
+        });
+    })
 }

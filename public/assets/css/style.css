@@ -36,6 +36,7 @@ nav {
     padding: 15px 0;
     background-color: #FFF;
     border-bottom: solid 1px lightgrey;
+    margin-bottom: 1px;
     min-height: 50px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }
@@ -59,7 +60,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
+    color: rgb(0, 131, 3);
 }
 
 .main-container {
@@ -91,26 +92,10 @@ nav ul li a:hover {
 }
 
 .gardens-list {
-    list-style-type: none;
     padding: 10px;
+    margin: 0 !important;
 }
 
 .gardens-empty {
     text-align: center;
-}
-
-.garden-item {
-    width: 130px;
-    height: 130px;
-    background-color: #FFF;
-    border: solid 1px lightgrey;
-    font-size: 14px;
-    padding: 5px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.garden-item:hover {
-    border: solid 1px transparent;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 }

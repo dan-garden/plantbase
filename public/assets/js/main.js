@@ -241,7 +241,23 @@
     Vue.component('garden-item', {
         props: ['garden'],
         template: `
-            <li class="garden-item">{{garden.name}}</li>
+            <div class="card green">
+                <div class="content">
+                    <div class="header">{{garden.name}}</div>
+                    <div class="description">
+                        {{garden.description}}
+                    </div>
+                    </div>
+                    <div class="extra content">
+                    <span class="right floated">
+                        By {{garden.username}}
+                    </span>
+                    <span>
+                        <i class="seedling icon"></i>
+                        75 Plants
+                    </span>
+                </div>
+            </div>
         `
     })
 
@@ -271,11 +287,11 @@
                 Loading...
             </div>
             <template v-else-if="!loading">
-                <ul v-if="gardens && gardens.length" class="gardens-list">
+                <div v-if="gardens && gardens.length" class="gardens-list ui link cards">
                     <template v-for="garden in gardens">
                         <garden-item v-bind:garden="garden"></garden-item>
                     </template>
-                </ul>
+                </div>
                 <div class="gardens-empty" v-else-if="gardens && !gardens.length">
                 You have no gardens
                 </div>
