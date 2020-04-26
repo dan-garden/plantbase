@@ -7,20 +7,19 @@
     <title>Register - Plantbase</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://kit.fontawesome.com/97e3af929d.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.4/dist/semantic.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
     <div id="app">
         <top-nav v-bind:session="session" v-bind:loaded="loaded"></top-nav>
-        <section class="main-container">
-            <transition name="fade">
-                <div v-if="loaded">
-    
-                    <register-form></register-form>
-    
-                </div>
-            </transition>
+        <section class="main-container ui middle aligned center aligned grid">
+
+            <register-form></register-form>
+
         </section>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>

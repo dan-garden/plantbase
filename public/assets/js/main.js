@@ -17,6 +17,11 @@
 
     Vue.component('top-nav', {
         props: ['session', 'loaded'],
+        updated: function() {
+            if(this.session) {
+                $("nav .ui.dropdown").dropdown();
+            }
+        },
         template: `
         <nav>
             <ul>
@@ -31,14 +36,20 @@
                         <a href="/">Sign In / Register</a>
                     </li>
                     <li v-if="session" data-float="right">
-                        <a href="javascript: void(0)">
-                        {{ session.username }}
-                        <i class="fas fa-caret-down"></i>
-                        </a>
+                        <div class="ui pointing dropdown link item">
+                            <span class="text">{{ session.username }}</span>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a class="item">User Settings</a>
+                                <div class="divider"></div>
+                                <a class="item" href="/logout">Logout</a>
+                            </div>
+                        </div>
                     </li>
+
                 </template>
                 <template v-if="!loaded">
-                    <li data-float="right"><div class="small-loader"></div></li>
+                    <li data-float="right"><div class="ui active green inline loader"></div></li>
                 </template>
             </ul>
         </nav>
@@ -72,71 +83,79 @@
                     referrer: document.referrer
                 });
                 this.loading = false;
-                if(res.error) {
+                if (res.error) {
                     this.error = res.error;
-                } else if(res.success) {
+                } else if (res.success) {
                     app.session = res.success;
                 }
-                if(res.redirect) {
+                if (res.redirect) {
                     document.location = res.redirect;
                 }
             }
         },
         template: `
-            <form v-on:submit.prevent="onSubmit" class="register-form pure-form pure-form-aligned">
-                <fieldset>
-                    <transition name="fade">
-                        <div class="form-error" v-if="error">{{ error }}</div>
-                    </transition>
-                    <div class="pure-control-group">
-                        <label for="name">Email</label>
-                        <input
-                        id="email"
-                        name="email"
-                        v-model="email"
-                        type="text"
-                        placeholder="Email">
+            <div class="column register-form">
+                <h2 class="ui green image header">
+                    <img src="assets/images/logo.png" class="image">
+                    <div class="content">
+                        Register an account
                     </div>
-
-                    <div class="pure-control-group">
-                        <label for="name">Username</label>
-                        <input
-                        id="name"
-                        name="username"
-                        v-model="username"
-                        type="text"
-                        placeholder="Username">
+                </h2>
+                <form v-on:submit.prevent="onSubmit" class="ui large form">
+                    <div class="ui stacked segment">
+                        <transition name="fade">
+                            <div class="form-error" v-if="error">{{ error }}</div>
+                        </transition>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input
+                                name="email"
+                                v-model="email"
+                                type="text"
+                                placeholder="Email Address">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input
+                                name="username"
+                                v-model="username"
+                                type="text"
+                                placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input
+                                name="password"
+                                v-model="password"
+                                type="password"
+                                placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input
+                                name="passwordRepeat"
+                                v-model="passwordRepeat"
+                                type="password"
+                                placeholder="Repeat Password">
+                            </div>
+                        </div>
+                        
+                        <button class="ui fluid large green submit button">{{ buttonText }}</button>
                     </div>
+                </form>
 
-                    <div class="pure-control-group">
-                        <label for="password">Password</label>
-                        <input
-                        id="password"
-                        name="password"
-                        v-model="password"
-                        type="password"
-                        placeholder="Password">
-                    </div>
+                <div class="ui message">
+                    Already have an account? <a href="/login">Sign In</a>
+                </div>
+            </div>
 
-                    <div class="pure-control-group">
-                        <label for="passwordRepeat">Repeat Password</label>
-                        <input id="passwordRepeat"
-                        name="passwordRepeat"
-                        v-model="passwordRepeat"
-                        type="password"
-                        placeholder="Repeat Password">
-                    </div>
-
-                    <div class="pure-controls">
-                        <label for="cb" class="pure-checkbox">
-                            <input id="cb" type="checkbox"> I've read the terms and conditions
-                        </label>
-
-                        <button type="submit" class="pure-button pure-button-primary">{{ buttonText }}</button>
-                        Already have an account? <a href="/login">Login</a>
-                    </div>
-                </fieldset>
-            </form>
         `
     });
 
@@ -155,6 +174,7 @@
         },
         methods: {
             onSubmit: async function (e) {
+                console.log(e);
                 this.error = false;
                 this.loading = true;
                 const res = await formEncodedPOST("/api/login", {
@@ -163,49 +183,57 @@
                     referrer: document.referrer
                 });
                 this.loading = false;
-                if(res.error) {
+                if (res.error) {
                     this.error = res.error;
-                } else if(res.success) {
+                } else if (res.success) {
                     app.session = res.success;
                 }
-                if(res.redirect) {
+                if (res.redirect) {
                     document.location = res.redirect;
                 }
             }
         },
         template: `
-            <form v-on:submit.prevent="onSubmit" class="login-form pure-form pure-form-aligned">
-                <fieldset>
-                    <transition name="fade">
-                        <div class="form-error" v-if="error">{{ error }}</div>
-                    </transition>
-                    <div class="pure-control-group">
-                        <label for="name">Username</label>
-                        <input
-                        id="name"
-                        name="username"
-                        v-model="username"
-                        type="text"
-                        placeholder="Username">
+            <div class="column login-form">
+                <h2 class="ui green image header">
+                    <img src="assets/images/logo.png" class="image">
+                    <div class="content">
+                        Log-in to your account
                     </div>
+                </h2>
+                <form v-on:submit.prevent="onSubmit" class="ui large form">
+                    <div class="ui stacked segment">
+                        <transition name="fade">
+                            <div class="form-error" v-if="error">{{ error }}</div>
+                        </transition>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input
+                                name="username"
+                                v-model="username"
+                                type="text"
+                                placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input
+                                name="password"
+                                v-model="password"
+                                type="password"
+                                placeholder="Password">
+                            </div>
+                        </div>
+                        <button class="ui fluid large green submit button">{{ buttonText }}</button>
+                    </div>
+                </form>
 
-                    <div class="pure-control-group">
-                        <label for="password">Password</label>
-                        <input
-                        id="password"
-                        name="password"
-                        v-model="password"
-                        type="password"
-                        placeholder="Password">
-                    </div>
-
-                    <div class="pure-controls">
-                        <button type="submit" class="pure-button pure-button-primary">{{ buttonText }}</button>
-                        <br /><br />
-                        Don't have an account? <a href="/register">Register</a>
-                    </div>
-                </fieldset>
-            </form>
+                <div class="ui message">
+                    New to us? <a href="/register">Sign Up</a>
+                </div>
+            </div>
         `
     })
 
@@ -225,16 +253,16 @@
             gardens: false
         }),
         methods: {
-            getUserGardens: async function(user_id) {
+            getUserGardens: async function (user_id) {
                 this.loading = true;
-                const req = await fetch("api/get-user-gardens/"+user_id);
+                const req = await fetch("api/get-user-gardens/" + user_id);
                 const res = await req.json();
                 this.gardens = res;
                 this.loading = false;
             }
         },
-        mounted: async function() {
-            if(this.user_id) {
+        mounted: async function () {
+            if (this.user_id) {
                 await this.getUserGardens(this.user_id);
             }
         },
