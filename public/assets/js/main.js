@@ -174,7 +174,6 @@
         },
         methods: {
             onSubmit: async function (e) {
-                console.log(e);
                 this.error = false;
                 this.loading = true;
                 const res = await formEncodedPOST("/api/login", {
@@ -240,8 +239,13 @@
 
     Vue.component('garden-item', {
         props: ['garden'],
+        methods: {
+            onClick: function(e) {
+                document.location = "/garden/" + this.garden._id
+            }
+        },
         template: `
-            <div class="card green">
+            <div class="card green" v-on:click.prevent="onClick">
                 <div class="content">
                     <div class="header">{{garden.name}}</div>
                     <div class="description">
@@ -254,7 +258,7 @@
                     </span>
                     <span>
                         <i class="seedling icon"></i>
-                        75 Plants
+                        {{garden.plants.length}} Plants
                     </span>
                 </div>
             </div>
