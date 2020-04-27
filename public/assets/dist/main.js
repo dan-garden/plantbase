@@ -287,7 +287,7 @@
         },
         template: `
             <div v-if="loading" class="loading-text">
-                Loading...
+                <div class="ui active large centered inline loader text green">Loading Gardens...</div>
             </div>
             <template v-else-if="!loading">
                 <div v-if="gardens && gardens.length" class="gardens-list ui link cards">
