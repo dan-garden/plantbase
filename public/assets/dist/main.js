@@ -33,7 +33,7 @@
                 </li>
                 <template v-if="loaded">
                     <li v-if="!session" data-float="right">
-                        <a href="/">Sign In / Register</a>
+                        <a href="/">Sign In</a>
                     </li>
                     <li v-if="session" data-float="right">
                         <div class="ui pointing dropdown link item">
@@ -266,6 +266,10 @@
                         this.error = res.error;
                     } else if (res.success) {
                         this.modal.modal('hide');
+                        if(app.$refs.user_gardens) {
+                            app.$refs.user_gardens.reload();
+                            $(this.$el).find(".create-garden-modal form")[0].reset();
+                        }
                     }
                 })();
                 return false;
@@ -327,6 +331,7 @@
         `
     });
 
+
     Vue.component('garden-item', {
         props: ['garden'],
         methods: {
@@ -355,6 +360,7 @@
         `
     })
 
+
     Vue.component('user-gardens', {
         props: ['user_id'],
         data: () => ({
@@ -362,18 +368,65 @@
             gardens: false
         }),
         methods: {
-            getUserGardens: async function (user_id) {
+            async getUserGardens(user_id) {
                 this.loading = true;
-                const req = await fetch("api/get-user-gardens/" + user_id);
+                const req = await fetch("/api/get-user-gardens/" + user_id);
                 const res = await req.json();
                 this.gardens = res;
                 this.loading = false;
+            },
+            async reload() {
+                if (this.user_id) {
+                    await this.getUserGardens(this.user_id);
+                }
             }
         },
         mounted: async function () {
-            if (this.user_id) {
-                await this.getUserGardens(this.user_id);
+            await this.reload();
+        },
+        template: `
+            <div v-if="loading" class="loading-text">
+                <div class="ui active large centered inline loader text green">Loading Gardens...</div>
+            </div>
+            <template v-else-if="!loading">
+                <div v-if="gardens && gardens.length" class="gardens-list ui link cards">
+                    <template v-for="garden in gardens">
+                        <garden-item v-bind:garden="garden"></garden-item>
+                    </template>
+                </div>
+                <div class="gardens-empty" v-else-if="gardens && !gardens.length">
+                You have no gardens
+                </div>
+            </template>
+
+        `
+    });
+
+    Vue.component('garden-plants', {
+        props: ['garden_id'],
+        data: () => ({
+            loading: false,
+            gardens: false
+        }),
+        methods: {
+            async getGarden(garden_id) {
+                this.loading = true;
+                const req = await fetch("/api/get-garden-plants/" + garden_id);
+                const res = await req.json();
+                console.log(res);
+                this.gardens = res;
+                this.loading = false;
+            },
+            async reload() {
+                if (this.garden_id) {
+                    await this.getGarden(this.garden_id);
+                }
             }
+        },
+        mounted: async function () {
+            this.garden_id = document.location.pathname.split("/").filter(r=>r.length===24)[0];
+            
+            await this.reload();
         },
         template: `
             <div v-if="loading" class="loading-text">

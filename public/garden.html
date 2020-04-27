@@ -25,8 +25,8 @@
             <div class="ui divider"></div>
 
             <div v-if="loaded">
-                <create-garden v-bind:user_id="session._id"></create-garden>
-                <user-gardens ref="user_gardens" v-bind:user_id="session._id"></user-gardens>
+                <!-- <create-garden v-bind:user_id="session._id"></create-garden> -->
+                <garden-plants ref="garden_plants"></garden-plants>
             </div>
         </section>
 

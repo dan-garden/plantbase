@@ -183,6 +183,12 @@ class Plantbase extends PlantProvider {
         });
 
         return stored;
+        // const stored = await this.getGardenById(garden_id);
+        // if(stored) {
+        //     return stored.plants;
+        // } else {
+        //     return [];
+        // }
     }
 
     static async addTypeToGarden(garden_id, slug) {
