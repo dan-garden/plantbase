@@ -154,9 +154,10 @@ class Plantbase extends PlantProvider {
         return stored;
     }
 
-    static async createPlant(user_id, slug) {
+    static async createPlant(garden_id, user_id, slug) {
         const plantType = await almanac.getType(slug);
         const plant = {
+            garden_id: garden_id,
             user_id: user_id,
             image: plantType.image,
             sun_exposure: "",
@@ -172,7 +173,7 @@ class Plantbase extends PlantProvider {
     static async getPlantById(plant_id) {
         const stored = await this.findOne(Model.Plant, {
             _id: plant_id
-        })
+        }, ['type_id', 'plant_id'])
 
         return stored;
     }
@@ -183,19 +184,13 @@ class Plantbase extends PlantProvider {
         });
 
         return stored;
-        // const stored = await this.getGardenById(garden_id);
-        // if(stored) {
-        //     return stored.plants;
-        // } else {
-        //     return [];
-        // }
     }
 
     static async addTypeToGarden(garden_id, slug) {
         try {
             const garden = await this.getGardenById(garden_id);
             if (garden) {
-                const plant = await this.createPlant(garden.user_id, slug);
+                const plant = await this.createPlant(garden._id, garden.user_id, slug);
                 garden.plants.push(plant);
                 const stored = await this.store(Model.Garden, "_id", garden);
                 return stored;

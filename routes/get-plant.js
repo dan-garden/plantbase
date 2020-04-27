@@ -1,10 +1,10 @@
-const trefle = require("../providers/Trefle");
+const plantbase = require("../providers/Plantbase");
 
 module.exports = function(app) {
-    app.get("/api/get-plant/:id", async (req, res) => {
+    app.get("/api/get-plant/:plant_id", async (req, res) => {
         try {
-            if(req.params.id) {
-                const result = await trefle.getPlant(req.params.id);
+            if(req.params.plant_id) {
+                const result = await plantbase.getPlantById(req.params.plant_id);
                 res.json(result);
             }
         } catch(e) {

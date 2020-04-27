@@ -34,6 +34,10 @@ const plantSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    garden_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Garden'
+    },
     image: {
         type: String,
         default: null

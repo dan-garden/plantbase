@@ -14,16 +14,6 @@
     <div id="app">
         <top-nav v-bind:session="session" v-bind:loaded="loaded"></top-nav>
         <section class="main-container">
-            <h2 class="ui icon header center aligned green">
-                <i class="circular tree icon"></i>
-                <div class="content">
-                    My Gardens
-                    <div class="sub header">View your gardens or create a new one</div>
-                </div>
-            </h2>
-
-            <div class="ui divider"></div>
-
             <div v-if="loaded">
                 <!-- <create-garden v-bind:user_id="session._id"></create-garden> -->
                 <garden-plants ref="garden_plants"></garden-plants>
