@@ -1,0 +1,101 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #07b535
+}
+
+#app {
+    max-width: 1000px;
+    width: 100%;
+    margin: auto;
+}
+
+.ui.grid {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
+nav {
+    width: 100%;
+    padding: 15px 0;
+    background-color: #FFF;
+    border-bottom: solid 1px lightgrey;
+    margin-bottom: 1px;
+    min-height: 50px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+nav ul {
+    text-align: left;
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+nav ul li[data-float="right"] {
+    float: right;
+}
+
+nav ul li a {
+    color: rgb(7, 181, 53);
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: rgb(0, 131, 3);
+}
+
+.main-container {
+    background-color: #FFF;
+    min-height: calc(100vh - 51px);
+    margin-top: -1px !important;
+    margin-bottom: 0 !important;
+}
+
+
+
+.register-form,
+.login-form {
+    width: 100%;
+    max-width: 500px;
+    margin: 150px auto auto auto;
+    padding: 10px;
+}
+
+.form-error {
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: red;
+}
+
+.loading-text {
+    text-align: center;
+}
+
+.gardens-list {
+    padding: 10px;
+    margin: 0 !important;
+}
+
+.gardens-empty {
+    text-align: center;
+}

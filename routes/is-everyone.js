@@ -8,5 +8,6 @@ function sendFile(res, filename) {
 module.exports = function(app) {
 
     app.get("/", (req, res) => sendFile(res, "index.html"));
+    app.get("/garden/:garden_id", (req, res) => sendFile(res, "garden.html"))
     
 }
