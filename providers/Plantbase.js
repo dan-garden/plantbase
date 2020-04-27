@@ -1,5 +1,8 @@
 const PlantProvider = require("./PlantProvider");
-const { Model, passport } = require("../Database");
+const {
+    Model,
+    passport
+} = require("../Database");
 
 const almanac = require("./Almanac");
 const trefle = require("./Trefle");
@@ -8,11 +11,19 @@ const validator = require('validator');
 
 class Plantbase extends PlantProvider {
     static photos_dir = "../assets/images/plants";
-    
-    static async createGarden(user_id, name) {
+
+    static async createGarden(user_id, name, description) {
+        if (!user_id) {
+            throw new Error("Invalid User");
+        } else if (!name) {
+            throw new Error("Please enter a garden name");
+        } else if (!description) {
+            throw new Error("Please enter a garden description");
+        }
         const garden = {
             user_id,
             name,
+            description,
             plants: []
         };
         const store = await this.store(Model.Garden, null, garden);
@@ -20,13 +31,13 @@ class Plantbase extends PlantProvider {
     }
 
     static async registerUser(req) {
-        if(!req.body.email || !validator.isEmail(req.body.email)) {
+        if (!req.body.email || !validator.isEmail(req.body.email)) {
             throw new Error("Email address is not valid");
-        } else if(!req.body.username) {
+        } else if (!req.body.username) {
             throw new Error("Please enter a username");
-        } else if(!req.body.password) {
+        } else if (!req.body.password) {
             throw new Error("Please enter a password");
-        } else if(req.body.password !== req.body.passwordRepeat) {
+        } else if (req.body.password !== req.body.passwordRepeat) {
             throw new Error("Passwords don't match")
         }
 
@@ -39,23 +50,23 @@ class Plantbase extends PlantProvider {
     }
 
     static async isLoggedIn(req, res, next) {
-        if(req.isAuthenticated()) {
+        if (req.isAuthenticated()) {
             return next();
         }
         res.redirect("/login");
     }
 
     static async isNotLoggedIn(req, res, next) {
-        if(!req.isAuthenticated()) {
+        if (!req.isAuthenticated()) {
             return next();
         }
-        res.redirect("/me");
+        res.redirect("/my-gardens");
     }
 
     static async authenticateUser(username, password) {
-        if(!username) {
+        if (!username) {
             throw new Error("Please enter a username");
-        } else if(!password) {
+        } else if (!password) {
             throw new Error("Please enter a password");
         }
         const result = await Model.User.authenticate()(username, password);
@@ -63,21 +74,21 @@ class Plantbase extends PlantProvider {
     }
 
     static async loginUser(req) {
-        if(!req.body.username) {
+        if (!req.body.username) {
             throw new Error("Please enter a username");
-        } else if(!req.body.password) {
+        } else if (!req.body.password) {
             throw new Error("Please enter a password");
         }
 
         return new Promise(async (resolve) => {
             const result = await Model.User.authenticate()(req.body.username, req.body.password);
 
-            if(!result.user) {
+            if (!result.user) {
                 throw new Error("Username or password is incorrect");
             }
 
             req.login(result.user, (err) => {
-                if(err) {
+                if (err) {
                     console.log(err);
                     throw new Error("User could not be logged in");
                 } else {
@@ -92,7 +103,7 @@ class Plantbase extends PlantProvider {
             _id: user_id
         });
 
-        if(stored) {
+        if (stored) {
             delete stored.salt;
             delete stored.hash;
         }
@@ -106,39 +117,46 @@ class Plantbase extends PlantProvider {
         return stored;
     }
 
-    static async appendGardenDetails(garden) {
-        const user = await Model.User.findById(garden.user_id);
-        const plants = await this.getPlantsByGardenId(garden._id);
-        garden = {...garden._doc, username: user.username, plants};
-        return garden;
+    static async getGardens() {
+        const stored = await this.find(Model.Garden, null, ['plants', , {
+            field: 'user_id',
+            email: 0,
+            __v: 0,
+            ip: 0
+        }]);
+
+        return stored;
     }
 
     static async getGardenById(garden_id) {
         let stored = await this.findOne(Model.Garden, {
             _id: garden_id
-        })
-
-        stored = await this.appendGardenDetails(stored);
+        }, ['plants', {
+            field: 'user_id',
+            email: 0,
+            __v: 0,
+            ip: 0
+        }])
 
         return stored;
     }
-    
+
     static async getGardensByUserId(user_id) {
         const stored = await this.find(Model.Garden, {
             user_id
-        });
-
-        for(let i = 0; i < stored.length; i++) {
-            stored[i] = await this.appendGardenDetails(stored[i]);
-        }
+        }, ['plants', , {
+            field: 'user_id',
+            email: 0,
+            __v: 0,
+            ip: 0
+        }]);
 
         return stored;
     }
 
-    static async createPlant(garden_id, user_id, slug) {
+    static async createPlant(user_id, slug) {
         const plantType = await almanac.getType(slug);
         const plant = {
-            garden_id: garden_id,
             user_id: user_id,
             image: plantType.image,
             sun_exposure: "",
@@ -170,11 +188,14 @@ class Plantbase extends PlantProvider {
     static async addTypeToGarden(garden_id, slug) {
         try {
             const garden = await this.getGardenById(garden_id);
-            if(garden) {
-                const plant = await this.createPlant(garden._id, garden.user_id, slug);
-                return plant;
+            if (garden) {
+                const plant = await this.createPlant(garden.user_id, slug);
+                garden.plants.push(plant);
+                const stored = await this.store(Model.Garden, "_id", garden);
+                return stored;
             }
-        } catch {
+        } catch (e) {
+            console.log(e);
             return undefined;
         }
     }
@@ -186,13 +207,13 @@ class Plantbase extends PlantProvider {
             plant.plant_id = species._id;
             const storePlant = await this.store(Model.Plant, null, plant);
             return storePlant;
-        } catch(e) {
+        } catch (e) {
             console.error(e);
             return undefined;
         }
     }
 
-    static async updatePhoto(plant_id, filename) {
+    static async updatePlantPhoto(plant_id, filename) {
         const plant = await this.getPlantById(plant_id);
         plant.image = this.photos_dir + "/" + filename;
         const storePlant = await this.store(Model.plant, null, plant);
@@ -200,7 +221,7 @@ class Plantbase extends PlantProvider {
     }
 
 
-    
+
 }
 
 

@@ -11,8 +11,8 @@ const Schema = mongoose.Schema;
 const Model = {};
 
 
-var passport = require("passport")
-  , LocalStrategy = require("passport-local").Strategy;
+var passport = require("passport"),
+    LocalStrategy = require("passport-local").Strategy;
 const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new Schema({
@@ -30,8 +30,10 @@ userSchema.plugin(passportLocalMongoose, {
 
 
 const plantSchema = new Schema({
-    user_id: mongoose.ObjectId,
-    garden_id: mongoose.ObjectId,
+    user_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     image: {
         type: String,
         default: null
@@ -39,20 +41,34 @@ const plantSchema = new Schema({
     sun_exposure: String,
     location: String,
     type_id: {
-        type: mongoose.ObjectId,
-        default: null
+        type: Schema.Types.ObjectId,
+        default: null,
+        ref: 'AlmanacType'
     },
     plant_id: {
-        type: mongoose.ObjectId,
-        default: null
+        type: Schema.Types.ObjectId,
+        default: null,
+        ref: 'TreflePlant'
     }
 }, {
     strictQuery: false
 });
 
 const gardenSchema = new Schema({
-    user_id: mongoose.ObjectId,
+    user_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     name: String,
+    description: String,
+    plants: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Plant'
+    }],
+    image: {
+        type: String,
+        default: null
+    },
     date_created: {
         type: Date,
         default: Date.now
@@ -144,4 +160,7 @@ passport.serializeUser(Model.User.serializeUser());
 passport.deserializeUser(Model.User.deserializeUser());
 
 
-module.exports = { Model, passport };
+module.exports = {
+    Model,
+    passport
+};

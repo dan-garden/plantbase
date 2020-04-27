@@ -72,13 +72,43 @@ class PlantProvider {
         }
     }
 
-    static async find(model, filter) {
-        const storedSearch = await model.find(filter).exec();
+    static async find(model, filter, populate) {
+        let search = model.find(filter);
+        if(populate) {
+            if(!Array.isArray(populate)) {
+                populate = [populate];
+            }
+            populate.forEach(pop => {
+                if(typeof pop === "object" ) {
+                    const field_name = pop.field;
+                    delete pop.field;
+                    search = search.populate(field_name, pop);
+                } else if(typeof pop === "string") {
+                    search = search.populate(pop);
+                }
+            })
+        }
+        const storedSearch = await search.exec();
         return storedSearch;
     }
 
-    static async findOne(model, filter) {
-        const storedSearch = await model.findOne(filter).exec();
+    static async findOne(model, filter, populate) {
+        let search = model.findOne(filter);
+        if(populate) {
+            if(!Array.isArray(populate)) {
+                populate = [populate];
+            }
+            populate.forEach(pop => {
+                if(typeof pop === "object" ) {
+                    const field_name = pop.field;
+                    delete pop.field;
+                    search = search.populate(field_name, pop);
+                } else if(typeof pop === "string") {
+                    search = search.populate(pop);
+                }
+            })
+        }
+        const storedSearch = await search.exec();
         return storedSearch;
     }
 

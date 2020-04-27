@@ -68,6 +68,7 @@ nav ul li a:hover {
     min-height: calc(100vh - 51px);
     margin-top: -1px !important;
     margin-bottom: 0 !important;
+    padding: 15px;
 }
 
 
@@ -91,8 +92,12 @@ nav ul li a:hover {
     text-align: center;
 }
 
-.gardens-list {
+.create-garden-container {
+    text-align: left;
     padding: 10px;
+}
+
+.gardens-list {
     margin: 0 !important;
 }
 

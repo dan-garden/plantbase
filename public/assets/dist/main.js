@@ -17,8 +17,8 @@
 
     Vue.component('top-nav', {
         props: ['session', 'loaded'],
-        updated: function() {
-            if(this.session) {
+        updated: function () {
+            if (this.session) {
                 $("nav .ui.dropdown").dropdown();
             }
         },
@@ -101,7 +101,7 @@
                         Register an account
                     </div>
                 </h2>
-                <form v-on:submit.prevent="onSubmit" class="ui large form">
+                <form @submit.prevent="onSubmit" class="ui large form">
                     <div class="ui stacked segment">
                         <transition name="fade">
                             <div class="form-error" v-if="error">{{ error }}</div>
@@ -200,7 +200,7 @@
                         Log-in to your account
                     </div>
                 </h2>
-                <form v-on:submit.prevent="onSubmit" class="ui large form">
+                <form @submit.prevent="onSubmit" class="ui large form">
                     <div class="ui stacked segment">
                         <transition name="fade">
                             <div class="form-error" v-if="error">{{ error }}</div>
@@ -237,15 +237,105 @@
     })
 
 
+    Vue.component('create-garden', {
+        props: ['user_id'],
+        data: () => ({
+            modal: false,
+            loading: false,
+            error: false,
+            name: "",
+            description: ""
+        }),
+        methods: {
+            showModal: function () {
+                this.modal.modal('show');
+            },
+            onDeny: function() {
+                return;
+            },
+            onApprove: function() {
+                (async () => {
+                    this.error = false;
+                    this.loading = true;
+                    const res = await formEncodedPOST("/api/create-garden", {
+                        name: this.name,
+                        description: this.description
+                    });
+                    this.loading = false;
+                    if (res.error) {
+                        this.error = res.error;
+                    } else if (res.success) {
+                        this.modal.modal('hide');
+                    }
+                })();
+                return false;
+            }
+        },
+        mounted: async function () {
+            this.modal = $(this.$el).find(".create-garden-modal").modal({
+                closable: false,
+                transition: "horizontal flip",
+                onDeny: this.onDeny,
+                onApprove: this.onApprove
+            });
+        },
+        template: `
+        <div class="create-garden-container">
+            <div class="ui modal tiny create-garden-modal">
+                <div class="header">
+                    Create Garden
+                </div>
+                <div class="content">
+                    <form class="ui form" @submit.prevent="onApprove">
+                        <transition name="fade">
+                            <div class="form-error" v-if="error">{{ error }}</div>
+                        </transition>
+                        <div class="field">
+                            <label>Garden Name</label>
+                            <input type="text" v-model="name" name="name" placeholder="Name">
+                        </div>
+                        <div class="field">
+                            <label>Garden Description</label>
+                            <textarea v-model="description" rows="2" name="description" placeholder="Description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="actions">
+                    <template v-if="loading">
+                        <div class="ui negative disabled inactive button">
+                            Cancel
+                        </div>
+                        <div class="ui positive disabled inactive button">
+                            Loading... <div class="ui active right inline mini loader"></div>
+                        </div>
+                    </template>
+                    <template v-else-if="!loading">
+                        <div class="ui negative button">
+                            Cancel
+                        </div>
+                        <div class="ui positive right labeled icon button">
+                            Create
+                            <i class="plus right icon"></i>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <button @click.prevent="showModal" class="ui right labeled icon button positive">
+                Create Garden <i class="right plus icon"></i>
+            </button>
+        </div>
+        `
+    });
+
     Vue.component('garden-item', {
         props: ['garden'],
         methods: {
-            onClick: function(e) {
+            onClick: function (e) {
                 document.location = "/garden/" + this.garden._id
             }
         },
         template: `
-            <div class="card green" v-on:click.prevent="onClick">
+            <div class="card green" @click.prevent="onClick">
                 <div class="content">
                     <div class="header">{{garden.name}}</div>
                     <div class="description">
@@ -254,7 +344,7 @@
                     </div>
                     <div class="extra content">
                     <span class="right floated">
-                        By {{garden.username}}
+                        By {{garden.user_id.username}}
                     </span>
                     <span>
                         <i class="seedling icon"></i>

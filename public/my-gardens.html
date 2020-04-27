@@ -14,9 +14,8 @@
     <div id="app">
         <top-nav v-bind:session="session" v-bind:loaded="loaded"></top-nav>
         <section class="main-container">
-            <br />
             <h2 class="ui icon header center aligned green">
-                <i class="tree icon"></i>
+                <i class="circular tree icon"></i>
                 <div class="content">
                     My Gardens
                     <div class="sub header">View your gardens or create a new one</div>
@@ -26,11 +25,13 @@
             <div class="ui divider"></div>
 
             <div v-if="loaded">
-
+                <create-garden v-bind:user_id="session._id"></create-garden>
                 <user-gardens v-bind:user_id="session._id"></user-gardens>
-
             </div>
         </section>
+
+
+
     </div>
     <script src="assets/dist/vue.js"></script>
     <script src="assets/dist/jquery.min.js"></script>

@@ -7,7 +7,7 @@ module.exports = function (app) {
             if (login) {
                 res.json({
                     success: req.user,
-                    redirect: req.body.referrer ||  "/"
+                    redirect: req.body.referrer ||  "/my-gardens"
                 });
             }
         } catch (e) {
