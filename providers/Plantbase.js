@@ -144,7 +144,7 @@ class Plantbase extends PlantProvider {
     static async getGardensByUserId(user_id) {
         const stored = await this.find(Model.Garden, {
             user_id
-        }, ['plants', , {
+        }, ['plants', {
             field: 'user_id',
             email: 0,
             __v: 0,
@@ -181,7 +181,7 @@ class Plantbase extends PlantProvider {
     static async getPlantsByGardenId(garden_id) {
         const stored = await this.find(Model.Plant, {
             garden_id
-        });
+        }, ['type_id', 'plant_id']);
 
         return stored;
     }

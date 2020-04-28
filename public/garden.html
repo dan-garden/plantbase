@@ -16,7 +16,7 @@
         <section class="main-container">
             <div v-if="loaded">
                 <!-- <create-garden v-bind:user_id="session._id"></create-garden> -->
-                <garden-plants ref="garden_plants"></garden-plants>
+                <user-garden v-bind:garden_id="url_garden_id"></user-garden>
             </div>
         </section>
 

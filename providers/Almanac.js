@@ -63,7 +63,6 @@ class Almanac extends PlantProvider {
 
     static async searchTypes(query) {
         const stored = await this.getStoredSearch(query);
-
         if (stored.length && !this.forceScrape) {
             return stored;
         } else {

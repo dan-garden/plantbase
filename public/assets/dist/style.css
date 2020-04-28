@@ -97,10 +97,10 @@ nav ul li a:hover {
     padding: 10px;
 }
 
-.gardens-list {
+.gardens-list, .plants-list {
     margin: 0 !important;
 }
 
-.gardens-empty {
+.gardens-empty, .plants-empty {
     text-align: center;
 }
