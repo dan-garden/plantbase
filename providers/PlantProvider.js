@@ -112,6 +112,36 @@ class PlantProvider {
         return storedSearch;
     }
 
+
+    static async deleteLike(model, filterQuery, limit=false) {
+        const filter = this.getFilter(filterQuery);
+
+        try {
+            let query = model.deleteMany(filter);
+            
+            if(limit) {
+                query.limit(limit);
+            }
+            const result = await query.exec();
+            return result;
+        } catch (e) {
+            console.error(e);
+            return [];
+        }
+    }
+
+    static async delete(model, filter) {
+        let search = model.deleteMany(filter);
+        const storedSearch = await search.exec();
+        return storedSearch;
+    }
+
+    static async deleteOne(model, filter) {
+        let search = model.deleteOne(filter);
+        const storedSearch = await search.exec();
+        return storedSearch;
+    }
+
     static async store(model, filterKey, update) {
         const filter = {};
         if(filterKey) {

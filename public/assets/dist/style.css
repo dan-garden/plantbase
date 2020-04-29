@@ -101,6 +101,11 @@ nav ul li a:hover {
     margin: 0 !important;
 }
 
+.garden-item, .plant-item {
+    position: relative;
+}
+
+
 .gardens-empty, .plants-empty {
     text-align: center;
 }

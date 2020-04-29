@@ -118,7 +118,7 @@ class Plantbase extends PlantProvider {
     }
 
     static async getGardens() {
-        const stored = await this.find(Model.Garden, null, ['plants', , {
+        const stored = await this.find(Model.Garden, null, [{
             field: 'user_id',
             email: 0,
             __v: 0,
@@ -178,10 +178,11 @@ class Plantbase extends PlantProvider {
         return stored;
     }
 
-    static async getPlantsByGardenId(garden_id) {
+    static async getPlantsByGardenId(garden_id, full=true) {
+        const populate = full ? ['type_id', 'plant_id'] : [];
         const stored = await this.find(Model.Plant, {
             garden_id
-        }, ['type_id', 'plant_id']);
+        }, populate);
 
         return stored;
     }
@@ -199,6 +200,20 @@ class Plantbase extends PlantProvider {
             console.log(e);
             return undefined;
         }
+    }
+
+    static async deletePlantFromGarden(user, plant_id) {
+        const plant = await this.getPlantById(plant_id, false);
+        if(user._id.toString() !== plant.user_id.toString()) {
+            throw new Error("User does not own this plant");
+        }
+        const garden = await this.getGardenById(plant.garden_id);
+        garden.plants = garden.plants.filter(p => p._id !== plant._id);
+        const storedGarden = await this.store(Model.Garden, "_id", garden);
+        const deleted = await this.deleteOne(Model.Plant, {
+            _id: plant._id
+        });
+        return plant;
     }
 
     static async selectPlantSpecies(plant_id, species_id) {

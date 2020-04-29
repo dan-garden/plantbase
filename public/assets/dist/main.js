@@ -33,7 +33,7 @@
                 </li>
                 <template v-if="loaded">
                     <li v-if="!session" data-float="right">
-                        <a href="/">Sign In</a>
+                        <a href="/login">Sign In</a>
                     </li>
                     <li v-if="session" data-float="right">
                         <div class="ui pointing dropdown link item">
@@ -49,7 +49,7 @@
 
                 </template>
                 <template v-if="!loaded">
-                    <li data-float="right"><div class="ui active green inline loader"></div></li>
+                    <li data-float="right"><div class="ui active green tiny inline loader"></div></li>
                 </template>
             </ul>
         </nav>
@@ -335,12 +335,19 @@
     Vue.component('garden-item', {
         props: ['garden'],
         methods: {
-            onClick: function (e) {
-                document.location = "/garden/" + this.garden._id
+            
+        },
+
+        computed: {
+            href: function() {
+                return "/garden/" + this.garden._id;
+            },
+            userOwns() {
+                return app.session._id === this.garden.user_id; 
             }
         },
         template: `
-            <div class="card green" @click.prevent="onClick">
+            <a class="ui card green" v-bind:href="href">
                 <div class="content">
                     <div class="header">{{garden.name}}</div>
                     <div class="description">
@@ -348,15 +355,16 @@
                     </div>
                     </div>
                     <div class="extra content">
-                    <span class="right floated">
-                        By {{garden.user_id.username}}
-                    </span>
-                    <span>
-                        <i class="seedling icon"></i>
-                        {{garden.plants.length}} Plants
-                    </span>
+                        <span class="right floated">
+                            By {{garden.user_id.username}}
+                        </span>
+                        <span>
+                            <i class="seedling icon"></i>
+                            {{garden.plants.length}} Plants
+                        </span>
+                    </div>
                 </div>
-            </div>
+            </a>
         `
     });
 
@@ -419,6 +427,44 @@
         `
     });
 
+    Vue.component('all-gardens', {
+        data: () => ({
+            loading: false,
+            gardens: false
+        }),
+        methods: {
+            async getAllGardens() {
+                this.loading = true;
+                const req = await fetch("/api/get-all-gardens");
+                const res = await req.json();
+                this.gardens = res;
+                this.loading = false;
+            },
+            async reload() {
+                await this.getAllGardens();
+            }
+        },
+        mounted: async function () {
+            await this.reload();
+        },
+        template: `
+            <div v-if="loading" class="loading-text">
+                <div class="ui active large centered inline loader text green">Loading Gardens...</div>
+            </div>
+            <template v-else-if="!loading">
+                <div v-if="gardens && gardens.length" class="gardens-list ui link cards">
+                    <template v-for="garden in gardens">
+                        <garden-item v-bind:garden="garden"></garden-item>
+                    </template>
+                </div>
+                <div class="gardens-empty" v-else-if="gardens && !gardens.length">
+                There are no gardens
+                </div>
+            </template>
+
+        `
+    })
+
     Vue.component('user-garden-header', {
         props: ['garden_id'],
         data: () => ({
@@ -444,10 +490,7 @@
         },
         template: `
         <div>
-            <template v-if="loading">
-                <div class="ui active large centered inline loader text green">Loading Garden...</div>
-            </template>
-            <template v-else-if="!loading">
+            <template v-if="!loading">
                 <h2 class="ui icon header center aligned green">
                     <i class="circular seedling icon"></i>
                     <div class="content">
@@ -466,16 +509,52 @@
 
     Vue.component('plant-item', {
         props: ['plant'],
+        data: () => ({
+            colorClass: "green",
+            deleteLoading: false,
+            showing: true,
+        }),
         methods: {
-            onClick: function (e) {
+            onClick(e) {
+                console.log("test");
+            },
+
+            async deletePlant() {
+                this.deleteLoading = true;
+                const res = await formEncodedPOST("/api/delete-garden-plant", {
+                    plant_id: this.plant._id,
+                });
                 
+                this.deleteLoading = false;
+
+                if(res.success) {
+                    this.hide();
+                }
+            },
+            hide() {
+                return $(this.$el).transition('zoom', 500, function() {
+                    this.showing = false;
+                });
+            }
+        },
+        computed: {
+            userOwns() {
+                return app.session._id === this.plant.user_id; 
+            },
+            deleteButtonText() {
+                return this.deleteLoading ? "Deleting..." : "Delete";
             }
         },
         mounted: function() {
-            console.log(this.plant);
+            const [color] = this.plant.type_id.flower_color.split(",").map(c=>c.trim().toLowerCase());
+            if(!color || color === "varies") {
+                this.colorClass = "green";
+            } else {
+                this.colorClass = color;
+            }
         },
         template: `
-            <div class="card green" @click.prevent="onClick">
+            <a v-if="showing" v-bind:click="onClick" v-bind:class="[colorClass]" class="plant-item ui card horizontal centered" href="#">
                 <div class="image">
                     <img v-bind:src="plant.image">
                 </div>
@@ -486,15 +565,25 @@
                     </div>
                     </div>
                     <div class="extra content">
-                    <span class="right floated">
-                        By {{"name"}}
-                    </span>
-                    <span>
-                        <i class="seedling icon"></i>
-                        {{0}} Plants
-                    </span>
+                        <span class="right floated">
+                            By {{"name"}}
+                        </span>
+                        <span>
+                            <i class="seedling icon"></i>
+                            {{0}} Plants
+                        </span>
+                    </div>
+                    <template v-if="userOwns">
+                        <div class="extra content">
+                            <div class="ui two buttons">
+                                <div class="ui basic black button">Edit</div>
+                                <div class="ui basic red button" @click.prevent="deletePlant">{{deleteButtonText}}</div>
+                            </div>
+                        </div>
+                    </template>
                 </div>
-            </div>
+            </a>
+            
         `
     });
 
@@ -509,7 +598,6 @@
                 this.loading = true;
                 const req = await fetch("/api/get-garden-plants/" + garden_id);
                 const res = await req.json();
-                console.log(res);
                 this.plants = res;
                 this.loading = false;
             },
@@ -545,7 +633,7 @@
         template: `
             <div>
                 <user-garden-header v-bind:garden_id="garden_id"></user-garden-header>
-                <garden-plants v-bind:garden_id="garden_id"></garden-plants>
+                <garden-plants ref="garden_plants" v-bind:garden_id="garden_id"></garden-plants>
             </div>
         `
     });

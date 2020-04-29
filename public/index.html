@@ -14,13 +14,11 @@
     <div id="app">
         <top-nav v-bind:session="session" v-bind:loaded="loaded"></top-nav>
         <section class="main-container">
-            <transition name="fade">
-                <div v-if="loaded">
+            <div v-if="loaded">
 
-                    <plant-index></plant-index>
+                <all-gardens ref="all_gardens"></all-gardens>
 
-                </div>
-            </transition>
+            </div>
         </section>
     </div>
     <script src="/assets/dist/vue.js"></script>
