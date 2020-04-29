@@ -512,7 +512,6 @@
         data: () => ({
             colorClass: "green",
             deleteLoading: false,
-            showing: true,
         }),
         methods: {
             onClick(e) {
@@ -528,13 +527,14 @@
                 this.deleteLoading = false;
 
                 if(res.success) {
-                    this.hide();
+                    this.hide(res.success);
                 }
             },
-            hide() {
-                return $(this.$el).transition('zoom', 500, function() {
-                    this.showing = false;
-                });
+            hide(deleted_plant) {
+                // $(this.$el).transition('zoom', 500, () => {
+                    
+                // });
+                this.$parent.remove(deleted_plant._id);
             }
         },
         computed: {
@@ -554,7 +554,7 @@
             }
         },
         template: `
-            <a v-if="showing" v-bind:click="onClick" v-bind:class="[colorClass]" class="plant-item ui card horizontal centered" href="#">
+            <a v-bind:click="onClick" v-bind:class="[colorClass]" class="plant-item ui card horizontal centered" href="#">
                 <div class="image">
                     <img v-bind:src="plant.image">
                 </div>
@@ -600,6 +600,12 @@
                 const res = await req.json();
                 this.plants = res;
                 this.loading = false;
+            },
+            remove(plant_id) {
+                console.log(plant_id);
+                this.plants = this.plants.filter(plant => {
+                    return plant._id !== plant_id;
+                });
             },
             async reload() {
                 if (this.garden_id) {
