@@ -117,7 +117,7 @@ class Plantbase extends PlantProvider {
         return stored;
     }
 
-    static async getGardens() {
+    static async getAllGardens() {
         const stored = await this.find(Model.Garden, null, [{
             field: 'user_id',
             email: 0,

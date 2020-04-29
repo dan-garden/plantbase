@@ -49,7 +49,7 @@
 
                 </template>
                 <template v-if="!loaded">
-                    <li data-float="right"><div class="ui active green tiny inline loader"></div></li>
+                    <li data-float="right"><div class="ui active green small inline loader"></div></li>
                 </template>
             </ul>
         </nav>
@@ -268,7 +268,7 @@
                         this.modal.modal('hide');
                         if(app.$refs.user_gardens) {
                             app.$refs.user_gardens.reload();
-                            $(this.$el).find(".create-garden-modal form")[0].reset();
+                            $(this.$el).find(".modal form")[0].reset();
                         }
                     }
                 })();
@@ -276,7 +276,7 @@
             }
         },
         mounted: async function () {
-            this.modal = $(this.$el).find(".create-garden-modal").modal({
+            this.modal = $(this.$el).find(".modal").modal({
                 closable: false,
                 transition: "horizontal flip",
                 onDeny: this.onDeny,
@@ -564,15 +564,7 @@
                         {{plant.type_id.botanical_name}}
                     </div>
                     </div>
-                    <div class="extra content">
-                        <span class="right floated">
-                            By {{"name"}}
-                        </span>
-                        <span>
-                            <i class="seedling icon"></i>
-                            {{0}} Plants
-                        </span>
-                    </div>
+
                     <template v-if="userOwns">
                         <div class="extra content">
                             <div class="ui two buttons">

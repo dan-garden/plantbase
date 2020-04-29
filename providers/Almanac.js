@@ -33,6 +33,11 @@ class Almanac extends PlantProvider {
         return find;
     }
 
+    static async getAllStoredTypes() {
+        const find = await this.find(Model.AlmanacType);
+        return find;
+    }
+
     static async storeSearch(update) {
         const store = await this.store(Model.AlmanacSearch, "slug", update);
         return store;

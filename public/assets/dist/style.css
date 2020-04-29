@@ -105,6 +105,9 @@ nav ul li a:hover {
     position: relative;
 }
 
+.plant-item .delete-button {
+    cursor: pointer;
+}
 
 .gardens-empty, .plants-empty {
     text-align: center;
