@@ -64,13 +64,17 @@ class Plantbase extends PlantProvider {
     }
 
     static async authenticateUser(username, password) {
-        if (!username) {
-            throw new Error("Please enter a username");
-        } else if (!password) {
-            throw new Error("Please enter a password");
+        try {
+            if (!username) {
+                throw new Error("Please enter a username");
+            } else if (!password) {
+                throw new Error("Please enter a password");
+            }
+            const result = await Model.User.authenticate()(username, password);
+            return result;
+        } catch(e) {
+            throw new Error(e);
         }
-        const result = await Model.User.authenticate()(username, password);
-        return result;
     }
 
     static async loginUser(req) {
@@ -80,21 +84,25 @@ class Plantbase extends PlantProvider {
             throw new Error("Please enter a password");
         }
 
-        return new Promise(async (resolve) => {
-            const result = await Model.User.authenticate()(req.body.username, req.body.password);
-
-            if (!result.user) {
-                throw new Error("Username or password is incorrect");
-            }
-
-            req.login(result.user, (err) => {
-                if (err) {
-                    console.log(err);
-                    throw new Error("User could not be logged in");
-                } else {
-                    resolve(req.user);
+        return new Promise(async (resolve, reject) => {
+            try {
+                const result = await Model.User.authenticate()(req.body.username, req.body.password);
+                if (!result.user) {
+                    throw new Error("Username or password is incorrect");
                 }
-            });
+
+                req.login(result.user, (err) => {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve(req.user);
+                    }
+                });
+            } catch(e) {
+                reject(e);
+            }
+        }).catch(e => {
+            throw new Error(e);
         })
     }
 

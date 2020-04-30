@@ -747,11 +747,13 @@
                     </div>
                 </div>
                 <div class="content scrolling">
-                    <div class="search-results ui divided items">
-                        <template v-for="type in searchResults">
-                            <plant-type-result v-bind:garden_id="garden_id" v-bind:plant_type="type"></plant-type-result>
-                        </template>
-                    </div>
+                    <template v-if="searchResults.length">
+                        <div class="search-results ui divided items">
+                            <template v-for="type in searchResults">
+                                <plant-type-result v-bind:garden_id="garden_id" v-bind:plant_type="type"></plant-type-result>
+                            </template>
+                        </div>
+                    </template>
                 </div>
                 <div class="actions">
                     <div class="ui negative button">
