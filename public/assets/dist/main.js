@@ -337,7 +337,6 @@
         methods: {
 
         },
-
         computed: {
             href: function () {
                 return "/garden/" + this.garden._id;
@@ -519,6 +518,76 @@
         `
     });
 
+    Vue.component('edit-plant-button', {
+        props: ["plant_id"],
+        data: () => ({
+            loading: false
+        }),
+        methods: {
+            async editPlant() {
+                this.loading = true;
+                const res = await formEncodedPOST("/api/delete-garden-plant", {
+                    plant_id: this.plant_id,
+                });
+                this.loading = false;
+                if (res.success) {
+                    this.hide(res.success);
+                }
+            },
+
+            hide(deleted_plant) {
+                this.$parent.$parent.remove(deleted_plant._id);
+            }
+        },
+        computed: {
+            deleteButtonText() {
+                return this.loading ? "Deleting..." : "Delete";
+            }
+        },
+        template: `
+        <button class="ui labeled icon button basic" @click.prevent="editPlant">
+            <i class="edit icon blue"></i>
+            Edit
+        </button>
+        `
+    });
+
+    Vue.component('delete-plant-button', {
+        props: ["plant_id"],
+        data: () => ({
+            loading: false
+        }),
+        methods: {
+            async deletePlant() {
+                this.loading = true;
+                const res = await formEncodedPOST("/api/delete-garden-plant", {
+                    plant_id: this.plant_id,
+                });
+                this.loading = false;
+                if (res.success) {
+                    this.hide(res.success);
+                }
+            },
+
+            hide(deleted_plant) {
+                this.$parent.$parent.remove(deleted_plant._id);
+            }
+        },
+        computed: {
+            deleteButtonText() {
+                return this.loading ? "Deleting..." : "Delete";
+            }
+        },
+        template: `
+        <button class="ui right labeled icon button basic" v-bind:class="{loading: loading, red: loading}" @click.prevent="deletePlant">
+            {{deleteButtonText}}
+            <i class="right trash icon red"></i>
+        </button>
+        `
+    });
+    
+
+
     Vue.component('plant-item', {
         props: ['plant'],
         data: () => ({
@@ -529,33 +598,11 @@
             onClick(e) {
                 console.log("test");
             },
-
-            async deletePlant() {
-                this.deleteLoading = true;
-                const res = await formEncodedPOST("/api/delete-garden-plant", {
-                    plant_id: this.plant._id,
-                });
-
-                this.deleteLoading = false;
-
-                if (res.success) {
-                    this.hide(res.success);
-                }
-            },
-            hide(deleted_plant) {
-                // $(this.$el).transition('zoom', 500, () => {
-
-                // });
-                this.$parent.remove(deleted_plant._id);
-            }
         },
         computed: {
             userOwns() {
                 return app.session._id === this.plant.user_id;
             },
-            deleteButtonText() {
-                return this.deleteLoading ? "Deleting..." : "Delete";
-            }
         },
         mounted: function () {
             const [color] = this.plant.type_id.flower_color.split(",").map(c => c.trim().toLowerCase());
@@ -580,8 +627,8 @@
                     <template v-if="userOwns">
                         <div class="extra content">
                             <div class="ui two buttons">
-                                <div class="ui basic black button">Edit</div>
-                                <div class="ui basic red button" @click.prevent="deletePlant">{{deleteButtonText}}</div>
+                                <edit-plant-button v-bind:plant_id="plant._id"></edit-plant-button>
+                                <delete-plant-button v-bind:plant_id="plant._id"></delete-plant-button>
                             </div>
                         </div>
                     </template>
@@ -602,13 +649,14 @@
                 this.loading = true;
                 const req = await fetch("/api/get-garden-plants/" + garden_id);
                 const res = await req.json();
-                this.plants = res;
+                this.plants = res.sort((a, b) => a.title - b.title);
                 this.loading = false;
             },
             remove(plant_id) {
                 this.plants = this.plants.filter(plant => {
                     return plant._id !== plant_id;
                 });
+                
             },
             async reload() {
                 if (this.garden_id) {
