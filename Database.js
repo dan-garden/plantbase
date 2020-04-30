@@ -25,7 +25,11 @@ const userSchema = new Schema({
 userSchema.plugin(passportLocalMongoose, {
     usernameUnique: true,
     usernameLowerCase: true,
+    limitAttempts: true,
     maxAttempts: 5,
+    attemptsField: "attempts",
+    lastLoginField: "last",
+    interval: 2000
 });
 
 
