@@ -15,7 +15,6 @@
         <top-nav v-bind:session="session" v-bind:loaded="loaded"></top-nav>
         <section class="main-container">
             <div v-if="loaded">
-                <!-- <create-garden v-bind:user_id="session._id"></create-garden> -->
                 <user-garden v-bind:garden_id="url_garden_id"></user-garden>
             </div>
         </section>

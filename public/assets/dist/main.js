@@ -250,10 +250,10 @@
             showModal: function () {
                 this.modal.modal('show');
             },
-            onDeny: function() {
+            onDeny: function () {
                 return;
             },
-            onApprove: function() {
+            onApprove: function () {
                 (async () => {
                     this.error = false;
                     this.loading = true;
@@ -266,7 +266,7 @@
                         this.error = res.error;
                     } else if (res.success) {
                         this.modal.modal('hide');
-                        if(app.$refs.user_gardens) {
+                        if (app.$refs.user_gardens) {
                             app.$refs.user_gardens.reload();
                             $(this.$el).find(".modal form")[0].reset();
                         }
@@ -277,7 +277,7 @@
         },
         mounted: async function () {
             this.modal = $(this.$el).find(".modal").modal({
-                closable: false,
+                closable: true,
                 transition: "horizontal flip",
                 onDeny: this.onDeny,
                 onApprove: this.onApprove
@@ -335,15 +335,15 @@
     Vue.component('garden-item', {
         props: ['garden'],
         methods: {
-            
+
         },
 
         computed: {
-            href: function() {
+            href: function () {
                 return "/garden/" + this.garden._id;
             },
             userOwns() {
-                return app.session._id === this.garden.user_id; 
+                return app.session._id === this.garden.user_id;
             }
         },
         template: `
@@ -370,6 +370,7 @@
 
 
     Vue.component('user-gardens-header', {
+        props: ['user_id'],
         template: `
         <div>
             <h2 class="ui icon header center aligned green">
@@ -380,11 +381,12 @@
                 </div>
             </h2>
 
+            <create-garden v-bind:user_id="user_id"></create-garden>
             <div class="ui divider"></div>
         </div>
         `
     });
-    
+
 
     Vue.component('user-gardens', {
         props: ['user_id'],
@@ -410,19 +412,21 @@
             await this.reload();
         },
         template: `
-            <div v-if="loading" class="loading-text">
-                <div class="ui active large centered inline loader text green">Loading Gardens...</div>
+            <div>
+                <div v-if="loading" class="loading-text">
+                    <div class="ui active large centered inline loader text green">Loading Gardens...</div>
+                </div>
+                <template v-else-if="!loading">
+                    <div v-if="gardens && gardens.length" class="gardens-list ui link cards centered">
+                        <template v-for="garden in gardens">
+                            <garden-item v-bind:garden="garden"></garden-item>
+                        </template>
+                    </div>
+                    <div class="gardens-empty" v-else-if="gardens && !gardens.length">
+                    You have no gardens
+                    </div>
+                </template>
             </div>
-            <template v-else-if="!loading">
-                <div v-if="gardens && gardens.length" class="gardens-list ui link cards">
-                    <template v-for="garden in gardens">
-                        <garden-item v-bind:garden="garden"></garden-item>
-                    </template>
-                </div>
-                <div class="gardens-empty" v-else-if="gardens && !gardens.length">
-                You have no gardens
-                </div>
-            </template>
 
         `
     });
@@ -485,6 +489,11 @@
                 }
             }
         },
+        computed: {
+            userOwns() {
+                return this.garden && app.session._id === this.garden.user_id._id;
+            },
+        },
         mounted: async function () {
             await this.reload();
         },
@@ -500,6 +509,9 @@
                         </div>
                     </div>
                 </h2>
+                <template v-if="userOwns">
+                    <add-plant-type v-bind:garden_id="garden_id"></add-plant-type>
+                </template>
 
             </template>
             <div class="ui divider"></div>
@@ -523,31 +535,31 @@
                 const res = await formEncodedPOST("/api/delete-garden-plant", {
                     plant_id: this.plant._id,
                 });
-                
+
                 this.deleteLoading = false;
 
-                if(res.success) {
+                if (res.success) {
                     this.hide(res.success);
                 }
             },
             hide(deleted_plant) {
                 // $(this.$el).transition('zoom', 500, () => {
-                    
+
                 // });
                 this.$parent.remove(deleted_plant._id);
             }
         },
         computed: {
             userOwns() {
-                return app.session._id === this.plant.user_id; 
+                return app.session._id === this.plant.user_id;
             },
             deleteButtonText() {
                 return this.deleteLoading ? "Deleting..." : "Delete";
             }
         },
-        mounted: function() {
-            const [color] = this.plant.type_id.flower_color.split(",").map(c=>c.trim().toLowerCase());
-            if(!color || color === "varies") {
+        mounted: function () {
+            const [color] = this.plant.type_id.flower_color.split(",").map(c => c.trim().toLowerCase());
+            if (!color || color === "varies") {
                 this.colorClass = "green";
             } else {
                 this.colorClass = color;
@@ -594,7 +606,6 @@
                 this.loading = false;
             },
             remove(plant_id) {
-                console.log(plant_id);
                 this.plants = this.plants.filter(plant => {
                     return plant._id !== plant_id;
                 });
@@ -626,6 +637,135 @@
         `
     });
 
+    Vue.component('plant-type-result', {
+        props: ['garden_id', 'plant_type'],
+        data: () => ({
+            loading: false
+        }),
+        methods: {
+            async onClick() {
+                this.loading = true;
+                const res = await formEncodedPOST("/api/add-to-garden", {
+                    garden_id: this.garden_id,
+                    slug: this.plant_type.slug,
+                });
+                this.$parent.$parent.$parent.$refs.garden_plants.reload();
+                this.loading = false;
+            }
+        },
+        computed: {
+            addButtonText() {
+                return this.loading ? "Loading..." : "Add To Garden";
+            }
+        },
+        template: `
+        <div class="ui item">
+            <div class="ui middle aligned tiny image">
+                <img v-bind:src="plant_type.thumbnail">
+            </div>
+            <div class="middle aligned content">
+                {{plant_type.title}}
+            </div>
+            <div class="extra middle aligned" @click.prevent="onClick">
+                <div class="ui right floated button">
+                    {{addButtonText}}
+                </div>
+            </div>
+        </div>
+        `
+    })
+
+    Vue.component('add-plant-type', {
+        props: ['garden_id'],
+        data: () => ({
+            modal: false,
+            searchBox: false,
+            searchQuery: "",
+            searchInterval: 300,
+            searchTimer: false,
+            searchLoading: false,
+            searchResults: [],
+            error: false,
+        }),
+        methods: {
+            showModal: function () {
+                this.modal.modal('show');
+            },
+            onDeny: function () {
+                return;
+            },
+            onApprove: function () {
+                (async () => {
+
+                })();
+                return false;
+            },
+            async searchPlantTypes() {
+                if(this.searchQuery) {
+                    this.searchLoading = true;
+                    const req = await fetch("/api/search-type/" + this.searchQuery);
+                    const res = await req.json();
+                    this.searchResults = res;
+                    this.searchLoading = false;
+                } else {
+                    this.searchResults = [];
+                }
+            }
+        },
+        mounted: async function () {
+            this.searchBox = $(this.$el).find('.search input');
+            this.searchBox.on("keyup", () => {
+                clearTimeout(this.searchTimer);
+                this.searchTimer = setTimeout(this.searchPlantTypes, this.searchInterval);
+            });
+
+            this.searchBox.on("keydown", () => {
+               clearTimeout(this.searchTimer); 
+            });
+
+
+            this.modal = $(this.$el).find(".modal").modal({
+                closable: true,
+                transition: "horizontal flip",
+                onDeny: this.onDeny,
+                onApprove: this.onApprove
+            });
+
+        },
+        template: `
+        <div class="add-plant-container">
+            <div class="ui modal small">
+                <div class="header">
+                    Add Plants
+                </div>
+                <div class="content add-plant-searchbox">
+                    <div class="ui search" v-bind:class="{loading: searchLoading}">
+                        <div class="ui left icon input">
+                            <input v-model="searchQuery" class="prompt" type="text" placeholder="Search Plant Index">
+                            <i class="seedling icon green"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="content scrolling">
+                    <div class="search-results ui divided items">
+                        <template v-for="type in searchResults">
+                            <plant-type-result v-bind:garden_id="garden_id" v-bind:plant_type="type"></plant-type-result>
+                        </template>
+                    </div>
+                </div>
+                <div class="actions">
+                    <div class="ui negative button">
+                        Close
+                    </div>
+                </div>
+            </div>
+            <button @click.prevent="showModal" class="ui right labeled icon button positive">
+                Add Plants <i class="plus right icon"></i>
+            </button>
+        </div>
+        `
+    });
+
     Vue.component('user-garden', {
         props: ['garden_id'],
         template: `
@@ -644,8 +784,8 @@
             loaded: false
         },
         computed: {
-            url_garden_id: function() {
-                return document.location.pathname.split("/").filter(r=>r.length===24)[0];
+            url_garden_id: function () {
+                return document.location.pathname.split("/").filter(r => r.length === 24)[0];
             }
         },
         methods: {

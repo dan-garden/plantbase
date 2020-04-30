@@ -6,7 +6,7 @@ if(args[0]) {
     plantbase.getGardens().then(gardens => {
         const garden = gardens[0];
         if(garden) {
-            plantbase.addTypeToGarden(garden._id, args[0]).then(result => {
+            plantbase.addTypeToGarden(garden.user_id, garden._id, args[0]).then(result => {
                 console.log(result);
                 process.exit();
             })

@@ -12,7 +12,7 @@ const { Model } = require("../Database");
 class Almanac extends PlantProvider {
 
     static url = "https://www.almanac.com";
-    static forceScrape = false;
+    static forceScrape = true;
 
     static async getStoredSearch(query) {
         const find = await this.findLike(Model.AlmanacSearch, {

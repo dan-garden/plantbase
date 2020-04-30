@@ -8,7 +8,7 @@ class Trefle extends PlantProvider {
 
     static url = "https://trefle.io";
     static token = "Qk5uKzM5K29Cdm9rZWl3eFNGU1M1QT09";
-    static forceScrape = false;
+    static forceScrape = true;
 
     static async getStoredSearch(query) {
         const find = await this.findLike(Model.TrefleSearch, {

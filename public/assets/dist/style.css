@@ -92,8 +92,8 @@ nav ul li a:hover {
     text-align: center;
 }
 
-.create-garden-container {
-    text-align: left;
+.create-garden-container, .add-plant-container {
+    text-align: center;
     padding: 10px;
 }
 
@@ -111,4 +111,12 @@ nav ul li a:hover {
 
 .gardens-empty, .plants-empty {
     text-align: center;
+}
+
+.add-plant-searchbox {
+    text-align: center;
+}
+
+.search-results {
+    /* padding: 10px; */
 }

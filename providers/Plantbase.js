@@ -178,7 +178,7 @@ class Plantbase extends PlantProvider {
         return stored;
     }
 
-    static async getPlantsByGardenId(garden_id, full=true) {
+    static async getPlantsByGardenId(garden_id, full = true) {
         const populate = full ? ['type_id', 'plant_id'] : [];
         const stored = await this.find(Model.Plant, {
             garden_id
@@ -187,24 +187,23 @@ class Plantbase extends PlantProvider {
         return stored;
     }
 
-    static async addTypeToGarden(garden_id, slug) {
-        try {
-            const garden = await this.getGardenById(garden_id);
-            if (garden) {
-                const plant = await this.createPlant(garden._id, garden.user_id, slug);
-                garden.plants.push(plant);
-                const stored = await this.store(Model.Garden, "_id", garden);
-                return plant;
+    static async addTypeToGarden(user_id, garden_id, slug) {
+        const garden = await this.getGardenById(garden_id);
+        if (garden) {
+            if (user_id.toString() !== garden.user_id._id.toString()) {
+                throw new Error("User does not own this garden");
             }
-        } catch (e) {
-            console.log(e);
-            return undefined;
+
+            const plant = await this.createPlant(garden._id, garden.user_id, slug);
+            garden.plants.push(plant);
+            const stored = await this.store(Model.Garden, "_id", garden);
+            return plant;
         }
     }
 
     static async deletePlantFromGarden(user, plant_id) {
         const plant = await this.getPlantById(plant_id, false);
-        if(user._id.toString() !== plant.user_id.toString()) {
+        if (user._id.toString() !== plant.user_id.toString()) {
             throw new Error("User does not own this plant");
         }
         const garden = await this.getGardenById(plant.garden_id);
