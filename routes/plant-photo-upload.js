@@ -1,5 +1,6 @@
 const multer  = require('multer');
 const garden = require("../garden");
+const plantbase = require("../providers/Plantbase");
 
 const fileUploads = multer.diskStorage({
     destination: './public/assets/images/plants',
@@ -33,12 +34,10 @@ const upload = multer({ storage: fileUploads }).single('photo');
 module.exports = function(app) {
     app.post('/api/plant-photo-upload', async (req, res, next) => {
         await upload(req, res, async (err) => {
-            await garden.update(req.body.id, {
-                photo: req.file.filename
-            });
+            await garden.update(req.plant_id, req.file.filename);
             return res.json({
                 success: "Photo was uploaded.",
-                src: garden.photos_dir + "/" + req.file.filename
+                src: plantbase.photos_dir + "/" + req.file.filename
             });
         });
     })

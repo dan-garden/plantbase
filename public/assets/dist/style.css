@@ -116,3 +116,7 @@ nav ul li a:hover {
 .add-plant-searchbox {
     text-align: center;
 }
+
+.edit-plant-block {
+    margin: auto !important;
+}
