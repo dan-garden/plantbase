@@ -521,9 +521,14 @@
     Vue.component('edit-plant-button', {
         props: ["plant_id"],
         data: () => ({
+            modal: false,
             loading: false
         }),
         methods: {
+            showModal() {
+
+            },
+
             async editPlant() {
                 this.loading = true;
                 const res = await formEncodedPOST("/api/delete-garden-plant", {
@@ -543,6 +548,14 @@
             deleteButtonText() {
                 return this.loading ? "Deleting..." : "Delete";
             }
+        },
+        mounted: async function () {
+            this.modal = $(this.$el).find(".modal").modal({
+                closable: true,
+                transition: "horizontal flip",
+                onDeny: this.onDeny,
+                onApprove: this.onApprove
+            });
         },
         template: `
         <button class="ui labeled icon button basic" @click.prevent="editPlant">
