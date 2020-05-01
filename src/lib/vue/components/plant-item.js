@@ -37,7 +37,7 @@
                     <template v-if="userOwns">
                         <div class="extra content">
                             <div class="ui two buttons">
-                                <edit-plant-modal v-bind:plant="plant"
+                                <edit-plant-modal v-bind:plant="plant" ref="plant_modal"></edit-plant-modal>
                                 <edit-plant-button v-bind:plant_id="plant._id"></edit-plant-button>
                                 <delete-plant-button v-bind:plant_id="plant._id"></delete-plant-button>
                             </div>

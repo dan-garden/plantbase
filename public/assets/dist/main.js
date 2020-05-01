@@ -28342,46 +28342,10 @@ Vue.component('delete-plant-button', {
 });
 Vue.component('edit-plant-button', {
     props: ["plant_id"],
-    data: () => ({
-        modal: false,
-        loading: false
-    }),
     methods: {
-        showModal() {
-
-        },
-
-        async getPlant() {
-
-        },
-
         async editPlant() {
-            this.loading = true;
-            const res = await formEncodedPOST("/api/delete-garden-plant", {
-                plant_id: this.plant_id,
-            });
-            this.loading = false;
-            if (res.success) {
-                this.hide(res.success);
-            }
-        },
-
-        hide(deleted_plant) {
-            this.$parent.$parent.remove(deleted_plant._id);
+            this.$parent.$refs.plant_modal.showModal();
         }
-    },
-    computed: {
-        deleteButtonText() {
-            return this.loading ? "Deleting..." : "Delete";
-        }
-    },
-    mounted: async function () {
-        this.modal = $(this.$el).find(".modal").modal({
-            closable: true,
-            transition: "horizontal flip",
-            onDeny: this.onDeny,
-            onApprove: this.onApprove
-        });
     },
     template: `
         <button class="ui labeled icon button basic" @click.prevent="editPlant">
@@ -28390,6 +28354,50 @@ Vue.component('edit-plant-button', {
         </button>
         `
 });
+Vue.component('edit-plant-modal', {
+    props: ['plant'],
+    data: () => ({
+        modal: false,
+    }),
+    methods: {
+        showModal: function () {
+            this.modal.modal('show');
+        },
+        onDeny: function () {
+            return;
+        },
+        onApprove: function () {
+            (async () => {
+
+            })();
+            return false;
+        },
+    },
+    computed: {},
+    mounted: function() {
+        this.modal = $(this.$el).find(".modal").modal({
+            closable: true,
+            transition: "horizontal flip",
+            onDeny: this.onDeny,
+            onApprove: this.onApprove
+        });
+    },
+    template: `
+    <div class="ui modal small">
+        <div class="header">
+            Add Plants
+        </div>
+        <div class="content scrolling">
+            lol
+        </div>
+        <div class="actions">
+            <div class="ui negative button">
+                Close
+            </div>
+        </div>
+    </div>
+    `,
+})
 Vue.component('garden-item', {
     props: ['garden'],
     methods: {
@@ -28584,7 +28592,7 @@ Vue.component('login-form', {
                     <template v-if="userOwns">
                         <div class="extra content">
                             <div class="ui two buttons">
-                                <edit-plant-modal v-bind:plant="plant"
+                                <edit-plant-modal v-bind:plant="plant" ref="plant_modal"></edit-plant-modal>
                                 <edit-plant-button v-bind:plant_id="plant._id"></edit-plant-button>
                                 <delete-plant-button v-bind:plant_id="plant._id"></delete-plant-button>
                             </div>
