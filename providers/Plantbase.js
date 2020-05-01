@@ -203,7 +203,10 @@ class Plantbase extends PlantProvider {
             }
 
             const plant = await this.createPlant(garden._id, garden.user_id, slug);
-            garden.plants.push(plant);
+            
+            const gardenPlants = await this.getPlantsByGardenId(garden._id);
+            const plant_ids = gardenPlants.map(p => p._id);
+            garden.plants = plant_ids;
             const stored = await this.store(Model.Garden, "_id", garden);
             return plant;
         }

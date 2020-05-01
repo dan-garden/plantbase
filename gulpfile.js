@@ -1,34 +1,32 @@
-/*******************************
- *           Set-up
- *******************************/
-
-var
-  gulp   = require('gulp'),
-
-  // read user config to know what task to load
-  config = require('./src/semantic/tasks/config/user')
-;
+var gulp = require("gulp");
+var concat = require("gulp-concat");
+var fs = require("fs");
+var browserify = require("browserify");
+var uglify = require("gulp-uglify");
 
 
-/*******************************
- *            Tasks
- *******************************/
+gulp.task('concat', function () {
+  return gulp.src('./src/**/*.js')
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest('./public/assets/dist/'));
+});
 
-require('./src/semantic/tasks/collections/build')(gulp);
-require('./src/semantic/tasks/collections/install')(gulp);
+gulp.task('babel', function () {
+  return browserify("./public/assets/dist/main.js")
+    .transform("babelify", {
+      presets: ["@babel/preset-env", "@babel/preset-react"],
+      plugins: ['@babel/plugin-transform-runtime']
+    })
+    .bundle()
+    .pipe(fs.createWriteStream("./public/assets/dist/main.min.js"))
+});
 
-gulp.task('default', gulp.series('watch'));
+gulp.task('compress', function () {
+  return gulp.src('./public/assets/dist/main.min.js')
+  .pipe(uglify())
+  .pipe(concat('main.min.js'))
+  .pipe(gulp.dest('./public/assets/dist/'));
+})
 
-/*--------------
-      Docs
----------------*/
-
-require('./src/semantic/tasks/collections/docs')(gulp);
-
-/*--------------
-      RTL
----------------*/
-
-if (config.rtl) {
-  require('./src/semantic/tasks/collections/rtl')(gulp);
-}
+// Default Task
+gulp.task('default', gulp.series(['concat', 'babel', 'compress']));
