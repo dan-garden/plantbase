@@ -28410,9 +28410,9 @@ Vue.component('edit-plant-modal', {
                         <img v-bind:src="plant.image">
                     </div>
                     <div class="content">
-                        <a class="header">Team Fu</a>
+                        <a class="header">{{plant.type_id.name}}</a>
                         <div class="meta">
-                        <span class="date">Created in Sep 2014</span>
+                        <span class="date">{{plant.type_id.botanical_name}}</span>
                         </div>
                     </div>
                     <div class="extra content">
