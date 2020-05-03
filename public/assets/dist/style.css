@@ -120,3 +120,7 @@ nav ul li a:hover {
 .edit-plant-block {
     margin: auto !important;
 }
+
+.upload-photo-form input[type="file"] {
+    display: none;
+}

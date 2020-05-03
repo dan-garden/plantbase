@@ -28372,8 +28372,22 @@ Vue.component('edit-plant-modal', {
             })();
             return false;
         },
+        uploadPlantPhoto() {
+            const form = this.$el.querySelector("form");
+            let formData = new FormData(form);
+            formData.append("plant_id", this.plant._id);
+            fetch('/api/plant-photo-upload', { method: 'POST', body: formData })
+            .then(result => result.json())
+            .then(async result => {
+                if(result.success) {
+                    setTimeout(async () => {
+                        this.plant.image = result.src;
+                    }, 2000);
+                }
+            })
+        },
         async changePhoto() {
-            console.log("change photo");
+            $(this.$el).find('input[type="file"]').click();
         }
     },
     mounted: function() {
@@ -28400,14 +28414,17 @@ Vue.component('edit-plant-modal', {
                         <div class="ui dimmer">
                         <div class="content">
                             <div class="center">
-                            <div class="ui inverted button" @click.prevent="changePhoto">
-                                <i class="upload icon"></i>
-                                Upload Photo
-                            </div>
+                                <form class="ui hidden upload-photo-form">
+                                    <div class="ui inverted button" @click.prevent="changePhoto">
+                                        <i class="upload icon"></i>
+                                        Upload Photo
+                                    </div>
+                                    <input class="plant-photo-upload" @change.prevent="uploadPlantPhoto" type="file" name="photo" />
+                                </form>
                             </div>
                         </div>
                         </div>
-                        <img v-bind:src="plant.image">
+                        <img v-bind:src="plant.image" v-bind:alt="plant.type_id.name"/>
                     </div>
                     <div class="content">
                         <a class="header">{{plant.type_id.name}}</a>

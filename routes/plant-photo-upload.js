@@ -33,12 +33,18 @@ const upload = multer({ storage: fileUploads }).single('photo');
 
 module.exports = function(app) {
     app.post('/api/plant-photo-upload', async (req, res, next) => {
-        await upload(req, res, async (err) => {
-            await garden.update(req.plant_id, req.file.filename);
-            return res.json({
-                success: "Photo was uploaded.",
-                src: plantbase.photos_dir + "/" + req.file.filename
+        try {
+            await upload(req, res, async (err) => {
+                await plantbase.updatePlantPhoto(req.body.plant_id, req.file.filename);
+                return res.json({
+                    success: "Photo was uploaded.",
+                    src: plantbase.photos_dir + "/" + req.file.filename
+                });
             });
-        });
+        } catch(e) {
+            res.json({
+                error: e.message
+            })
+        }
     })
 }

@@ -242,7 +242,7 @@ class Plantbase extends PlantProvider {
     static async updatePlantPhoto(plant_id, filename) {
         const plant = await this.getPlantById(plant_id);
         plant.image = this.photos_dir + "/" + filename;
-        const storePlant = await this.store(Model.plant, null, plant);
+        const storePlant = await this.store(Model.Plant, null, plant);
         return storePlant;
     }
 
