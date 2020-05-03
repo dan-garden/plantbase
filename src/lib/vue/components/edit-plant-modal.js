@@ -22,11 +22,9 @@ Vue.component('edit-plant-modal', {
             formData.append("plant_id", this.plant._id);
             fetch('/api/plant-photo-upload', { method: 'POST', body: formData })
             .then(result => result.json())
-            .then(async result => {
+            .then(result => {
                 if(result.success) {
-                    setTimeout(async () => {
-                        this.plant.image = result.src;
-                    }, 2000);
+                    this.plant.image = result.src;
                 }
             })
         },
