@@ -1,7 +1,7 @@
 Vue.component('top-nav', {
     props: ['session', 'loaded'],
-    updated: function () {
-        if (this.session) {
+    mounted: function() {
+        if(this.session) {
             $("nav .ui.dropdown").dropdown();
         }
     },
@@ -29,7 +29,6 @@ Vue.component('top-nav', {
                         </div>
                     </div>
                 </li>
-
             </template>
             <template v-if="!loaded">
                 <li data-float="right"><div class="ui active green small inline loader"></div></li>

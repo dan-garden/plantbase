@@ -13,6 +13,9 @@ Vue.component('add-plant-type', {
     methods: {
         showModal: function () {
             this.modal.modal('show');
+            if(window.innerWidth <= 770 ) {
+                this.searchBox.blur();
+            }
         },
         onDeny: function () {
             return;
@@ -24,6 +27,10 @@ Vue.component('add-plant-type', {
             return false;
         },
         async searchPlantTypes() {
+            if(window.innerWidth <= 770 ) {
+                this.searchBox.blur();
+            }
+            
             if (this.searchQuery) {
                 this.searchLoading = true;
                 const req = await fetch("/api/search-type/" + this.searchQuery);

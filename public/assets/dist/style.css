@@ -121,6 +121,14 @@ nav ul li a:hover {
     text-align: center;
 }
 
+.search-results > .ui.item .extra.middle.aligned {
+    text-align: right;
+}
+
+.search-results > .ui.item .extra.middle.aligned button {
+    display: inline-block;
+}
+
 .edit-plant-block {
     margin: auto !important;
 }
@@ -137,7 +145,7 @@ nav ul li a:hover {
 
 @media only screen and (max-width: 770px) {
     .search-results > .ui.item {
-        width: 200px;
+        width: 120px;
         display: inline-block;
         border: solid 1px lightgray !important;
         vertical-align: bottom;
@@ -146,13 +154,14 @@ nav ul li a:hover {
         margin-top: 5px !important;
         margin-bottom: 5px !important;
         border-radius: 10px;
-        padding: 10px !important;
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
+        padding: 5px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
     }
 
     .search-results > .ui.item img {
         margin: auto !important;
+        max-height: 100px !important;
     }
 
     .search-results .extra.middle.aligned {

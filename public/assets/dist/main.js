@@ -28100,6 +28100,9 @@ Vue.component('add-plant-type', {
     methods: {
         showModal: function () {
             this.modal.modal('show');
+            if(window.innerWidth <= 770 ) {
+                this.searchBox.blur();
+            }
         },
         onDeny: function () {
             return;
@@ -28111,6 +28114,10 @@ Vue.component('add-plant-type', {
             return false;
         },
         async searchPlantTypes() {
+            if(window.innerWidth <= 770 ) {
+                this.searchBox.blur();
+            }
+            
             if (this.searchQuery) {
                 this.searchLoading = true;
                 const req = await fetch("/api/search-type/" + this.searchQuery);
@@ -28670,23 +28677,36 @@ Vue.component('plant-type-result', {
     }),
     methods: {
         async onClick() {
-            this.loading = true;
-            const res = await formEncodedPOST("/api/add-to-garden", {
-                garden_id: this.garden_id,
-                slug: this.plant_type.slug,
-            });
-            this.$parent.$parent.$parent.$refs.garden_plants.reload();
-            this.loading = false;
-            $('body')
-                .toast({
-                    class: 'success',
-                    message: `${this.plant_type.title} has been added to your garden.`
+            if (!this.loading) {
+                this.loading = true;
+                const res = await formEncodedPOST("/api/add-to-garden", {
+                    garden_id: this.garden_id,
+                    slug: this.plant_type.slug,
                 });
+                this.loading = false;
+
+                if(res.success) {
+                    $('body')
+                    .toast({
+                        class: 'success',
+                        message: `${this.plant_type.title} has been added to your garden.`,
+                        position: window.innerWidth <= 770 ? "top center" : "top right"
+                    });
+                    this.$parent.$parent.$parent.$refs.garden_plants.reload();
+                } else {
+                    $('body')
+                    .toast({
+                        class: 'error',
+                        message: `${res.error}`,
+                        position: window.innerWidth <= 770 ? "top center" : "top right"
+                    });
+                }
+            }
         }
     },
     computed: {
         addButtonText() {
-            return this.loading ? "Loading..." : "Add To Garden";
+            return this.loading ? "Add" : `Add <i class="plus right icon"></i>`;
         }
     },
     template: `
@@ -28698,9 +28718,7 @@ Vue.component('plant-type-result', {
                 {{plant_type.title}}
             </div>
             <div class="extra middle aligned" @click.prevent="onClick">
-                <div class="ui right floated button">
-                    {{addButtonText}}
-                </div>
+                <div class="ui right green icon button" v-bind:class="{floated: !loading, loading: loading, disabled: loading}" v-html="addButtonText"></div>
             </div>
         </div>
         `
@@ -28808,8 +28826,8 @@ Vue.component('register-form', {
 });
 Vue.component('top-nav', {
     props: ['session', 'loaded'],
-    updated: function () {
-        if (this.session) {
+    mounted: function() {
+        if(this.session) {
             $("nav .ui.dropdown").dropdown();
         }
     },
@@ -28837,7 +28855,6 @@ Vue.component('top-nav', {
                         </div>
                     </div>
                 </li>
-
             </template>
             <template v-if="!loaded">
                 <li data-float="right"><div class="ui active green small inline loader"></div></li>
