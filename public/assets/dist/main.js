@@ -28586,7 +28586,7 @@ Vue.component('login-form', {
                 </div>
             </h2>
             <form @submit.prevent="onSubmit" class="ui large form">
-                <div class="ui stacked segment">
+                <div class="ui segment">
                     <transition name="fade">
                         <div class="form-error" v-if="error">{{ error }}</div>
                     </transition>
@@ -28690,6 +28690,7 @@ Vue.component('plant-type-result', {
                     .toast({
                         class: 'success',
                         message: `${this.plant_type.title} has been added to your garden.`,
+                        displayTime: 1000,
                         position: window.innerWidth <= 770 ? "top center" : "top right"
                     });
                     this.$parent.$parent.$parent.$refs.garden_plants.reload();
@@ -28698,6 +28699,7 @@ Vue.component('plant-type-result', {
                     .toast({
                         class: 'error',
                         message: `${res.error}`,
+                        displayTime: 1000,
                         position: window.innerWidth <= 770 ? "top center" : "top right"
                     });
                 }
@@ -28762,13 +28764,13 @@ Vue.component('register-form', {
     template: `
         <div class="column register-form">
             <h2 class="ui green image header">
-                <img src="assets/images/logo.png" class="image">
+                <img src="assets/images/logo.png" class="image" />
                 <div class="content">
                     Register an account
                 </div>
             </h2>
             <form @submit.prevent="onSubmit" class="ui large form">
-                <div class="ui stacked segment">
+                <div class="ui segment">
                     <transition name="fade">
                         <div class="form-error" v-if="error">{{ error }}</div>
                     </transition>

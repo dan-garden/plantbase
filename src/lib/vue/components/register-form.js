@@ -37,13 +37,13 @@ Vue.component('register-form', {
     template: `
         <div class="column register-form">
             <h2 class="ui green image header">
-                <img src="assets/images/logo.png" class="image">
+                <img src="assets/images/logo.png" class="image" />
                 <div class="content">
                     Register an account
                 </div>
             </h2>
             <form @submit.prevent="onSubmit" class="ui large form">
-                <div class="ui stacked segment">
+                <div class="ui segment">
                     <transition name="fade">
                         <div class="form-error" v-if="error">{{ error }}</div>
                     </transition>

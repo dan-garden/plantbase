@@ -18,6 +18,7 @@ Vue.component('plant-type-result', {
                     .toast({
                         class: 'success',
                         message: `${this.plant_type.title} has been added to your garden.`,
+                        displayTime: 1000,
                         position: window.innerWidth <= 770 ? "top center" : "top right"
                     });
                     this.$parent.$parent.$parent.$refs.garden_plants.reload();
@@ -26,6 +27,7 @@ Vue.component('plant-type-result', {
                     .toast({
                         class: 'error',
                         message: `${res.error}`,
+                        displayTime: 1000,
                         position: window.innerWidth <= 770 ? "top center" : "top right"
                     });
                 }

@@ -39,7 +39,7 @@ Vue.component('login-form', {
                 </div>
             </h2>
             <form @submit.prevent="onSubmit" class="ui large form">
-                <div class="ui stacked segment">
+                <div class="ui segment">
                     <transition name="fade">
                         <div class="form-error" v-if="error">{{ error }}</div>
                     </transition>
