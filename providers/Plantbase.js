@@ -6,12 +6,9 @@ const {
 const validator = require('validator');
 const almanac = require("./Almanac");
 const trefle = require("./Trefle");
-const aws = require("../aws");
 
 
 class Plantbase extends PlantProvider {
-    static photos_dir = "../assets/images/plants";
-
     static async createGarden(user_id, name, description) {
         if (!user_id) {
             throw new Error("Invalid User");
@@ -217,6 +214,11 @@ class Plantbase extends PlantProvider {
         if (user._id.toString() !== plant.user_id.toString()) {
             throw new Error("User does not own this plant");
         }
+
+        if(plant.image.includes("amazonaws.com")) {
+            await this.deleteFile(plant.image.split("/").pop()); 
+         }
+
         const garden = await this.getGardenById(plant.garden_id);
         garden.plants = garden.plants.filter(p => p._id !== plant._id);
         const storedGarden = await this.store(Model.Garden, "_id", garden);
@@ -239,11 +241,28 @@ class Plantbase extends PlantProvider {
         }
     }
 
-    static async updatePlantPhoto(plant_id, filename) {
-        const plant = await this.getPlantById(plant_id);
-        plant.image = this.photos_dir + "/" + filename;
+    static async updatePlantPhoto(req) {
+        if(!req.body.plant_id) {
+            throw new Error("Plant ID is invalid");
+        }
+        if(!req.file.filename) {
+            throw new Error("There was an error uploading that file");
+        }
+        const plant = await this.getPlantById(req.body.plant_id);
+        if(req.user._id.toString() !== plant.user_id.toString()) {
+            throw new Error("User does not own this plant");
+        }
+
+        const photoStore = await this.uploadFile(req.file.path);
+
+        if(plant.image.includes("amazonaws.com")) {
+           await this.deleteFile(plant.image.split("/").pop()); 
+        }
+
+        plant.image = photoStore.Location;
+
         const storePlant = await this.store(Model.Plant, null, plant);
-        return storePlant;
+        return photoStore.Location;
     }
 
 

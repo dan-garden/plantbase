@@ -28373,7 +28373,7 @@ Vue.component('edit-plant-modal', {
             return false;
         },
         uploadPlantPhoto() {
-            const form = this.$el.querySelector("form");
+            const form = this.$el.querySelector(".upload-photo-form");
             let formData = new FormData(form);
             formData.append("plant_id", this.plant._id);
             fetch('/api/plant-photo-upload', { method: 'POST', body: formData })
@@ -28413,7 +28413,7 @@ Vue.component('edit-plant-modal', {
                         <div class="content">
                             <div class="center">
                                 <form class="ui hidden upload-photo-form">
-                                    <div class="ui inverted button" @click.prevent="changePhoto">
+                                    <div class="ui inverted button" @touchend.prevent="changePhoto" @click.prevent="changePhoto">
                                         <i class="upload icon"></i>
                                         Upload Photo
                                     </div>

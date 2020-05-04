@@ -1,5 +1,6 @@
 const { Model } = require("../Database");
 const fetch = require("node-fetch");
+const aws = require("../aws");
 
 class PlantProvider {
 
@@ -186,6 +187,16 @@ class PlantProvider {
         const request = await fetch(url.href).catch(error => console.error(error));
         const json = await request.json();
         return json;
+    }
+
+    static async uploadFile(path) {
+        const res = await aws.uploadFile("plantbase", path);
+        return res;
+    }
+
+    static async deleteFile(key) {
+        const res = await aws.deleteFile("plantbase", key);
+        return res;
     }
 
 }
