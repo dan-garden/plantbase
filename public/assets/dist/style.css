@@ -121,6 +121,12 @@ nav ul li a:hover {
     margin: auto !important;
 }
 
+.edit-plant-block img {
+    max-height: 300px;
+    width: auto;
+    margin: auto;
+}
+
 .upload-photo-form input[type="file"] {
     display: none;
 }
