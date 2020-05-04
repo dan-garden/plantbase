@@ -3,11 +3,11 @@ const {
     Model,
     passport
 } = require("../Database");
-
+const validator = require('validator');
 const almanac = require("./Almanac");
 const trefle = require("./Trefle");
+const aws = require("../aws");
 
-const validator = require('validator');
 
 class Plantbase extends PlantProvider {
     static photos_dir = "../assets/images/plants";
