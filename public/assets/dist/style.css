@@ -92,16 +92,19 @@ nav ul li a:hover {
     text-align: center;
 }
 
-.create-garden-container, .add-plant-container {
+.create-garden-container,
+.add-plant-container {
     text-align: center;
     padding: 10px;
 }
 
-.gardens-list, .plants-list {
+.gardens-list,
+.plants-list {
     margin: 0 !important;
 }
 
-.garden-item, .plant-item {
+.garden-item,
+.plant-item {
     position: relative;
 }
 
@@ -109,7 +112,8 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
-.gardens-empty, .plants-empty {
+.gardens-empty,
+.plants-empty {
     text-align: center;
 }
 
@@ -129,4 +133,33 @@ nav ul li a:hover {
 
 .upload-photo-form input[type="file"] {
     display: none;
+}
+
+@media only screen and (max-width: 770px) {
+    .search-results > .ui.item {
+        width: 200px;
+        display: inline-block;
+        border: solid 1px lightgray !important;
+        vertical-align: bottom;
+        text-align: center;
+        margin: 5px !important;
+        margin-top: 5px !important;
+        margin-bottom: 5px !important;
+        border-radius: 10px;
+        padding: 10px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    .search-results > .ui.item img {
+        margin: auto !important;
+    }
+
+    .search-results .extra.middle.aligned {
+        text-align: center !important;
+    }
+
+    .search-results .ui.button {
+        float: none !important;
+    }
 }

@@ -12,6 +12,11 @@ Vue.component('plant-type-result', {
             });
             this.$parent.$parent.$parent.$refs.garden_plants.reload();
             this.loading = false;
+            $('body')
+                .toast({
+                    class: 'success',
+                    message: `${this.plant_type.title} has been added to your garden.`
+                });
         }
     },
     computed: {

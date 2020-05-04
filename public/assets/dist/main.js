@@ -28158,7 +28158,7 @@ Vue.component('add-plant-type', {
                 </div>
                 <div class="content scrolling">
                     <template v-if="searchResults.length">
-                        <div class="search-results ui divided items">
+                        <div class="search-results ui items">
                             <template v-for="type in searchResults">
                                 <plant-type-result v-bind:garden_id="garden_id" v-bind:plant_type="type"></plant-type-result>
                             </template>
@@ -28677,6 +28677,11 @@ Vue.component('plant-type-result', {
             });
             this.$parent.$parent.$parent.$refs.garden_plants.reload();
             this.loading = false;
+            $('body')
+                .toast({
+                    class: 'success',
+                    message: `${this.plant_type.title} has been added to your garden.`
+                });
         }
     },
     computed: {
