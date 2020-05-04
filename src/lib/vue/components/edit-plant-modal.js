@@ -2,6 +2,7 @@ Vue.component('edit-plant-modal', {
     props: ['plant'],
     data: () => ({
         modal: false,
+        fileUploading: false,
     }),
     methods: {
         showModal: function () {
@@ -16,20 +17,25 @@ Vue.component('edit-plant-modal', {
             })();
             return false;
         },
-        uploadPlantPhoto() {
+        async uploadPlantPhoto() {
+            this.fileUploading = true;
             const form = this.$el.querySelector(".upload-photo-form");
             let formData = new FormData(form);
             formData.append("plant_id", this.plant._id);
-            fetch('/api/plant-photo-upload', { method: 'POST', body: formData })
-            .then(result => result.json())
-            .then(result => {
-                if(result.success) {
-                    this.plant.image = result.src;
-                }
-            })
+            const req = await fetch('/api/plant-photo-upload', { method: 'POST', body: formData });
+            const res = await req.json();
+            this.fileUploading = false;
+
+            if(res.success) {
+                this.plant.image = res.src;
+            }
+
+            
         },
         async changePhoto() {
-            $(this.$el).find('input[type="file"]').click();
+            if(!this.fileUploading) {
+                $(this.$el).find('input[type="file"]').click();
+            }
         }
     },
     mounted: function() {
@@ -58,8 +64,13 @@ Vue.component('edit-plant-modal', {
                             <div class="center">
                                 <form class="ui hidden upload-photo-form">
                                     <div class="ui inverted button" @touchend.prevent="changePhoto" @click.prevent="changePhoto">
-                                        <i class="upload icon"></i>
-                                        Upload Photo
+                                        <template v-if="fileUploading">
+                                            Uploading...
+                                        </template>
+                                        <template v-else-if="!fileUploading">
+                                            <i class="upload icon"></i>
+                                            Upload Photo
+                                        </template>
                                     </div>
                                     <input class="plant-photo-upload" @change.prevent="uploadPlantPhoto" type="file" name="photo" />
                                 </form>
