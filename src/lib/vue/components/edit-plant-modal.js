@@ -28,9 +28,15 @@ Vue.component('edit-plant-modal', {
 
             if(res.success) {
                 this.plant.image = res.src;
+            } else {
+                $('body')
+                .toast({
+                    class: 'error',
+                    message: `${res.error}`,
+                    displayTime: 1000,
+                    position: window.innerWidth <= 770 ? "top center" : "top right"
+                });
             }
-
-            
         },
         async changePhoto() {
             if(!this.fileUploading) {

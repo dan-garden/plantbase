@@ -1,3 +1,5 @@
+const e = require("express");
+
 Vue.component('garden-plants', {
     props: ['garden_id'],
     data: () => ({
@@ -9,8 +11,18 @@ Vue.component('garden-plants', {
             this.loading = true;
             const req = await fetch("/api/get-garden-plants/" + garden_id);
             const res = await req.json();
-            this.plants = res.sort((a, b) => a.title - b.title);
             this.loading = false;
+            if(res.success) {
+                this.plants = res;
+            } else {
+                $('body')
+                .toast({
+                    class: 'error',
+                    message: `${res.error}`,
+                    displayTime: 1000,
+                    position: window.innerWidth <= 770 ? "top center" : "top right"
+                });                
+            }
         },
         remove(plant_id) {
             this.plants = this.plants.filter(plant => {

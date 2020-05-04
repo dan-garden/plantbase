@@ -12,6 +12,14 @@ Vue.component('delete-plant-button', {
             this.loading = false;
             if (res.success) {
                 this.hide(res.success);
+            } else {
+                $('body')
+                .toast({
+                    class: 'error',
+                    message: `${res.error}`,
+                    displayTime: 1000,
+                    position: window.innerWidth <= 770 ? "top center" : "top right"
+                });
             }
         },
 

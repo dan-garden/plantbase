@@ -44,18 +44,9 @@ module.exports = function(app) {
                 const result = await plantbase.updatePlantPhoto(req);
                 res.json({
                     success: "Photo was uploaded.",
-                    src: result                
+                    src: result
                 });
             });
-            
-
-            // await upload(req, res, async (err) => {
-            //     await plantbase.updatePlantPhoto(req.body.plant_id, req.file.filename);
-            //     return res.json({
-            //         success: "Photo was uploaded.",
-            //         src: plantbase.photos_dir + "/" + req.file.filename
-            //     });
-            // });
         } catch(e) {
             res.json({
                 error: e.message
