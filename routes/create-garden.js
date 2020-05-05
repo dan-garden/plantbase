@@ -9,7 +9,6 @@ module.exports = function(app) {
             const result = await plantbase.createGarden(req.user._id, req.body.name, req.body.description);
             res.json({ success: result });
         } catch(e) {
-            console.error(e);
             res.json({ error: e.message })
         }
     });

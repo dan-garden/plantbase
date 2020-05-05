@@ -5,10 +5,11 @@ module.exports = function(app) {
         try {
             if(req.params.garden_id) {
                 const result = await plantbase.getPlantsByGardenId(req.params.garden_id);
-                res.json(result);
+                res.json({
+                    success: result
+                });
             }
         } catch(e) {
-            console.error(e);
             res.json({ error: e.message })
         }
     });

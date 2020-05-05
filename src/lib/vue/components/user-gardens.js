@@ -9,8 +9,18 @@ Vue.component('user-gardens', {
             this.loading = true;
             const req = await fetch("/api/get-user-gardens/" + user_id);
             const res = await req.json();
-            this.gardens = res;
             this.loading = false;
+            if(res.success) {
+                this.gardens = res.success;
+            } else {
+                $('body')
+                .toast({
+                    class: 'error',
+                    message: `${res.error}`,
+                    displayTime: 1000,
+                    position: window.innerWidth <= 770 ? "top center" : "top right"
+                });                
+            }
         },
         async reload() {
             if (this.user_id) {

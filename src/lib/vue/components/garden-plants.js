@@ -1,5 +1,3 @@
-const e = require("express");
-
 Vue.component('garden-plants', {
     props: ['garden_id'],
     data: () => ({
@@ -13,7 +11,7 @@ Vue.component('garden-plants', {
             const res = await req.json();
             this.loading = false;
             if(res.success) {
-                this.plants = res;
+                this.plants = res.success;
             } else {
                 $('body')
                 .toast({
