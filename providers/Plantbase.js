@@ -234,7 +234,7 @@ class Plantbase extends PlantProvider {
             const species = await trefle.getPlant(species_id);
             plant.plant_id = species._id;
             const storePlant = await this.store(Model.Plant, null, plant);
-            return storePlant;
+            return await this.getPlantById(plant_id);
         } catch (e) {
             console.error(e);
             return undefined;
@@ -250,11 +250,13 @@ class Plantbase extends PlantProvider {
             const search = await trefle.searchPlants(terms[i]);
             results.push(...search);
         }
+
         
         results = results.map(result => ({
             name: result.scientific_name,
             value: result.id
         }));
+        
 
         results = results.filter((e, i) => results.findIndex(a => a["name"] === e["name"]) === i);
         results = results.sort((a, b) => (a.name > b.name) ? 1 : -1);

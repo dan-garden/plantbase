@@ -71,7 +71,8 @@ class Trefle extends PlantProvider {
 
     static async searchPlants(query) {
         const stored = await this.getStoredSearch(query);
-        if(stored.length && !this.forceScrape) {
+        // if(stored.length && !this.forceScrape) {
+        if(false) {
             return stored;
         } else {
             const results = await this.callAPI("plants", {

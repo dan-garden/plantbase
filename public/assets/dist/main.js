@@ -28374,6 +28374,7 @@ Vue.component('edit-plant-modal', {
     data: () => ({
         modal: false,
         fileUploading: false,
+        showing: false,
     }),
     methods: {
         showModal: function () {
@@ -28427,7 +28428,13 @@ Vue.component('edit-plant-modal', {
             transition: "zoom",
             autofocus: false,
             onDeny: this.onDeny,
-            onApprove: this.onApprove
+            onApprove: this.onApprove,
+            onShow: () => {
+                this.showing = true;
+            },
+            onHidden: () => {
+                this.showing = false;
+            }
         });
     },
     template: `
@@ -28468,7 +28475,7 @@ Vue.component('edit-plant-modal', {
                         </div>
                     </div>
                     <div class="extra content">
-                        <edit-plant-species-select v-bind:plant="plant"></edit-plant-species-select>
+                        <edit-plant-species-select v-bind:modal_showing="showing" v-bind:plant="plant"></edit-plant-species-select>
                     </div>
                 </div>
             </div>
@@ -28482,36 +28489,91 @@ Vue.component('edit-plant-modal', {
     `,
 })
 Vue.component('edit-plant-species-select', {
-    props: ['plant'],
+    props: ['plant', 'modal_showing'],
+    data: () => ({
+        loading: false,
+        retrieved: false,
+        error: false,
+    }),
     methods: {
-        getPlantValue() {
-            return $(this.$el).find('.ui.dropdown')
-            .dropdown('get value');
+        // getPlantValue() {
+        //     return $(this.$el).find('.ui.dropdown')
+        //     .dropdown('get value');
+        // },
+
+        async getRelatedSpecies() {
+            this.loading = true;
+            const req = await fetch("/api/get-related-species/" + this.plant._id);
+            const res = await req.json();
+            this.loading = false;
+            if(res.success) {
+                return res.success;
+            } else {
+                return [];
+            }
         },
-        
-        setInitialPlant() {
-            $(this.$el)
-            .dropdown('set text', this.plant.type_id.botanical_name);
-            $(this.$el).find('.search')
-            .val(this.plant.type_id.name);
+
+        async updateSpeciesType(species_id) {
+            this.error = false;
+            this.loading = true;
+            const res = await formEncodedPOST("/api/select-plant-species", {
+                plant_id: this.plant._id,
+                species_id
+            });
+            this.loading = false;
+            if (res.error) {
+                this.error = res.error;
+            } else if (res.success) {
+                // this.plant = res.success;
+                // this.$parent.$parent.$parent.reload();
+                // this.$parent.plant = res.success;
+            }
+        },
+
+        async onChange(species_id, text) {
+            if(species_id && species_id !== "" && text !== this.scientific_name) {
+                await this.updateSpeciesType(species_id);
+                this.$parent.$parent.$parent.reload();
+            }
         }
     },
-    mounted: function() {
+
+    computed: {
+        scientific_name: function() {
+            return this.plant.plant_id && this.plant.plant_id.scientific_name ? this.plant.plant_id.scientific_name : this.plant.type_id.botanical_name;
+        }
+    },
+
+    watch: { 
+        modal_showing: async function(showing, oldVal) {
+            if(showing && !this.retrieved) {
+                const values = await this.getRelatedSpecies();
+                $(this.$el).dropdown('change values', values);
+                this.retrieved = true;
+                const [selected] = values.filter(species => {
+                    return species.name.toLowerCase() === this.scientific_name.toLowerCase();
+                });
+                
+                if(selected) {
+                    $(this.$el).dropdown("set selected", selected.value);
+                }
+            }
+        }
+    },
+    mounted: async function() {
         $(this.$el)
         .dropdown({
             direction: 'upward',
-            // action: 'combo',
-            clearable: true,
-            // apiSettings: { url: '/api/select-search-plant/{query}' },
+            placeholder: "Select Species",
+            forceSelection: false,
+            onChange: this.onChange,
         });
 
-        this.setInitialPlant();
     },
     template: `
-    <div class="ui search selection dropdown fluid">
-        <input type="hidden" name="plant_id">
+    <div class="ui dropdown search fluid selection" v-bind:class="{loading: loading, disabled: loading}">
         <i class="dropdown icon"></i>
-        <div class="default text"></div>
+        <span class="text"></span>
         <div class="menu"></div>
     </div>
     `
@@ -28696,6 +28758,9 @@ Vue.component('login-form', {
             userOwns() {
                 return app.session._id === this.plant.user_id;
             },
+            scientific_name: function() {
+                return this.plant.plant_id && this.plant.plant_id.scientific_name ? this.plant.plant_id.scientific_name : this.plant.type_id.botanical_name;
+            }
         },
         mounted: function () {
             const [color] = this.plant.type_id.flower_color.split(",").map(c => c.trim().toLowerCase());
@@ -28713,7 +28778,7 @@ Vue.component('login-form', {
                 <div class="content">
                     <div class="header">{{plant.type_id.name}}</div>
                     <div class="description">
-                        {{plant.type_id.botanical_name}}
+                        {{scientific_name}}
                     </div>
                     </div>
 

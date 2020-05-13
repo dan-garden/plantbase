@@ -3,6 +3,7 @@ Vue.component('edit-plant-modal', {
     data: () => ({
         modal: false,
         fileUploading: false,
+        showing: false,
     }),
     methods: {
         showModal: function () {
@@ -56,7 +57,13 @@ Vue.component('edit-plant-modal', {
             transition: "zoom",
             autofocus: false,
             onDeny: this.onDeny,
-            onApprove: this.onApprove
+            onApprove: this.onApprove,
+            onShow: () => {
+                this.showing = true;
+            },
+            onHidden: () => {
+                this.showing = false;
+            }
         });
     },
     template: `
@@ -97,7 +104,7 @@ Vue.component('edit-plant-modal', {
                         </div>
                     </div>
                     <div class="extra content">
-                        <edit-plant-species-select v-bind:plant="plant"></edit-plant-species-select>
+                        <edit-plant-species-select v-bind:modal_showing="showing" v-bind:plant="plant"></edit-plant-species-select>
                     </div>
                 </div>
             </div>

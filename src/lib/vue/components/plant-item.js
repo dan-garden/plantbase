@@ -13,6 +13,9 @@
             userOwns() {
                 return app.session._id === this.plant.user_id;
             },
+            scientific_name: function() {
+                return this.plant.plant_id && this.plant.plant_id.scientific_name ? this.plant.plant_id.scientific_name : this.plant.type_id.botanical_name;
+            }
         },
         mounted: function () {
             const [color] = this.plant.type_id.flower_color.split(",").map(c => c.trim().toLowerCase());
@@ -30,7 +33,7 @@
                 <div class="content">
                     <div class="header">{{plant.type_id.name}}</div>
                     <div class="description">
-                        {{plant.type_id.botanical_name}}
+                        {{scientific_name}}
                     </div>
                     </div>
 
