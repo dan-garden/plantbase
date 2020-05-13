@@ -83,7 +83,7 @@ Vue.component('edit-plant-species-select', {
     template: `
     <div class="ui dropdown search fluid selection" v-bind:class="{loading: loading, disabled: loading}">
         <i class="dropdown icon"></i>
-        <span class="text"></span>
+        <span class="text">Select Species</span>
         <div class="menu"></div>
     </div>
     `
