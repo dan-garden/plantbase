@@ -19,7 +19,7 @@ Vue.component('top-nav', {
                     <a href="/login">Sign In</a>
                 </li>
                 <li v-if="session" data-float="right">
-                    <div class="ui pointing dropdown link item">
+                    <div class="ui pointing dropdown">
                         <span class="text">{{ session.username }}</span>
                         <i class="dropdown icon"></i>
                         <div class="menu">

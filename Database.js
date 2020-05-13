@@ -120,7 +120,8 @@ const almanacTypeSchema = new Schema({
     pests: [String],
     pest_control: [String],
     harvest: [String],
-    stats: [String]
+    stats: [String],
+    terms: [String],
 }, {
     strictQuery: false
 });

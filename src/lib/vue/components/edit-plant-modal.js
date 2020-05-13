@@ -42,7 +42,9 @@ Vue.component('edit-plant-modal', {
             if(!this.fileUploading) {
                 $(this.$el).find('input[type="file"]').click();
             }
-        }
+        },
+
+
     },
     mounted: function() {
         $(this.$el).find('.special.cards .image').dimmer({
@@ -52,6 +54,7 @@ Vue.component('edit-plant-modal', {
         this.modal = $(this.$el).modal({
             closable: true,
             transition: "zoom",
+            autofocus: false,
             onDeny: this.onDeny,
             onApprove: this.onApprove
         });
@@ -61,7 +64,7 @@ Vue.component('edit-plant-modal', {
         <div class="header">
             Edit Plant - {{plant.type_id.name}}
         </div>
-        <div class="content scrolling">
+        <div class="content">
             <div class="ui special cards align center">
                 <div class="card centered edit-plant-block">
                     <div class="blurring dimmable image">
@@ -88,14 +91,13 @@ Vue.component('edit-plant-modal', {
                     <div class="content">
                         <a class="header">{{plant.type_id.name}}</a>
                         <div class="meta">
-                        <span class="date">{{plant.type_id.botanical_name}}</span>
+                            <span class="date">
+                                {{plant._id}}
+                            </span>
                         </div>
                     </div>
                     <div class="extra content">
-                        <a>
-                        <i class="users icon"></i>
-                        2 Members
-                        </a>
+                        <edit-plant-species-select v-bind:plant="plant"></edit-plant-species-select>
                     </div>
                 </div>
             </div>

@@ -37,7 +37,11 @@ gulp.task('compress', function () {
   .pipe(uglify())
   .pipe(concat(paths.minfile))
   .pipe(gulp.dest(paths.dist))
-  .pipe(browserSync.stream());
+})
+
+gulp.task('reload-browser', function(done) {
+  browserSync.reload();
+  done();
 })
 
 gulp.task('watch', function() {
@@ -46,7 +50,7 @@ gulp.task('watch', function() {
   });
 
   gulp.watch(paths.watch).on('change', browserSync.reload);
-  gulp.watch([paths.src], gulp.series(['concat', 'babel', 'compress']));
+  gulp.watch([paths.src], gulp.series(['concat', 'babel', 'reload-browser']));
 })
 
 

@@ -28413,7 +28413,9 @@ Vue.component('edit-plant-modal', {
             if(!this.fileUploading) {
                 $(this.$el).find('input[type="file"]').click();
             }
-        }
+        },
+
+
     },
     mounted: function() {
         $(this.$el).find('.special.cards .image').dimmer({
@@ -28423,6 +28425,7 @@ Vue.component('edit-plant-modal', {
         this.modal = $(this.$el).modal({
             closable: true,
             transition: "zoom",
+            autofocus: false,
             onDeny: this.onDeny,
             onApprove: this.onApprove
         });
@@ -28432,7 +28435,7 @@ Vue.component('edit-plant-modal', {
         <div class="header">
             Edit Plant - {{plant.type_id.name}}
         </div>
-        <div class="content scrolling">
+        <div class="content">
             <div class="ui special cards align center">
                 <div class="card centered edit-plant-block">
                     <div class="blurring dimmable image">
@@ -28459,14 +28462,13 @@ Vue.component('edit-plant-modal', {
                     <div class="content">
                         <a class="header">{{plant.type_id.name}}</a>
                         <div class="meta">
-                        <span class="date">{{plant.type_id.botanical_name}}</span>
+                            <span class="date">
+                                {{plant._id}}
+                            </span>
                         </div>
                     </div>
                     <div class="extra content">
-                        <a>
-                        <i class="users icon"></i>
-                        2 Members
-                        </a>
+                        <edit-plant-species-select v-bind:plant="plant"></edit-plant-species-select>
                     </div>
                 </div>
             </div>
@@ -28479,6 +28481,41 @@ Vue.component('edit-plant-modal', {
     </div>
     `,
 })
+Vue.component('edit-plant-species-select', {
+    props: ['plant'],
+    methods: {
+        getPlantValue() {
+            return $(this.$el).find('.ui.dropdown')
+            .dropdown('get value');
+        },
+        
+        setInitialPlant() {
+            $(this.$el)
+            .dropdown('set text', this.plant.type_id.botanical_name);
+            $(this.$el).find('.search')
+            .val(this.plant.type_id.name);
+        }
+    },
+    mounted: function() {
+        $(this.$el)
+        .dropdown({
+            direction: 'upward',
+            // action: 'combo',
+            clearable: true,
+            // apiSettings: { url: '/api/select-search-plant/{query}' },
+        });
+
+        this.setInitialPlant();
+    },
+    template: `
+    <div class="ui search selection dropdown fluid">
+        <input type="hidden" name="plant_id">
+        <i class="dropdown icon"></i>
+        <div class="default text"></div>
+        <div class="menu"></div>
+    </div>
+    `
+});
 Vue.component('garden-item', {
     props: ['garden'],
     methods: {
@@ -28871,7 +28908,7 @@ Vue.component('top-nav', {
                     <a href="/login">Sign In</a>
                 </li>
                 <li v-if="session" data-float="right">
-                    <div class="ui pointing dropdown link item">
+                    <div class="ui pointing dropdown">
                         <span class="text">{{ session.username }}</span>
                         <i class="dropdown icon"></i>
                         <div class="menu">

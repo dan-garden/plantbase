@@ -8,7 +8,7 @@ class Trefle extends PlantProvider {
 
     static url = "https://trefle.io";
     static token = "Qk5uKzM5K29Cdm9rZWl3eFNGU1M1QT09";
-    static forceScrape = true;
+    static forceScrape = false;
 
     static async getStoredSearch(query) {
         const find = await this.findLike(Model.TrefleSearch, {
@@ -58,6 +58,15 @@ class Trefle extends PlantProvider {
             console.log(`[${results.length}] ${searches[i]}`);
         }
         return `------Finished ${searches.length}-----`;
+    }
+
+    static async bulkPopulatePlants() {
+        const stored = await this.find(Model.TrefleSearch);
+        for(let i = 0; i < stored.length; i++) {
+            const plantData = await this.getPlant(stored[i].id);
+            console.log("plant stored "+stored[i].scientific_name);
+        }
+        return `------Finished ${stored.length}-----`;
     }
 
     static async searchPlants(query) {

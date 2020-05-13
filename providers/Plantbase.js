@@ -241,6 +241,27 @@ class Plantbase extends PlantProvider {
         }
     }
 
+    static async getRelatedSpecies(plant_id) {
+        const plant = await this.getPlantById(plant_id);
+        const terms = plant.type_id.terms;
+        let results = [];
+        
+        for(let i = 0; i < terms.length; i++) {
+            const search = await trefle.searchPlants(terms[i]);
+            results.push(...search);
+        }
+        
+        results = results.map(result => ({
+            name: result.scientific_name,
+            value: result.id
+        }));
+
+        results = results.filter((e, i) => results.findIndex(a => a["name"] === e["name"]) === i);
+        results = results.sort((a, b) => (a.name > b.name) ? 1 : -1);
+
+        return results;
+    }
+
     static async updatePlantPhoto(req) {
         if(!req.body.plant_id) {
             throw new Error("Plant ID is invalid");

@@ -5,7 +5,7 @@ module.exports = function(app) {
         try {
             if(req.params.query) {
                 const result = await trefle.searchPlants(req.params.query);
-                res.json(result);
+                res.json({ success: result });
             }
         } catch(e) {
             console.error(e);

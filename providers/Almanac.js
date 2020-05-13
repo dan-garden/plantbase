@@ -146,7 +146,13 @@ class Almanac extends PlantProvider {
                     const pest_control = this.filterDom(document, "Pests/Diseases", "p");
                     const harvest = this.filterDom(document, "Harvest/Storage", "li");
                     const stats = this.filterDom(document, "Wit & Wisdom", "li");
-    
+                    const lowerName = name.toLowerCase();
+                    const terms = [lowerName];
+
+                    if(lowerName.endsWith("s")) {
+                        terms.push(lowerName.substring(0, lowerName.length - 1));
+                    }
+
                     const result = {
                         name,
                         image,
@@ -157,10 +163,10 @@ class Almanac extends PlantProvider {
                         pests,
                         pest_control,
                         harvest,
-                        stats
+                        stats,
+                        terms
                     };
-    
-    
+
                     const stored = await this.storeType(result);
                     return stored;
                 } else {
