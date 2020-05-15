@@ -3,7 +3,7 @@ const apicache = require("apicache");
 const cache = apicache.middleware;
 
 module.exports = function (app) {
-    app.get("/api/get-related-species/:plant_id", cache('10 minutes'), async (req, res) => {
+    app.get("/api/get-related-species/:plant_id", cache('10 seconds'), async (req, res) => {
         try {
             if (req.params.plant_id) {
                 const result = await plantbase.getRelatedSpecies(req.params.plant_id);

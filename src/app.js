@@ -21,7 +21,10 @@ window.app = new Vue({
     },
     computed: {
         url_garden_id: function () {
-            return document.location.pathname.split("/").filter(r => r.length === 24)[0];
+            return this.getLastURLPart();
+        },
+        url_plant_id: function() {
+            return this.getLastURLPart();
         }
     },
     methods: {
@@ -34,6 +37,10 @@ window.app = new Vue({
             const res = await req.json();
             return res;
         },
+
+        getLastURLPart() {
+            return document.location.pathname.split("/").pop();
+        }
     },
 
     created: async function () {

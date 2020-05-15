@@ -112,6 +112,18 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
+.plant-item .datepicker {
+    margin-top: -14px;
+}
+
+.plant-item .datepicker input {
+    height: 0;
+    background: transparent none repeat scroll 0% 0%;
+    color: transparent;
+    border: medium none;
+    margin-top: 0px;
+}
+
 .gardens-empty,
 .plants-empty {
     text-align: center;

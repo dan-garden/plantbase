@@ -174,7 +174,7 @@ class Almanac extends PlantProvider {
                     };
 
                     if(result.botanical_name) {
-                        result.terms.push(result.botanical_name.toLowerCase);
+                        result.terms.push(result.botanical_name.toLowerCase());
                     }
 
                     const stored = await this.storeType(result);

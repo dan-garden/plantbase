@@ -9,7 +9,10 @@ Vue.component('garden-item', {
         },
         userOwns() {
             return app.session._id === this.garden.user_id;
-        }
+        },
+        plantsText() {
+            return this.garden.plants.length === 1 ? "Plant" : "Plants";
+        },
     },
     template: `
             <a class="ui card green" v-bind:href="href">
@@ -25,7 +28,7 @@ Vue.component('garden-item', {
                         </span>
                         <span>
                             <i class="seedling icon"></i>
-                            {{garden.plants.length}} Plants
+                            {{garden.plants.length}} {{plantsText}}
                         </span>
                     </div>
                 </div>

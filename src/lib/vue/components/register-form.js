@@ -23,8 +23,8 @@ Vue.component('register-form', {
                 passwordRepeat: this.passwordRepeat,
                 referrer: document.referrer
             });
-            this.loading = false;
             if (res.error) {
+                this.loading = false;
                 this.error = res.error;
             } else if (res.success) {
                 app.session = res.success;
@@ -88,7 +88,7 @@ Vue.component('register-form', {
                         </div>
                     </div>
                     
-                    <button class="ui fluid large green submit button">{{ buttonText }}</button>
+                    <button class="ui fluid large green submit button" v-bind:class="{disabled: loading}">{{ buttonText }}</button>
                 </div>
             </form>
 

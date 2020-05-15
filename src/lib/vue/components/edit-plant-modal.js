@@ -28,7 +28,7 @@ Vue.component('edit-plant-modal', {
             this.fileUploading = false;
 
             if(res.success) {
-                this.plant.image = res.src;
+                this.setPhoto(res.src);
             } else {
                 $('body')
                 .toast({
@@ -39,6 +39,15 @@ Vue.component('edit-plant-modal', {
                 });
             }
         },
+
+        setPhoto(src) {
+            this.plant.image = src;
+        },
+
+        setPlant(plant) {
+            this.plant = plant;
+        },
+
         async changePhoto() {
             if(!this.fileUploading) {
                 $(this.$el).find('input[type="file"]').click();
@@ -63,6 +72,9 @@ Vue.component('edit-plant-modal', {
             },
             onHidden: () => {
                 this.showing = false;
+            },
+            onHide: () => {
+                this.$parent.$parent.reload();
             }
         });
     },

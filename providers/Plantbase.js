@@ -69,7 +69,7 @@ class Plantbase extends PlantProvider {
             }
             const result = await Model.User.authenticate()(username, password);
             return result;
-        } catch(e) {
+        } catch (e) {
             throw new Error(e);
         }
     }
@@ -95,7 +95,7 @@ class Plantbase extends PlantProvider {
                         resolve(req.user);
                     }
                 });
-            } catch(e) {
+            } catch (e) {
                 reject(e);
             }
         }).catch(e => {
@@ -118,7 +118,11 @@ class Plantbase extends PlantProvider {
 
     static async getUsers() {
         const stored = await this.find(Model.User);
+        return stored;
+    }
 
+    static async getAllPlants(populate = []) {
+        const stored = await this.find(Model.Plant, null, populate);
         return stored;
     }
 
@@ -175,10 +179,11 @@ class Plantbase extends PlantProvider {
         return storePlant;
     }
 
-    static async getPlantById(plant_id) {
+    static async getPlantById(plant_id, full = true) {
+        const populate = full ? ['type_id', 'plant_id'] : [];
         const stored = await this.findOne(Model.Plant, {
             _id: plant_id
-        }, ['type_id', 'plant_id'])
+        }, populate)
 
         return stored;
     }
@@ -200,7 +205,7 @@ class Plantbase extends PlantProvider {
             }
 
             const plant = await this.createPlant(garden._id, garden.user_id, slug);
-            
+
             const gardenPlants = await this.getPlantsByGardenId(garden._id);
             const plant_ids = gardenPlants.map(p => p._id);
             garden.plants = plant_ids;
@@ -215,9 +220,9 @@ class Plantbase extends PlantProvider {
             throw new Error("User does not own this plant");
         }
 
-        if(plant.image.includes("amazonaws.com")) {
-            await this.deleteFile(plant.image.split("/").pop()); 
-         }
+        if (plant.image.includes("amazonaws.com")) {
+            await this.deleteFile(plant.image.split("/").pop());
+        }
 
         const garden = await this.getGardenById(plant.garden_id);
         garden.plants = garden.plants.filter(p => p._id !== plant._id);
@@ -233,6 +238,14 @@ class Plantbase extends PlantProvider {
             const plant = await this.getPlantById(plant_id);
             const species = await trefle.getPlant(species_id);
             plant.plant_id = species._id;
+
+            const isUploaded = !plant.image.includes("amazonaws.com");
+            if (isUploaded && species.images.length) {
+                plant.image = species.images[0].url;
+            } else if (isUploaded && !species.images.length) {
+                plant.image = plant.type_id.image;
+            }
+
             const storePlant = await this.store(Model.Plant, null, plant);
             return await this.getPlantById(plant_id);
         } catch (e) {
@@ -241,22 +254,54 @@ class Plantbase extends PlantProvider {
         }
     }
 
+    static async updateAllWatered() {
+        return new Promise(async (resolve) => {
+            const plants = await this.getAllPlants(['type_id']);
+            let count = 0;
+            for (let i = 0; i < plants.length; i++) {
+
+                const plant = plants[i];
+                const {
+                    has_watered,
+                    last_watered,
+                    every
+                } = {
+                    ...plant.watering,
+                    ...plant.type_id.watering
+                };
+
+                if (last_watered) {
+                    const now = Date.now();
+                    const time_since = now - last_watered;
+                    if (has_watered && time_since >= every) {
+                        await this.setHasWatered(plant.user_id, plant._id, false);
+                        count++;
+                    }
+                }
+
+                if (i === plants.length - 1) {
+                    resolve(count);
+                }
+            }
+        })
+    }
+
     static async getRelatedSpecies(plant_id) {
         const plant = await this.getPlantById(plant_id);
         const terms = plant.type_id.terms;
         let results = [];
-        
-        for(let i = 0; i < terms.length; i++) {
+
+        for (let i = 0; i < terms.length; i++) {
             const search = await trefle.searchPlants(terms[i]);
             results.push(...search);
         }
 
-        
+
         results = results.map(result => ({
             name: result.scientific_name,
             value: result.id
         }));
-        
+
 
         results = results.filter((e, i) => results.findIndex(a => a["name"] === e["name"]) === i);
         results = results.sort((a, b) => (a.name > b.name) ? 1 : -1);
@@ -264,22 +309,45 @@ class Plantbase extends PlantProvider {
         return results;
     }
 
-    static async updatePlantPhoto(req) {
-        if(!req.body.plant_id) {
+    static async setHasWatered(user_id, plant_id, has_watered) {
+        if (!plant_id) {
             throw new Error("Plant ID is invalid");
         }
-        if(!req.file.filename) {
+
+        const plant = await this.getPlantById(plant_id, false);
+        if (!plant) {
+            throw new Error("Plant does not exist");
+        }
+
+        if (user_id.toString() !== plant.user_id.toString()) {
+            throw new Error("User does not own this plant");
+        }
+
+        plant.watering = {
+            has_watered: has_watered ? true : false,
+            last_watered: has_watered ? Date.now() : plant.watering.last_watered
+        };
+
+        const storePlant = await this.store(Model.Plant, null, plant);
+        return plant.watering;
+    }
+
+    static async updatePlantPhoto(req) {
+        if (!req.body.plant_id) {
+            throw new Error("Plant ID is invalid");
+        }
+        if (!req.file.filename) {
             throw new Error("There was an error uploading that file");
         }
         const plant = await this.getPlantById(req.body.plant_id);
-        if(req.user._id.toString() !== plant.user_id.toString()) {
+        if (req.user._id.toString() !== plant.user_id.toString()) {
             throw new Error("User does not own this plant");
         }
 
         const photoStore = await this.uploadFile(req.file.path);
 
-        if(plant.image.includes("amazonaws.com")) {
-           await this.deleteFile(plant.image.split("/").pop()); 
+        if (plant.image.includes("amazonaws.com")) {
+            await this.deleteFile(plant.image.split("/").pop());
         }
 
         plant.image = photoStore.Location;

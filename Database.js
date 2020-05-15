@@ -49,9 +49,13 @@ const plantSchema = new Schema({
     sun_exposure: String,
     location: String,
     watering: {
+        has_watered: {
+            type: Boolean,
+            default: false,
+        },
         last_watered: {
             type: Date,
-            default: Date.now
+            default: null
         }
     },
     type_id: {
@@ -160,7 +164,9 @@ const trefleSearchSchema = new Schema({
 
 
 
-const treflePlantSchema = new Schema({}, {
+const treflePlantSchema = new Schema({
+    images: [Object]
+}, {
     strict: false,
     strictQuery: false
 });

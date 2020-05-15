@@ -34,6 +34,7 @@ Vue.component('edit-plant-species-select', {
             if (res.error) {
                 this.error = res.error;
             } else if (res.success) {
+                this.$parent.setPlant(res.success);
                 // this.plant = res.success;
                 // this.$parent.$parent.$parent.reload();
                 // this.$parent.plant = res.success;
@@ -43,7 +44,7 @@ Vue.component('edit-plant-species-select', {
         async onChange(species_id, text) {
             if(species_id && species_id !== "" && text !== this.scientific_name) {
                 await this.updateSpeciesType(species_id);
-                this.$parent.$parent.$parent.reload();
+                // this.$parent.$parent.$parent.reload();
             }
         }
     },
