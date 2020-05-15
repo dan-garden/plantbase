@@ -153,6 +153,11 @@ class Almanac extends PlantProvider {
                         terms.push(lowerName.substring(0, lowerName.length - 1));
                     }
 
+                    const watering = {
+                        every: 86400000,
+                        amount: "1-2 ml"
+                    };
+
                     const result = {
                         name,
                         image,
@@ -164,8 +169,13 @@ class Almanac extends PlantProvider {
                         pest_control,
                         harvest,
                         stats,
-                        terms
+                        terms,
+                        watering
                     };
+
+                    if(result.botanical_name) {
+                        result.terms.push(result.botanical_name.toLowerCase);
+                    }
 
                     const stored = await this.storeType(result);
                     return stored;

@@ -48,6 +48,12 @@ const plantSchema = new Schema({
     },
     sun_exposure: String,
     location: String,
+    watering: {
+        last_watered: {
+            type: Date,
+            default: Date.now
+        }
+    },
     type_id: {
         type: Schema.Types.ObjectId,
         default: null,
@@ -57,7 +63,11 @@ const plantSchema = new Schema({
         type: Schema.Types.ObjectId,
         default: null,
         ref: 'TreflePlant'
-    }
+    },
+    date_created: {
+        type: Date,
+        default: Date.now
+    },
 }, {
     strictQuery: false
 });
@@ -120,6 +130,10 @@ const almanacTypeSchema = new Schema({
     pests: [String],
     pest_control: [String],
     harvest: [String],
+    watering: {
+        every: Number,
+        amount: String,
+    },
     stats: [String],
     terms: [String],
 }, {
