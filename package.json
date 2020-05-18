@@ -27,7 +27,6 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "file-type": "^14.2.0",
-    "fomantic-ui": "^2.8.4",
     "glob": "^7.1.6",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
