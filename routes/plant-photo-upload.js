@@ -1,5 +1,4 @@
 const multer  = require('multer');
-const garden = require("../garden");
 const plantbase = require("../providers/Plantbase");
 
 const fileUploads = multer.diskStorage({
@@ -27,9 +26,6 @@ const fileUploads = multer.diskStorage({
 });
 
 const upload = multer({ storage: fileUploads }).single('photo');
-
-
-
 
 module.exports = function(app) {
     app.post('/api/plant-photo-upload', async (req, res, next) => {
