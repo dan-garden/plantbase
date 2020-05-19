@@ -172,7 +172,12 @@ class Plantbase extends PlantProvider {
             sun_exposure: "",
             location: "",
             type_id: plantType._id,
-            plant_id: null
+            plant_id: null,
+            watering: {
+                has_watered: false,
+                last_watered: null,
+                every: plantType.watering.every || null,
+            }
         };
 
         const storePlant = await this.store(Model.Plant, null, plant);
@@ -261,14 +266,9 @@ class Plantbase extends PlantProvider {
             for (let i = 0; i < plants.length; i++) {
 
                 const plant = plants[i];
-                const {
-                    has_watered,
-                    last_watered,
-                    every
-                } = {
-                    ...plant.watering,
-                    ...plant.type_id.watering
-                };
+                const has_watered = plant.watering.has_watered;
+                const last_watered = plant.watering.last_watered;
+                const every = plant.watering.every || plant.type_id.every;
 
                 if (last_watered) {
                     const now = Date.now();
@@ -323,10 +323,8 @@ class Plantbase extends PlantProvider {
             throw new Error("User does not own this plant");
         }
 
-        plant.watering = {
-            has_watered: has_watered ? true : false,
-            last_watered: has_watered ? Date.now() : plant.watering.last_watered
-        };
+        plant.watering.has_watered = has_watered ? true : false;
+        plant.watering.last_watered = has_watered ? Date.now() : plant.watering.last_watered;
 
         const storePlant = await this.store(Model.Plant, null, plant);
         return plant.watering;

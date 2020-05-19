@@ -56,7 +56,12 @@ const plantSchema = new Schema({
         last_watered: {
             type: Date,
             default: null
+        },
+        every: {
+            type:Number,
+            default: null
         }
+
     },
     type_id: {
         type: Schema.Types.ObjectId,
