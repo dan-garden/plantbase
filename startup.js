@@ -4,4 +4,4 @@ setInterval(() => {
     plantbase.updateAllWatered().then((count) => {
         // console.log(`${count} plants updated.`);
     });
-}, 10000);
+}, 100000);
