@@ -1,11 +1,10 @@
+const plantbase = require("../providers/Plantbase");
+
 module.exports = function(app) {
     app.get("/api/session", async (req, res) => {
         try {
-            if(req.user) {
-                res.json({ session: req.user });
-            } else {
-                res.json({ session: false })
-            }
+            const session = await plantbase.getUserSession(req);
+            res.json({ session });
         } catch(e) {
             console.error(e);
             res.json({ error: e.message })

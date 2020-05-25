@@ -32,6 +32,48 @@ userSchema.plugin(passportLocalMongoose, {
     interval: 2000
 });
 
+const notificationSchema = new Schema({
+    user_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    title: String,
+    body: String,
+    link: {
+        type: String,
+        default: "/"
+    },
+    icon: {
+        type: String,
+        default: "exclamation circle"
+    },
+    read: {
+        type: Boolean,
+        default: false,
+    },
+    date_created: {
+        type: Date,
+        default: Date.now
+    }
+}, {
+    strictQuery: false
+});
+
+const wateringLogSchema = new Schema({
+    user_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    plant_id: {
+        type: Schema.Types.ObjectId,
+        ref: 'Plant'
+    },
+    has_watered: Boolean,
+    last_watered: {
+        type: Date,
+        default: Date.now
+    }
+});
 
 const plantSchema = new Schema({
     user_id: {
@@ -180,6 +222,8 @@ const treflePlantSchema = new Schema({
 Model.User = mongoose.model("User", userSchema);
 Model.Plant = mongoose.model("Plant", plantSchema);
 Model.Garden = mongoose.model("Garden", gardenSchema);
+Model.WateringLog = mongoose.model("WateringLog", wateringLogSchema)
+Model.Notification = mongoose.model("Notification", notificationSchema);
 
 Model.AlmanacSearch = mongoose.model("AlmanacSearch", almanacSearchSchema);
 Model.AlmanacType = mongoose.model("AlmanacType", almanacTypeSchema);

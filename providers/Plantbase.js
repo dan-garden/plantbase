@@ -7,7 +7,6 @@ const validator = require('validator');
 const almanac = require("./Almanac");
 const trefle = require("./Trefle");
 
-
 class Plantbase extends PlantProvider {
     static async createGarden(user_id, name, description) {
         if (!user_id) {
@@ -309,6 +308,58 @@ class Plantbase extends PlantProvider {
         return results;
     }
 
+    static async getUserSession(req) {
+        if(req.user) {
+            const session = Object.assign({}, req.user._doc);
+            delete session.attempts;
+            delete session.email;
+            delete session.ip;
+            delete session._v;
+
+            const notifications = await this.getNotifications(req.user._id, 10);
+            session.notifications = notifications;
+            return session;
+        } else {
+            return false;
+        }
+    }
+
+    static async notify(user_id, title, body, link = "/", icon = null) {
+        const store = await this.store(Model.Notification, null, {
+            user_id,
+            title,
+            body,
+            link,
+            read: false,
+            icon
+        });
+
+        return store;
+    }
+
+    static async getNotifications(user_id, count=10) {
+        const find = await Model.Notification.find({
+            user_id: user_id
+        })
+        .sort({ field: 'asc', _id: -1 }).limit(count);
+
+        return find;
+    }
+
+    static async readNotification(user_id, notification_id) {
+        const notification = await this.findOne(Model.Notification, {
+            _id: notification_id
+        });
+
+        if (user_id.toString() !== notification.user_id.toString()) {
+            throw new Error("User does not own this notification");
+        }
+
+        notification.read = true;
+        const store = await this.store(Model.Notification, "_id", notification);
+        return store;
+    }
+
     static async setHasWatered(user_id, plant_id, has_watered) {
         if (!plant_id) {
             throw new Error("Plant ID is invalid");
@@ -326,6 +377,16 @@ class Plantbase extends PlantProvider {
         plant.watering.has_watered = has_watered ? true : false;
         plant.watering.last_watered = has_watered ? Date.now() : plant.watering.last_watered;
 
+        if(has_watered === false) {
+            await this.notify(plant.user_id, plant._id, "This plant needs watering", "/garden/"+plant.garden_id, "tint");
+        }
+
+        const storeWatering = await this.store(Model.WateringLog, null, {
+            user_id: plant.user_id,
+            plant_id: plant._id,
+            has_watered: plant.watering.has_watered,
+            last_watered: plant.watering.last_watered
+        });
         const storePlant = await this.store(Model.Plant, null, plant);
         return plant.watering;
     }

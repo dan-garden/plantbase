@@ -46,8 +46,9 @@ gulp.task('reload-browser', function(done) {
 
 gulp.task('watch', function() {
   browserSync.init({
-      proxy: "localhost:" + process.env.PORT
-  });
+      proxy: "localhost:" + process.env.PORT,
+      notify: false
+});
 
   gulp.watch(paths.watch).on('change', browserSync.reload);
   gulp.watch([paths.src], gulp.series(['concat', 'babel', 'reload-browser']));

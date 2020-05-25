@@ -40,7 +40,13 @@ window.app = new Vue({
 
         getLastURLPart() {
             return document.location.pathname.split("/").pop();
-        }
+        },
+
+        notify(data) {
+            if(this.session && this.session.notifications) {
+                this.session.notifications.unshift(data);
+            }
+        },
     },
 
     created: async function () {

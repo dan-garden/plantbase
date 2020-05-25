@@ -2,7 +2,9 @@ Vue.component('top-nav', {
     props: ['session', 'loaded'],
     mounted: function() {
         if(this.session) {
-            $("nav .ui.dropdown").dropdown();
+            $(this.$el).find(".ui.dropdown").each(function() {
+                $(this).dropdown();
+            });
         }
     },
     template: `
@@ -23,11 +25,14 @@ Vue.component('top-nav', {
                         <span class="text">{{ session.username }}</span>
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <a class="item">User Settings</a>
+                            <a class="item" data-text="loading...">User Settings</a>
                             <div class="divider"></div>
                             <a class="item" href="/logout">Logout</a>
                         </div>
                     </div>
+                </li>
+                <li v-if="session" data-float="right">
+                    <user-notifications v-bind:notifications="session.notifications"></user-notifications>
                 </li>
             </template>
             <template v-if="!loaded">
