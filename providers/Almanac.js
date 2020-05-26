@@ -12,7 +12,7 @@ const { Model } = require("../Database");
 class Almanac extends PlantProvider {
 
     static url = "https://www.almanac.com";
-    static forceScrape = false;
+    static forceScrape = true;
 
     static async getStoredSearch(query) {
         const find = await this.findLike(Model.AlmanacSearch, {
@@ -124,7 +124,12 @@ class Almanac extends PlantProvider {
                     document
                 } = (new JSDOM(html)).window;
                 const image = this.url + document.querySelector(".view-primary-image-in-article img").src;
-                const name = slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+                let name = slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+
+                if(name.startsWith("Growing ")) {
+                    name = name.replace("Growing", "").trim();
+                }
+
                 const details_table = document.querySelector(".pane-plant-details-table");
                 if (details_table) {
                     const details = {};
