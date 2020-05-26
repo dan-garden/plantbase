@@ -1,11 +1,12 @@
 require('dotenv').config();
-var gulp = require("gulp");
-var concat = require("gulp-concat");
-var fs = require("fs");
-var browserify = require("browserify");
-var uglify = require("gulp-uglify");
-var browserSync = require('browser-sync').create();
-
+const gulp = require("gulp");
+const concat = require("gulp-concat");
+const fs = require("fs");
+const browserify = require("browserify");
+const uglify = require("gulp-uglify");
+const browserSync = require('browser-sync').create();
+const rename = require("gulp-rename");
+const clean = require('gulp-clean');
 
 const paths = {
   src: './src/**/*.js',
@@ -36,8 +37,24 @@ gulp.task('compress', function () {
   return gulp.src(paths.dist + paths.minfile)
   .pipe(uglify())
   .pipe(concat(paths.minfile))
-  .pipe(gulp.dest(paths.dist))
-})
+  .pipe(gulp.dest(paths.dist));
+});
+
+gulp.task('clean-src', function() {
+  return gulp.src(paths.dist + paths.srcfile)
+  .pipe(clean());
+});
+
+gulp.task('rename', function() {
+  return gulp.src(paths.dist + paths.minfile)
+  .pipe(rename(paths.srcfile))
+  .pipe(gulp.dest(paths.dist));
+});
+
+gulp.task('clean-min', function() {
+  return gulp.src(paths.dist + paths.minfile)
+  .pipe(clean());
+});
 
 gulp.task('reload-browser', function(done) {
   browserSync.reload();
@@ -55,4 +72,4 @@ gulp.task('watch', function() {
 })
 
 
-gulp.task('default', gulp.series(['concat', 'babel', 'compress']));
+gulp.task('default', gulp.series(['concat', 'babel', 'compress', 'clean-src', 'rename', 'clean-min']));
