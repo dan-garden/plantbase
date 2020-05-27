@@ -12,7 +12,7 @@ const { Model } = require("../Database");
 class Almanac extends PlantProvider {
 
     static url = "https://www.almanac.com";
-    static forceScrape = true;
+    static forceScrape = false;
 
     static async getStoredSearch(query) {
         const find = await this.findLike(Model.AlmanacSearch, {
@@ -30,6 +30,11 @@ class Almanac extends PlantProvider {
             slug: slug
         });
 
+        return find;
+    }
+
+    static async getAllStoredSearches() {
+        const find = await this.find(Model.AlmanacSearch);
         return find;
     }
 
@@ -68,7 +73,10 @@ class Almanac extends PlantProvider {
 
     static async searchTypes(query) {
         const stored = await this.getStoredSearch(query);
-        if (stored.length && !this.forceScrape) {
+        if (
+            0
+            // stored.length && !this.forceScrape
+            ) {
             return stored;
         } else {
             const q = encodeURIComponent(query);
@@ -82,7 +90,10 @@ class Almanac extends PlantProvider {
             let search_results = Array.from(document.querySelectorAll(".search-result"));
             search_results = search_results.map(result => {
                 const a = result.querySelector(".title a");
-                const title = a.textContent;
+                let title = a.textContent;
+                if(title.startsWith("Growing ")) {
+                    title = title.replace("Growing", "").trim();
+                }
                 const link = a.href;
                 const slug_split = link.split("/");
                 const slug = slug_split[slug_split.length - 1];
@@ -124,11 +135,7 @@ class Almanac extends PlantProvider {
                     document
                 } = (new JSDOM(html)).window;
                 const image = this.url + document.querySelector(".view-primary-image-in-article img").src;
-                let name = slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
-
-                if(name.startsWith("Growing ")) {
-                    name = name.replace("Growing", "").trim();
-                }
+                const name = slug.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
 
                 const details_table = document.querySelector(".pane-plant-details-table");
                 if (details_table) {
