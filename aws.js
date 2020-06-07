@@ -1,4 +1,7 @@
-require('dotenv').config();
+if(process.env.ENV !== "production") {
+    require('dotenv').config();
+}
+
 const Amazon = require('aws-sdk');
 const fs = require('fs');
 const path = require('path');
