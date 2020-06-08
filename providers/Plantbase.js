@@ -218,6 +218,18 @@ class Plantbase extends PlantProvider {
         }
     }
 
+    static async deleteGarden(user, garden_id) {
+        const garden = await this.getGardenById(garden_id, false);
+        if (user._id.toString() !== garden.user_id.toString()) {
+            throw new Error("User does not own this garden");
+        }
+
+        const deleted = await this.deleteOne(Model.Garden, {
+            _id: garden._id
+        });
+        return deleted;
+    }
+
     static async deletePlantFromGarden(user, plant_id) {
         const plant = await this.getPlantById(plant_id, false);
         if (user._id.toString() !== plant.user_id.toString()) {
