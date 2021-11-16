@@ -17,7 +17,7 @@
     "@babel/preset-env": "^7.9.6",
     "@babel/preset-react": "^7.9.4",
     "apicache": "^1.5.3",
-    "aws-sdk": "^2.668.0",
+    "aws-sdk": "^2.814.0",
     "babelify": "^10.0.0",
     "body-parser": "^1.19.0",
     "browser-sync": "^2.26.7",
